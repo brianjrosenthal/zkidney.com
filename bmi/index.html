@@ -1,0 +1,333 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bmi | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/bmi">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+<script language="Javascript">
+//PLACE IN LIBRARY AND CALL FROM THERE
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://renalworld.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+ //END LIBRARY AND BEGIN SPECIFIC CALC CODING
+
+var form=document.getElementById('bmi');   
+
+
+function calculate(form,feet,inches,centimeters,weight,height_metric_p,weight_metric_p,) {
+        
+            var height_metric_p;
+            var weight_metric_p;
+            var feet=document.getElementById("feet").value;
+            var inches=document.getElementById("inches").value;
+            var centimeters=document.getElementById("centimeters").value;
+            var weight=document.getElementById("weight").value;
+
+
+            inches = parseInt(inches);
+            feet = parseInt(feet);
+            weight= parseInt(weight);
+            centimeters=parseInt(centimeters);
+        
+
+//converts inches to centimeters
+        if (window.document.bmi.height_metric_p[0].checked)   
+        {
+        feet=+feet*12;
+        document.getElementById("feet").style.display="inline";
+        inches=inches;document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+
+        feet=+feet + +inches;
+        centimeters= +feet*2.54;
+                }
+        else {
+              centimeters=centimeters*1;
+              document.getElementById("centimeters").style.display="inline";
+              document.getElementById("feet").style.display="none";
+              document.getElementById("inches").style.display="none";
+            }
+        
+//converts pounds to kilograms          
+        
+          weight=weight*((window.document.bmi.weight_metric_p[0].checked)?.45:1);
+         
+ 
+            var x = centimeters;
+            var y = weight;
+            //convert cms to meters
+
+           
+           
+            x=  x/100;
+            x = x*x;
+            //divide weight by height squared
+            var bmi = y/x;
+          
+            bmi = Math.round(bmi*100)/100;
+            
+            var text_message = explain_text(bmi);
+          
+
+           
+       
+        
+     
+      
+         
+         function cdc()
+         {
+         var cdc_uri="<a href='https://www.cdc.gov/growthcharts/cdc-growth-charts.html'> Please Refer to the CDC Clinical Charts for Children</a>";
+       if (document.bmi.age_under20_p.checked) {
+                      document.getElementById("children_message").innerHTML = cdc_uri;
+           }         
+      else {
+                    document.getElementById("children_message").innerHTML = "";
+          }
+       
+         }
+
+         function explain_text(bmi)
+         {
+         if(bmi < 18.5){text_message="The BMI of "+bmi+" kg/m<sup>2</sup> is less than ideal and may reflect poor nutrition.";}
+         else if(bmi >= 18.5 && bmi < 25){text_message="The BMI of " +bmi+ " kg/m<sup>2</sup> is ideal. The normal BMI is less than 25 and greater than 20.";}
+         else if (bmi >= 25 && bmi < 30) {text_message="The BMI of "+bmi+" kg/m<sup>2</sup> is over the ideal body weight (BMI greater than 25 but less than 30.)";}
+         else if (bmi >= 30) {text_message="The BMI of "+bmi+" kg/m<sup>2</sup> is a cardiovascular risk factor. Obesity is defined as a BMI greater than 30.";}
+         
+         return text_message;
+         }
+
+          
+          
+            var output;
+            var output1;
+            cdc_uri=cdc();
+         
+        //kg/m<sup>2</sup>";   
+        
+           
+            document.getElementById("output").innerHTML =  bmi 
+            document.getElementById("output1").innerHTML = text_message;
+
+
+     
+   }
+
+    </script>
+
+<meta name="viewport" content="width=375; initial-scale=1.0; maximum-scale=1.0; user-scalable=1" />
+
+<style type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;color:gray
+        background-color:white;
+ 
+                
+                
+               
+ 
+.ip_option {
+        font-size:20;
+        color:gray;
+
+        }
+ 
+.ip_input  {
+        font-size:20;
+        color:black;
+
+        }
+      
+}
+td.fieldName {
+	font-weight: bold;
+	font-size: 14pt;
+}
+td.fieldInput, 
+td.fieldInput input {
+	font-size: 13pt;
+}
+td.fieldInput select {
+	font-size: 13pt;
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+table.fieldGroup {
+	margin-bottom: 1em;
+}
+div.submitButton {
+width: 100%;
+text-align: center;
+}
+div.submitButton input {
+	width: 80%;
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+a {font-family:helvetica, arial, sans-serif, vardana; color:gray;font-decoration:underline;}
+</style>
+<fieldset id="fieldset_style">
+</head>
+<body onload="window.setInterval('calculate()',250);">
+
+<FORM id="bmi" name="bmi">
+
+<table width=350>
+<h2 style="text-align:center;">BODY MASS INDEX (BMI)</h2>
+<center><table width=390></center>
+<tr><td colspan=2 align="left" style="font-weight:bold;">Height</td></tr>
+<tr><td><input type="radio" name="height_metric_p">feet inches</td>
+    <td><input type="radio" name="height_metric_p">centimeters</td></tr>
+<tr><td><input  id="feet" type="text" value="5" size="3">
+        <input  id="inches" type="text" value="9" size="4"></td>
+    <td><input  id="centimeters" type="text" value="150" size="5"></td></tr>
+<tr><td colspan=2></td></tr>
+<tr><td colspan=2 align="left" style="font-weight:bold;">Weight</td></tr>         
+<tr><td>Enter and select <input  id="weight" type="text" value="150" size="5"></td</tr>
+         <tr> <td><input type="radio" name="weight_metric_p">pounds</td>
+         <td><input  type="radio" name="weight_metric_p">kilograms</td></tr>
+         <tr><td colspan=2>
+
+ Age under 20 years old
+ <input  type="checkbox" name="age_under20_p"><br><span id ="children_message"></span><br>
+BODY MASS INDEX (BMI) = weight / height squared<br>
+<div style="font-weight:bold;font-size:15pt">BMI =  <span style="font-weight:bold;font-size:15pt" id="output"> kg/m<sup>2</sup></span><br><span style="font-size:12pt;font-weight
+:normal;" id="output1"></span></div>
+</td></tr>
+</table>
+</form>
+
+
+
+Elevated waist circumference:
+Men - Equal to or greater than 40 inches (102 cm)
+Women - Equal to or greater than 35 inches (88 cm) 
+Waist circumference / square root of weight = predictor of diabetes
+Elevated triglycerides:
+Equal to or greater than 150 mg/dL
+Reduced HDL (good) cholesterol:
+Men - Less than 40 mg/dL
+Women - Less than 50 mg/dL 
+Elevated blood pressure:
+Equal to or greater than 120/70 mm Hg 
+Elevated fasting glucose:
+Equal to or greater than 100 mg/dL 
+  
+  <hr>
+<p style="font-size:11;text-align:justify;">&copy; 2008-24, Stephen Z. Fadem, M.D., FACP, FASN. All rights reserved. No part of this application may be duplicated without written permission from the author.</p>
+<p style="font-size:10;text-align:justify;">DISCLAIMER:
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p style="font-size:10;text-align:justify;">Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.
+
+<br><a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_72da2b7d7f604564bdd943819826372c_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:"></p></a></div></p>
+</body
+  </html>

@@ -1,0 +1,80 @@
+/* Styles for the home page only. Calculator pages carry their own original CSS. */
+@font-face{font-family:Poppins;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/poppins-400.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:600;font-display:swap;src:url(fonts/poppins-600.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/poppins-700.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:italic;font-weight:600;font-display:swap;src:url(fonts/poppins-600i.woff2) format("woff2")}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { background: #2b302f; }
+html::before { content: ""; display: block; height: 56px; } /* room for the header drawn by site.js */
+
+body {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  -webkit-text-size-adjust: 100%;
+}
+
+.hero {
+  margin: 8px 0 0 16px;
+  padding: 24px 16px 56px;
+  min-height: 462px;
+  background: #0d5a2c url(img/hero.jpg) center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-inner { width: 100%; max-width: 900px; }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 11vw, 7.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #eee;
+  text-wrap: balance;
+}
+.hero .tagline {
+  margin: 36px 0 0;
+  font-size: clamp(1.1rem, 3.6vw, 2.5rem);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+.hero .linkline {
+  margin: 96px 0 0;
+  font-size: clamp(0.9rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.72);
+}
+.hero .linkline a { color: inherit; }
+
+main { max-width: 928px; margin: 0 auto; padding: 16px 16px 48px; }
+
+.calcs { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.calcs th,
+.calcs td { border: 1px solid rgba(255, 255, 255, 0.14); text-align: center; padding: 0; }
+.calcs th { font-weight: 400; font-size: 17px; padding: 18px 12px; }
+.calcs td { font-size: 15px; font-weight: 600; }
+.calcs td + td { font-size: 17px; overflow-wrap: anywhere; }
+.calcs tbody tr:nth-child(odd) td { background: #543526; }
+.calcs tbody tr:nth-child(even) td { background: #98582f; }
+.calcs a { display: block; padding: 13px 12px; color: #fff; text-decoration: none; }
+.calcs a:hover,
+.calcs a:focus-visible { text-decoration: underline; }
+
+footer { padding: 0 16px 32px; text-align: center; font: 10px Verdana, serif; color: #fff; }
+
+@media (max-width: 640px) {
+  .hero { margin-left: 0; min-height: 0; padding-bottom: 32px; }
+  .hero .tagline { margin-top: 16px; }
+  .hero .linkline { margin-top: 32px; }
+  /* The URL column repeats the link in the first column; drop it on phones. */
+  .calcs th + th,
+  .calcs td + td { display: none; }
+}

@@ -1,0 +1,438 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pediatric Calculators -  | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/pediatric-calculators">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=1" />
+
+<style type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+}
+p {
+	font-size: 13pt;
+}
+td.fieldName {
+	font-weight: bold;
+	font-size: 14pt;
+}
+td.fieldInput, 
+td.fieldInput input {
+	font-size: 11pt;
+        
+
+}
+td.fieldInput select {
+	font-size: 11pt;
+        border: 3px double #eeeeee;
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+        border:2px double #eeeeee;
+}
+div.results td {
+	font-size: 13pt;
+}
+div.results td.result {
+	text-decoration: underline;
+}
+table.fieldGroup {
+	margin-bottom: 1em;
+}
+div.submitButton {
+width: 100%;
+text-align: center;
+}
+div.submitButton input {
+	width: 80%;
+	font-size: 13pt;
+	font-weight: bold;
+}
+</style>
+
+
+<script language="Javascript">
+
+
+
+function calculateGFR() {
+     var form
+     var cystatin = document.getElementById('cystatin').value;
+     var cystatinUnits = document.getElementById('cystatinUnits').value;
+        var bun = document.getElementById('bun').value;
+        var bun_true=bun
+        var bunUnits=document.getElementById('bunUnits').value;
+	var creatinine = document.getElementById('creatinine').value;
+        var creatinine_true=creatinine
+	var creatinineUnits = document.getElementById('creatinineUnits').value;
+	var heightUnits = document.getElementById('heightUnits').value;
+	var age = document.getElementById('age').value;
+	var height = document.getElementById('height').value;
+        var height_true=height
+	var gender = document.getElementById('gender').value;
+        var genderValue;
+       var wrong_cystatin = (cystatin < 0.5 || cystatin > 4);
+
+         if (cystatinUnits == 'dako') {
+               cystatin=cystatin*1;
+               document.getElementById('cystatin_report').innerHTML = '<b>Cystatin C was determined by <A class="mdrd" href="http://nephron.org/cystatin_nkf" target="_blank">Dako turbidometry</a> in the formula generation. The calculation is based on enzymatic creatinine values traceable to <a href="http://nephron.org/cystatin_resources"> IDMS</a>.</b></br>';
+               } 
+          else if (cystatinUnits =='dade') {
+              cystatin=cystatin*0;
+             document.getElementById('cystatin_report').innerHTML = '<b>The Nephelometric cystatin C estimating formula by <A class="mdrd" href="http://nephron.org/cystatin_nkf"  target="_blank">  Siemens Dade-Behring </a>should be available in 2011. The calculation is based on enzymatic creatinine values traceable to <a href="http://nephron.org/nephsites/nic/cystatin_resources"> IDMS</a>.</b></br>'; 
+             
+               }
+           
+	
+	if (creatinineUnits == 'umoll') {
+                
+		creatinine = creatinine * 0.011312;
+                creatinineUnits='umol/L'
+	}
+                else   {
+                creatinineUnits='mg/dL'
+        }
+        if (bunUnits == 'mmoll') {
+		bun = bun *2.8;
+                bunUnits='mmol/L';
+	}
+                else   {
+                bunUnits='mg/dL';
+        }
+        if (gender == 'male') {genderValue=1.099
+        }
+           else  {genderValue=1
+        }
+	
+
+	
+	var height
+        
+	if (heightUnits == 'in') {
+		
+		height= height *2.54/100;
+		height_true=height
+	}
+	else {
+                
+		height = height/100;
+                height_true=height
+		
+	}
+	
+	var wrong_height=(height <= .4 || height >= 2.0);
+        var wrong_creatinine=(creatinine <= .2 || creatinine >= 16);
+        var wrong_bun=(bun <= 3 || bun >= 200);
+         
+
+	height1 = height/creatinine;
+          height1=Math.pow(height1,0.516 )* 39.1;
+       cystatin1=1.8/cystatin;
+        cystatin1=Math.pow(cystatin1,0.294);
+        bun1=30/bun;
+        bun1=Math.pow(bun1,0.169);
+        height2=height/1.4
+       height2=Math.pow(height2,0.188)
+
+gfr=height1*cystatin1*bun1*genderValue*height2;
+gfr=Math.round(gfr*100)/100;
+
+var bedside =height*100
+bedside=bedside/creatinine
+bedside=.413*bedside
+bedside=Math.round(bedside*100)/100;
+
+var cb=height*100
+var cb=cb/creatinine
+cb = 0.43*cb
+cb=Math.round(cb*100)/100;
+
+
+ 
+
+if (cystatinUnits =='dade') {gfr=0;}
+ 
+ var wrong_gfr = (gfr > 75|| gfr < 15);
+if (gfr >75){gfr=">75";}
+else if (gfr < 15){gfr="< 15";}
+
+ var wrong_age = (age > 17|| age < 1);
+	  if (wrong_age) {
+           document.getElementById('wrong_age_report').innerHTML = '<b>This formula only applies to children 1 to 17 years of age.</b></br>';  
+                    }
+           else {
+            document.getElementById('wrong_age_report').innerHTML = '<br>';
+                   } 
+ 	if (wrong_gfr) {
+        document.getElementById('wrong_gfr_report').innerHTML = '<b>The formula has not been validated outside of the range of GFR of 15-75 ml/min per 1.73m<sup>2</sup>.</b><br>';  
+                  }
+         else {
+        document.getElementById('wrong_gfr_report').innerHTML ='<br>';
+               }
+         if (wrong_cystatin) {
+         document.getElementById('wrong_cystatin_report').innerHTML ='<b> The cystatin value of '+cystatin+ ' is not in range. The range is .5 to 4 mg/L.</b><br>';
+         gfr="<b>invalid cystatin entry.</b><br> Try again.<br>gfr will be reported in ";
+               }
+         else {
+         document.getElementById('wrong_cystatin_report').innerHTML ='<br>';
+              }
+        if (wrong_height) {
+         document.getElementById('wrong_height_report').innerHTML='<b> The height of '+height_true+ ' is out of range.</b>';
+         gfr="<b>invalid height entry.</b><br> Try again.<br>gfr will be reported in ";
+         cb="<b>invalid height entry.</b><br> Try again.<br>gfr will be reported in ";
+         bedside="<b>invalid height entry.</b><br> Try again.<br>gfr will be reported in ";
+         }
+else {
+         document.getElementById('wrong_height_report').innerHTML ='<br>';
+              }
+        if (wrong_creatinine) {
+         document.getElementById('wrong_creatinine_report').innerHTML='<b> The creatinine of '+creatinine+ ' is out of range.</b>';
+         gfr="<b>invalid creatinine entry.</b><br> Try again.<br>gfr will be reported in ";
+         bedside="<b>invalid creatinine entry.</b><br> Try again.<br>gfr will be reported in ";
+         cb="<b>invalid creatinine entry.</b><br> Try again.<br>gfr will be reported in ";
+         }
+else {
+         document.getElementById('wrong_creatinine_report').innerHTML ='<br>';
+              }
+      if (wrong_bun) {
+         document.getElementById('wrong_bun_report').innerHTML='<b> The bun of '+bun+ ' is out of range.</b>';
+         gfr="<b>invalid bun entry.</b><br> Try again.<br>gfr will be reported in ";
+         }
+else {
+         document.getElementById('wrong_bun_report').innerHTML ='<br>';
+              }
+
+document.getElementById('results').innerHTML = gfr +' ml/min/1.73 m<sup>2</sup><br>';
+document.getElementById('results_bun').innerHTML = Math.round(bun_true*100)/100 + ' '+ bunUnits+'<br>';
+document.getElementById('results_creatinine').innerHTML = Math.round(creatinine_true*100)/100 + ' '+ creatinineUnits+'<br>';
+document.getElementById('results_height').innerHTML = Math.round(height_true*1000)/1000+ '  meters<br>';
+document.getElementById('results_gender').innerHTML = gender  + ' ( value=  ' + genderValue + ')<br>';
+document.getElementById('results_age').innerHTML = age  + ' years old<br>';
+document.getElementById('cystatin_c_value_report').innerHTML=cystatin+ ' mg/L<br>';
+document.getElementById('bedside_results').innerHTML = bedside +' ml/min/1.73 m<sup>2</sup><br>';
+document.getElementById('cb_results').innerHTML = cb +' ml/min/1.73 m<sup>2</sup><br>';
+}
+
+
+</script>
+
+</head>
+
+
+<body onload="window.setInterval('calculateGFR()',250);">
+<form>
+<table width="100%" class="fieldGroup">
+<tr>
+<td colspan=2><center><h1>Pediatric Calculators</h1>
+<h2><em>CKiD SCHWARTZ AND BEDSIDE SCHWARTZ</em></h2>
+<h3>Revised Pediatric Equations</h3>by Stephen Z. Fadem, M.D., FACP, FASN<br>
+<p  class="results">
+These equations have not been validated outside of the range of GFR of 15-75 ml/min per 1.73m<sup>2</sup>.</p>
+
+</center><br></td>
+</tr>
+<tr>
+		<td class="fieldName">Cystatin C:</td>
+		<td class="fieldInput"><input type="text" id="cystatin" size="5" value="1">  
+			<select id="cystatinUnits"> 
+				<option value="dako">Turbidometry mg/L</option>
+				<option value="dade">Nephelometric mg/L</option>
+			</select>
+			</td>
+
+</tr>
+
+<tr>
+		<td class="fieldName">Creatinine:</td>
+		<td class="fieldInput"><input type="text" id="creatinine" size="5" 
+			value="1"> 
+			<select id="creatinineUnits"> 
+				<option value="mgdl">mg/dL</option>
+				<option value="umoll">umol/L</option>
+			</select>
+			</td>
+
+</tr>
+
+<tr>
+		<td class="fieldName">Height:</td>
+		<td class="fieldInput"><input type="text" id="height" size="5" value="100";> 
+			<select id="heightUnits">
+				<option value="cm">cm</option>
+				<option value="in">in</option>
+			</select>
+			</td>
+
+</tr>
+
+<tr>
+		<td class="fieldName">Age:</td>
+		<td class="fieldInput"><input type="text" id="age" size="5" value="5";>
+		 years</td>
+
+</tr>
+<tr>
+		<td class="fieldName">BUN:</td>
+		<td class="fieldInput"><input type="text" id="bun" size="5" 
+			value="10"> 
+			<select id="bunUnits" onchange="calculateGFR();">
+				<option value="mgdl">mg/dL</option>
+				<option value="mmoll">mmol/L</option>
+			</select>
+			</td>
+
+</tr>
+	
+<tr>
+		<td class="fieldName">Gender:</td>
+		<td class="fieldInput">
+			<select id="gender" onchange="calculateGFR();">
+                                <option value="female">Female</option>
+				<option value="male">Male</option>
+				
+			</select>
+		</td>
+
+</tr>
+
+
+<tr>
+<td td class="fieldName" colspan=2><hr>CKiD Schwartz Equation (Serum Creatinine, BUN and Cytatin C)</td>
+</tr>
+<tr>
+<td width=25% valign="top">GFR</td>
+<td><div class="results"><span id="results"></span>
+</td>
+</tr>
+<tr>
+<td colspan=2 td class="fieldName"><HR>Bedside Schwartz Equation (Serum Creatinine)</td>
+</tr>
+<tr>
+		<td width=25% valign="top">GFR</td>
+<td><div class="results"><span id="bedside_results"></span>
+</td>
+</tr>
+<tr>
+<td colspan=2 td class="fieldName"><hr>Counahan-Barratt Equation (Serum Creatinine)</td>
+</tr>
+<tr>
+		<td  class="results" width=25% valign="top">GFR</td>
+<td><div class="results"><span id="cb_results"></span>
+</td>
+</tr>
+<tr>
+<td colspan=2 class="results">
+<span id="wrong_age_report"></span>
+<span id="wrong_creatinine_report"></span>
+<span id="wrong_gfr_report"></span>
+<span id="wrong_cystatin_report"></span>
+<span id="wrong_height_report"></span>
+<span id="wrong_bun_report"></span>
+<span id="cystatin_report"></span>
+</td>
+</tr>
+<tr>
+		<td>HEIGHT</td><td>
+<div class="results"  id="results_height"</div> </td>
+</tr>
+<tr>
+		<td >CREATININE</td><td>
+<div class="results" id="results_creatinine"></div></td>
+</tr>
+<tr>
+		<td >CYSTATIN C</td><td>
+<div class="results" id="cystatin_c_value_report"></div></td>
+</tr>
+<tr>
+		<td>BUN</td><td>
+<div class="results"  id="results_bun"></div>  </td>
+</tr>
+<tr>
+		<td>GENDER</td><td>
+<div class="results"  id="results_gender">  </td>
+	</tr>
+<tr>
+		<td>AGE</td><td>
+<div class="results"  id="results_age">  </td>
+	
+	<tr><td colspan=2><br>
+ <h3 class="mdrd">NKF K/DOQI REFERENCES AND OTHER RESOURCES </h3>
+<div class="mdrd">   
+	
+ <p><A class="mdrd" HREF="http://www.kidney.org/professionals/doqi/kdoqi/Gif_File/kck_t12.gif">
+ (See Figure 12 for Stages of Chronic Kidney Disease - KDOQI)</A></p>
+
+      
+<ol>
+<li> <a href="http://nephron.com/bedside_peds_nic.cgi" target="_BLANK">Bedside Pediatric Calculators<a></li>
+<li>Staples A, LeBlond R, Watkins S, Wong C, Brandt J. Validation of the revised
+Schwartz estimating equation in a predominantly non-CKD population. <a href="https://www.ncbi.nlm.nih.gov/pubmed/20652327">Pediatr Nephrol. 2010 Nov;25(11):2321-6</a></li>
+<li> Schwartz GJ, Mu�oz A, Schneider MF, Mak RH, Kaskel F, Warady BA, Furth SL.New equations to estimate GFR in children with CKD J Am Soc Nephrol. 2009 Mar;20(3):629-37.</li>
+<li> Ronald J. Hogg, Susan Furth, Kevin V. Lemley, Ronald Portman, George J. Schwartz, 
+            Josef Coresh, Ethan  Balk, Joseph Lau, Adeera Levin, Annamaria  T. Kausz, Garabed Eknoyan, and Andrew S. Levey. National Kidney Foundation's Kidney 
+            Disease Outcomes Quality Initiative Clinical Practice Guidelines for Chronic Kidney Disease in Children and
+            Adolescents: Evaluation, Classification,  and Stratification Pediatrics, Jun 2003; 111: 1416 - 1421.</li>
+        
+<li> Schwartz GJ, Haycock GB Edelmann CM Jr, Spitzer A. A simple estimate of glomerular  filtration rate in children derived from body length and plasma creatinine. Pediatrics 
+           1976;58:259-263 </li>
+<li> Schwartz GJ, Feld LG, Langford DJ. A simple estimate of glomerular filtration rate in  full-term infants during the first year of life. J Pediatr. 1984;104:849-854 </li> 
+<li> Schwartz GJ, Gauthier B. A simple estimate of glomerular filtration rate in adolescent boys. J Pediatr 1985; 106:522-526</li>
+<li> Counahan R, Chantler C, Ghazali S, Kirkwood  B, Rose F, Barratt TM. Estimation of glomerular filtration rate from plasma creatinine concentration in children. Arch Dis Child. 1976;51:875-878 </li>
+
+</ol>
+ 
+  <p class="mdrd"><a class="mdrd" href="../cg/">Cockcroft Gault Calculator</a></p>
+      <p class="mdrd"><a class="mdrd" href="http://mdrd.com">MDRD Calculator - Extended version</a></p> 
+     <p class="mdrd">The National Kidney Foundation K/DOQI Clinical Practice Guidelines for Chronic Kidney Disease, American Journal of Kidney Disease, 39:S1,S1-S266, 2002</p>
+         
+                  
+     
+</td>
+ </tr>
+<tr><td colspan=2><br>
+CKiD SCHWARTZ EQUATION (Scr,BUN,Cystatin C)<br>
+<p>GFR = 39.1*[ht/Scr]<sup>.516</sup><br>
+*[1.8/cystatin C]<sup>0.294</sup><br>
+ *[30/BUN]<sup>0.169</sup><br>
+*[ht/1.4]<sup>0.188</sup><br>
+*1.099(if male)<br>
+<ul>
+<li>GFR= Glomerular filtration rate in cc/min/1.73m<sup>2</sup></li>
+<li>Ht = Height in meters</li>
+<li>Cystatin C = mg/L</li>
+<li>Scr = Serum creatinine = mg/dL</li>
+<li>BUN = mg/dL</li>
+</ul>
+BEDSIDE SCHWARTZ EQUATION (CREATININE)<br>
+<p>GFR=0.413*Ht/Scr</p>
+<p>Ht=Height in centimeters</p>
+COUNAHAN-BARRATT EQUATION (CREATININE)<br>
+<p>GFR=0.43*Ht/Scr</p>
+<p>Ht=Height in centimeters</p>
+<INPUT TYPE="RESET" VALUE="Clear">
+
+</td>
+</tr>
+<tr>
+
+        <td colspan=2>  <hr noshade align="center" size="1" color="#b0232b"><p class="mdrd" style="font-size:12px;text-align:center;">Programmed by Stephen Z. Fadem, M.D., FASN and Brian Rosenthal</br>
+          &copy; 2000 - 2010, <A HREF="http://nephron.com/">Stephen Z. Fadem, M.D., FASN</A>. All rights reserved. No part of this code can be reproduced without written permission of the author.</p>
+ </td></tr>
+</table>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surprise Question for Desktop | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/sq-desktop">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[ {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+ 
+        function calculate_sq(sq_form,alb,sq_p,age,dementia_p,pvd_p) {
+
+         var form;
+        form = document.getElementById('sq_form');
+          var alb = form.alb.value;
+          if (alb < 2.5) {alb=2.5;}
+          else if (alb > 4.0) {alb=4.0;}
+          var age = form.age.value;
+           //alert(alb)
+          var sq_p = (radio_val(form.sq_p,0) > 0); // non surprised;
+          var dementia_p=(radio_val(form.dementia_p,0) > 0); // has dementia;
+          var pvd_p =(radio_val(form.pvd_p,0) > 0); // has peripheral vascular disease;
+//alert("sq_p:"+sq_p+ " dementia_p:"+dementia_p+" pvd_p:"+ pvd_p)
+var sq= (sq_p ? .99602 : 0);
+alb=alb*-1.29603;
+age=age*0.03068;
+var dementia=(dementia_p ?.80421:0);
+var pvd=(pvd_p ?.63072:0);
+var xbeta=alb+sq+age+dementia+pvd;
+//alert("SQ:"+sq+"  alb:"+alb+"  age:"+age+"  dementia:"+dementia+ "  pvd:"+pvd+"  xbeta:"+xbeta)
+var xbeta1=Math.exp(xbeta)
+var sixmonths=Math.pow(0.57921,xbeta1)
+var twelvemonths=Math.pow(0.24999,xbeta1)
+var eighteenmonths=Math.pow(0.09187,xbeta1)
+document.getElementById('xbeta_report').innerHTML=Math.round(xbeta*10000)/100;
+document.getElementById('six_report').innerHTML=Math.round(sixmonths*100)/1;
+document.getElementById('twelve_report').innerHTML=Math.round(twelvemonths*100)/1;
+document.getElementById('eighteen_report').innerHTML=Math.round(eighteenmonths*100)/1;
+//alert("6 months:"+sixmonths+"  12 months:"+twelvemonths+"  18months:"+eighteenmonths)
+}
+ 
+ 
+ //-->
+</script>
+<BODY BGCOLOR="#FFFFFF" onload="window.setInterval('calculate_sq()',250);">
+
+<fieldset id="fieldset_style">
+<dtml-var iphone_header>
+
+
+
+<h2 style="text-align:center;">The Surprise Question</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+
+<form id="sq_form" form name="form">
+
+
+
+  
+<p>
+SERUM ALBUMIN <input  name="alb" value="3.5" size="4"> g/dL<br><br>
+
+SURPRISE QUESTION<br><br> 
+<INPUT TYPE="radio" name="sq_p" value="1" CHECKED>I would NOT be surprised if my patient died in the next 6 months.<br>
+<INPUT TYPE="radio" name="sq_p" value="0" >I would be surprised if my patient died in the next 6 months.<br><br>
+   
+AGE 
+<input  name="age" value="65" size="4">years<br><br>
+
+DEMENTIA<BR>
+<INPUT TYPE="radio" name="dementia_p" value="1" >My patient HAS dementia.<br>
+<INPUT TYPE="radio" name="dementia_p" value="0" CHECKED>My patient does NOT have dementia.<br><br>
+PERIPHERAL VASCULAR DISEASE<BR> 
+<INPUT TYPE="radio" name="pvd_p" value="1" >My patient HAS peripheral vascular disease.<br>
+<INPUT TYPE="radio" name="pvd_p" value="0" CHECKED>My patient does NOT have peripheral vascular disease.<br><br>
+XBETA:  <span id="xbeta_report">???</span><br>
+Predicted Six Month Survival:  <span id="six_report">???</span>%<br>
+Predicted Twelve Month Survival:  <span id="twelve_report">???</span>%<br>
+Predicted Eighteen Month Survival:  <span id="eighteen_report">???</span>%<br><br>
+<p>REFERENCE:Cohen  LM, Ruthhazer R, Moss AH, Germain MJ. Predicting Six-Month Mortality for Patients who are on Maintenance Hemodialysis<br>
+<a href="https://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&term=19965531" target="_blank">
+Clin J Am Soc Nephrol.</a>2010 Jan;5(1):72-9. <br>
+
+  
+
+
+
+
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

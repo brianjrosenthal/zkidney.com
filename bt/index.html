@@ -1,0 +1,260 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayes Theorem | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/bt">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+  text-align:center;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+
+
+                        var form
+			function add(){
+                        form=document.getElementById('sens_form');
+                        var positives=form.true_positives.value;
+                        var negatives=form.true_negatives.value;
+                        var falsePositives=form.false_positives.value;
+                        var falseNegatives=form.false_negatives.value;
+			var specificity=(eval(negatives)+eval(falsePositives)) ;
+                        specificity=eval(negatives)/specificity;
+                        var sensitivity=(eval(positives)+eval(falseNegatives));
+                        sensitivity=eval(positives)/sensitivity;
+                         var n=(eval(negatives)+eval(falsePositives)+eval(positives)+eval(falseNegatives));
+                         n=Math.round(n*1)/1;
+                        
+                        document.getElementById('specificity_calculated').innerHTML=Math.round(specificity*10000)/100;
+                        document.getElementById('sensitivity_calculated').innerHTML=Math.round(sensitivity*10000)/100;
+                       document.getElementById('n_calculated').innerHTML=n;
+                      
+                       
+                       
+			};
+  
+//-->
+</SCRIPT>
+
+</head>
+  
+  
+<body onLoad="window.setInterval('add()',250)";>
+<FORM id='sens_form'>
+  
+  <h2 style="text-align:center;">Bayes' Theorem</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+                
+                <p>True Negatives&nbsp;<INPUT  size=5 value=95 name=true_negatives></p>
+                <p>False Positives&nbsp<INPUT  size=5 value=5 name=false_positives> (Type 1 error &alpha;)</p>
+                <p>True Positives&nbsp<INPUT  size=5 value=3 name=true_positives></p>
+                 <p>False Negatives&nbsp<INPUT  size=5 value=2 name=false_negatives> (Type II error &beta;)</p>
+
+                <br>Specificity = <span id='specificity_calculated'>???</span>% = true negatives / (true negatives + false positives)<br>
+                 <br>Sensitivity = <span id='sensitivity_calculated'>???</span>% = true positives / (true positives + false negatives)<br>
+<hr>
+<br>Total number tested = <span id='n_calculated'>???</span><br>
+
+                </FORM>
+<dtml-var calc_footer>

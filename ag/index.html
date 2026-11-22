@@ -1,0 +1,225 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anion Gap | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/ag">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+  
+
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style>          
+
+
+
+<script language="JavaScript">
+  
+  
+<!--
+   function round2(num){
+                         return Math.round(num*10)/10
+                  return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+  
+  
+  
+  
+  
+function add(form,na,k,cl,co2,alb) {
+form=document.getElementById('add');
+             
+             var na=form.na.value
+             var k=form.k.value
+             var cl=form.cl.value
+             var co2=form.co2.value
+             var alb=form.alb.value
+             var alb_si_p=form.alb_si_p.value
+             var alb_si_p =(radio_val(form.alb_si_p,1)>0); // 
+           
+
+
+if ((form.k.value==0) ||
+   (form.alb.value==null)) {
+      k=0;
+}
+
+
+
+
+            ag=eval(na)+eval(k)-eval(cl)-eval(co2)
+            ag=Math.round(ag*10)/10
+            document.getElementById('ag_report').innerHTML ='<b>' +(ag*100)/100+  '</b>'
+            ag1=ag-eval(k)
+            ag1=Math.round(ag1*10)/10
+            document.getElementById('ag1_report').innerHTML ='<b>' +(ag1*100)/100+ '</b>'
+           
+          ag3=ag1-12
+ag3=Math.round(ag3*100)/100
+
+
+alb = alb/ (alb_si_p ? 1: 10); // For SI divide by 10)
+
+ag2=4-alb
+ag2=2.5*ag2
+
+
+
+ag2=ag2+ag1
+ag2=Math.round(ag2*100)/100
+ag4=27-eval(co2)
+form.ag4.value=ag4
+
+if ((form.alb.value==0) ||
+   (form.alb.value==null)) {
+      ag2=ag1;
+}
+ag5 = ag3-ag4;
+form.ag5.value=ag5;
+if (ag3 <0)  {
+     ag3=0+'( it is not reported as a negative)';
+}
+
+
+
+
+
+document.getElementById('ag2_report').innerHTML ='<b>'+ag2+ '</b>'
+document.getElementById('ag3_report').innerHTML ='<b>'+ag3+ '</b>'
+ 
+
+}
+  
+  
+
+  
+       //-->
+</script>
+
+</head>
+   <div class="calc_css">
+     <fieldset>
+<body onLoad="setInterval('add()',250)";>
+ 
+<h2 style="text-align:center;">ANION GAP</h2>
+<p style="text-align:center;">by Stephen Z Fadem and Brian Rosenthal</p>
+<FORM id="add">
+
+
+  Na<INPUT size=4 value=136 name=na>(mEq/L) &nbsp;&nbsp; 
+  K<input size=4 value=4.3 name=k>(mEq/L)<br>
+Cl<INPUT size=4 value=107 name=cl>(mEq/L) &nbsp;&nbsp;
+CO<sub>2</sub><INPUT size=4 name=co2 value=17>(mEq/L)<br>
+  
+<h2>ANION GAP</h2>
+Anion Gap = Na + K - Cl - C0<sub>2</sub> = <span id=ag_report>???</span>.<br>
+Often the potassium is not included in the anion gap calculation, like this:<br>
+Angion Gap = Na - Cl - C0<sub>2</sub> =  <span id=ag1_report>???</span>.<br>
+<h2>DELTA ANION GAP</h2>
+The delta anion gap is the observed anion gap - 12, which is normal, and is  <span id=ag3_report>???</span>.<br>
+The delta bicarbonate is the observed total CO<sub>2</sub> (from electrolytes) subtracted from 27 and is  <input size=4 name=ag4>.<br>
+The bicarbonate gap measures the delta anion gap minus the delta bicarbonate and  is <input size=4 name=ag5>.<br>
+It is abnormal for the bicarbonate gap to vary more than 6.<br>
+
+
+<h2>CORRECTING FOR HYPOALBUMINEMIA</H2>
+Observed Albumin<INPUT size=6 value=1.9 name=alb>
+
+
+      <input type="radio" name="alb_si_p" value="1" CHECKED>g/dL
+      <input type="radio" name="alb_si_p" value="0"> g/L*
+
+If the serum albumin is low, as in nephrotic syndrome, it will affect the anion gap<br>
+Correct anion gap=Observed anion gap +.25(normal albumin-observed albumin) for alb measured in g/L<br>
+and <br.
+Correct anion gap=Observed anion gap=2.5(normal albumin-observed albumin) for alb measured in g/dL<br>
+ is <br>
+<span id=ag2_report>???</span><br>
+*The international units for albumin is g/L - If you are adding values in SI units, divided by 10.
+
+
+
+
+
+
+
+
+<h2>REVIEWS</h2>
+<ul>
+<li>Figge J, Jabor A, Kazda A , Fencl V. Anion gap and Hypoalbuminemia. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=9824071">Crit Care Med. 1998 Nov;26(11):1807-10</a>
+<li><A href="http://www.japi.org/september2006/R-720.htm">Diagnosing Acid-Base Disorders,
+AK Ghosh</a></li>
+<li><A href="http://en.wikipedia.org/wiki/Anion_gap">Wikipedia</a></li>
+<li><A href="http://www.buy.com/prod/clinical-physiology-of-acid-base-and-electrolyte-disorders/q/loc/106/30714958.html">Butron D. Rose: Clinical Physiology of Acid-Base Disorders</a></li>
+</ul>
+
+
+</FORM>
+  
+  </div>
+  </body>
+  </html>
+
+

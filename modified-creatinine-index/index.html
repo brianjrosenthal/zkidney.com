@@ -1,0 +1,236 @@
+
+
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modified Creatinine Index | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/modified-creatinine-index">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+       
+
+
+function calculateMCI( cr, female_sex_p, age, spktv) 
+{
+
+        var form
+        form=document.getElementById('mci_form'); 
+        var cr = form.cr.value;
+        var spktv=form.spktv.value;
+        var age = form.age.value;
+        var female_sex_p = (radio_val(form.female_sex_p,1) > 0);
+        var sex=(female_sex_p ? 1.12:0)
+         
+        crsi=cr*88.4016; 
+        
+        cr=crsi*0.009;// Could also multiply by 0.7956
+
+var gender_name=""
+  if (female_sex_p > 0) 
+     {
+      gender_name="male"
+      }
+      else if (female_sex_p==0)
+      {
+      gender_name="female"
+      }
+age = age*0.06;
+spktv = spktv*0.08;
+
+var mci = 16.21+sex;
+mci=mci-age;
+mci=mci-spktv;
+mci=mci+cr;
+mci=Math.round(mci*100)/100;
+age=Math.round(age*10)/10;
+cr=Math.round(cr*10)/10;
+crsi=Math.round(crsi*10)/10;
+spktv=Math.round(spktv*10)/10;
+document.getElementById('mci_report').innerHTML = mci 
+document.getElementById('crsi_report').innerHTML = crsi
+
+//-->
+}
+</script>
+    
+ 
+
+<BODY onload="window.setInterval('calculateMCI()',250);">
+  <form id=mci_form>
+  <h2 style="text-align:center;">Modified Creatinine Index</h2>
+  <h3 style="text-align:center;">by Stephen Z. Fadem, M.D., FACP, FASN</h3>
+      
+    <p> <input name="cr" value="7.2" size="4">mg/dL (SI cr=<span id="crsi_report"></span> &#181;mol/L)</p>
+  <p><input name="age" value="60" size="4">years</p>
+<p>SP KT/V</td><td><input name="spktv" value="1.2" size="4"></p>
+<p><INPUT TYPE="radio" NAME="female_sex_p" id="radio_gender_male" VALUE="1" CHECKED> Male 
+      <INPUT TYPE="radio" NAME="female_sex_p" id="radio_gender_female" VALUE="0" > Female</td>
+        </p>
+<p>Modified Creatinine Index: <span id="mci_report">???</span></p> 
+</form>
+
+</body>
+<ul><li><a href="https://doi.org/10.1038/s41598-020-58181-6">
+Arase, H., Yamada, S., Hiyamuta, H. et al. Modified creatinine index and risk for long-term infection-related mortality in hemodialysis patients: ten-year outcomes of the Q-Cohort Study. Sci Rep 10, 1241 (2020). https://doi.org/10.1038/s41598-020-58181-6</a></li>
+<li><a href="https://www.nature.com/articles/s41598-020-58181-6/figures/3">Figure showing risk of infection</a></li>
+</ul>
+<p> The Formula:<br> Modified Creatinine Index (mg/kg/day)=16.21
++(1.12X[1 if male; 0 if female])
+-(0.06 X age(years)-(0.08 X SP Kt/V urea)
+  +(0.009 X serum creatinine before dialysis (mg/dL)</p>
+<p>(The program converted to SI units since we multiplied by 88.4)</p>
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

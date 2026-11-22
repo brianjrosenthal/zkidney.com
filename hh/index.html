@@ -1,0 +1,277 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Henderson-Hasselbach | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/hh">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        margin:4px;
+        padding:4px;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+		input  {font-size:14px;
+		background-color:white;
+ 		spacing:10px;
+ 		margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table
+  { width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+
+
+
+
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+ 
+
+
+                         function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+
+                        var form
+                        function add(form,hco3,co2)   {
+                        form=document.getElementById('hh_form');
+                        var hco3=form.hco3.value;
+                        var co2=form.co2.value;
+                        
+                        
+                        var ph=eval(hco3) / ( 0.03*eval(co2) );
+                        ph= Math.log(ph)/Math.log(10)  
+                        ph=ph+6.1;
+                        ph=round(ph)
+                        document.getElementById('ph_calculated').innerHTML=ph
+                         
+			};
+      
+//-->
+</SCRIPT>
+
+
+</head>
+
+<body onLoad="window.setInterval('add()',250)";>
+<fieldset id="fieldset_style">
+
+<h2 style="text-align:center;">Henderson Hasselbach Equation</h2>
+  <h3 style="text-align:center;">by Stephen Z. Fadem and Brian Rosenthal</h3>
+  
+
+
+
+<FORM id=hh_form>
+               <hr>
+                
+                <p>HCO3<INPUT size=4 value=25 name=hco3>PaCO2<INPUT size=4 value=40 name=co2>
+                
+                    <br>PH= <span id='ph_calculated'></span> = 6.1+log(HC03/(0.03*PaCO2))</P> 
+                </FORM>
+</div>
+<div>
+
+<ul>
+<li><a href="http://www.nature.com/glossary/clinicalpractice/subjectResults.do?scode=neph_s1&pcode=ncpneph">Nature Clinical Practice Supplement 1</a></li>
+<li><A href="http://en.wikipedia.org/wiki/Davenport_diagram">The Davenport Diagram</a></li>
+<li><A href="http://www.acid-base.com/">Acid Base Tutorial by Alan Grogano</a></li>
+  </ul>
+<p "text-align:center;">The Davenport Diagram </p>
+<img "text-align:center;" src="../assets/img/1e9c3c_15a086a712f44641b25ff5a9427472f9_mv2.jpg" border="1">
+  </div>
+
+
+
+ <p> &copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+  
+
+
+
+

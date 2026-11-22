@@ -1,0 +1,2038 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KDQOL | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/kdqol">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+
+
+
+
+<script language=javascript>
+
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+var thisField;
+function isEmpty(thisField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = thisField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+
+
+function getTheDay(day) {
+
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+
+
+
+
+
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+//library end  
+var form
+var today = new Date()
+
+
+function evaluateTr(tr,n){
+if (tr>=0){tr=eval(tr)/n;tr=round(tr);return tr;return n;} else {tr="Please complete form";return tr;return n;}
+}
+ 
+function isFilledOut(s)
+  {
+ if (s=="unchecked") {
+    return 0;
+              }
+  else  {
+     return 1;
+        } 
+  }
+ 
+
+function radio_val(items,defaultVal) {
+       
+      
+        for( var i = 0; i <items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+        
+    }
+
+
+ 
+function do_qol(form)  {
+form=document.getElementById('kdqol_form');
+//sf1
+    
+    var sf1=radio_val(form.sf1_p,0);
+    document.getElementById('sf1_report').innerHTML=':' +sf1+ ' ';
+  // end sf 
+
+
+//sf2
+    var sf2=radio_val(form.sf2,0);
+    document.getElementById('sf2_report').innerHTML=':' +sf2+ ' ';
+  // end sf 
+ 
+
+
+
+
+//sf3a
+    var sf3a=radio_val(form.sf3a,0);
+    document.getElementById('sf3a_report').innerHTML=':   ' +sf3a+ ' ' ;
+  // end sf 
+
+//sf3b
+    var sf3b= radio_val(form.sf3b,0);
+    document.getElementById('sf3b_report').innerHTML=':' +sf3b+ ' ' ;
+  // end sf 
+  
+//sf3c
+    var sf3c= radio_val(form.sf3c,0);
+    document.getElementById('sf3c_report').innerHTML=':' +sf3c+ ' ' ;
+  // end sf 
+  
+  //sf3d
+    var sf3d= radio_val(form.sf3d,0);
+    document.getElementById('sf3d_report').innerHTML=':' +sf3d+ ' ' ;
+  // end sf 
+
+
+//sf3e
+    var sf3e= radio_val(form.sf3e,0);
+    document.getElementById('sf3e_report').innerHTML=':' +sf3e+ ' ' ;
+  // end sf 
+  
+  
+//sf3f
+    var sf3f= radio_val(form.sf3f,0);
+    document.getElementById('sf3f_report').innerHTML=':' +sf3f+ ' ' ;
+  // end sf 
+  
+  //sf3g
+    var sf3g=radio_val(form.sf3g,0);
+    document.getElementById('sf3g_report').innerHTML=':' +sf3g+ ' ' ;
+  // end sf 
+  //sf3h
+    var sf3h=radio_val(form.sf3h,0);
+    document.getElementById('sf3h_report').innerHTML=':' +sf3h+ ' ' ;
+  // end sf 
+  //sf3i
+    var sf3i=radio_val(form.sf3i,0);
+    document.getElementById('sf3i_report').innerHTML=':' +sf3i+ ' ' ;
+  // end sf 
+  //sf3j
+    var sf3j=radio_val(form.sf3j,0);
+    document.getElementById('sf3j_report').innerHTML=':' +sf3j+ ' ' ;
+  // end sf 
+  
+    var sf4a=radio_val(form.sf4a,0);
+    document.getElementById('sf4a_report').innerHTML=':' +sf4a+ ' ' ;
+  // end sf 
+  var sf4b=radio_val(form.sf4b,0);
+    document.getElementById('sf4b_report').innerHTML=':' +sf4b+ ' ' ;
+  // end sf 
+  var sf4c=radio_val(form.sf4c,0);
+    document.getElementById('sf4c_report').innerHTML=':' +sf4c+ ' ' ;
+  // end sf 
+  var sf4d=radio_val(form.sf4d,0);
+    document.getElementById('sf4d_report').innerHTML=':' +sf4d+ ' ' ;
+  // end sf 
+  var sf5a=radio_val(form.sf5a,0);
+    document.getElementById('sf5a_report').innerHTML=':' +sf5a+ ' ' ;
+  // end sf 
+  var sf5b=radio_val(form.sf5b,0);
+    document.getElementById('sf5b_report').innerHTML=':' +sf5b+ ' ' ;
+// end sf 
+   var sf5c=radio_val(form.sf5c,0);
+    document.getElementById('sf5c_report').innerHTML=':' +sf5c+ ' ' ;
+ // end sf 
+  var sf6=radio_val(form.sf6,0);
+    document.getElementById('sf6_report').innerHTML=':   ' +sf6+ ' ' ;
+  // end sf 
+  var sf7=radio_val(form.sf7,0);
+    document.getElementById('sf7_report').innerHTML=':' +sf7+ ' ' ;
+// end sf 
+   var sf8=radio_val(form.sf8,0);
+    document.getElementById('sf8_report').innerHTML=':' +sf8+ ' ' ;
+// end sf 
+
+   var sf9a=radio_val(form.sf9a,0);
+    document.getElementById('sf9a_report').innerHTML=':' +sf9a+ ' ' ;
+// end sf 
+// end sf 
+
+   var sf9b=radio_val(form.sf9b,0);
+    document.getElementById('sf9b_report').innerHTML=':' +sf9b+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9c=radio_val(form.sf9c,0);
+    document.getElementById('sf9c_report').innerHTML=':' +sf9c+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9d=radio_val(form.sf9d,0);
+    document.getElementById('sf9d_report').innerHTML=':' +sf9d+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9e=radio_val(form.sf9e,0);
+    document.getElementById('sf9e_report').innerHTML=':' +sf9e+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9f= radio_val(form.sf9f,0);
+    document.getElementById('sf9f_report').innerHTML=':' +sf9f+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9g= radio_val(form.sf9g,0);
+    document.getElementById('sf9g_report').innerHTML=':' +sf9g+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9h= radio_val(form.sf9h,0);
+    document.getElementById('sf9h_report').innerHTML=':' +sf9h+ ' ' ;
+// end sf
+// end sf 
+
+   var sf9i= radio_val(form.sf9i,0);
+    document.getElementById('sf9i_report').innerHTML=':' +sf9i+ ' ' ;
+// end sf
+
+
+   var sf10= radio_val(form.sf10,0);
+    document.getElementById('sf10_report').innerHTML=':' +sf10+ ' ' ;
+// end sf 
+
+   var sf11a= radio_val(form.sf11a,0);
+    document.getElementById('sf11a_report').innerHTML=': ' +sf11a+ ' ' ;
+// end sf 
+
+   var sf11b= radio_val(form.sf11b,0);
+    document.getElementById('sf11b_report').innerHTML=':' +sf11b+ ' ';
+// end sf 
+
+   var sf11c= radio_val(form.sf11c,0);
+    document.getElementById('sf11c_report').innerHTML=':' +sf11c+ ' ';
+// end sf 
+   var sf11d= radio_val(form.sf11d,0);
+    document.getElementById('sf11d_report').innerHTML=':' +sf11d+ ' ';
+// end sf 
+   var sf12a= radio_val(form.sf12a,0);
+    document.getElementById('sf12a_report').innerHTML=':' +sf12a+ ' ';
+// end sf 
+   var sf12b= radio_val(form.sf12b,0);
+    document.getElementById('sf12b_report').innerHTML=':' +sf12b+ ' ';
+// end sf 
+   var sf12c= radio_val(form.sf12c,0);
+    document.getElementById('sf12c_report').innerHTML=':' +sf12c+ ' ';
+// end sf 
+   var sf12d= radio_val(form.sf12d,0);
+    document.getElementById('sf12d_report').innerHTML=':' +sf12d+ ' ';
+// end sf 
+   var sf13a= radio_val(form.sf13a,0);
+    document.getElementById('sf13a_report').innerHTML=':' +sf13a+ ' ';
+// end sf 
+   var sf13b= radio_val(form.sf13b,0);
+    document.getElementById('sf13b_report').innerHTML=':' +sf13b+ ' ';
+// end sf 
+   var sf13c= radio_val(form.sf13c,0);
+    document.getElementById('sf13c_report').innerHTML=':' +sf13c+ ' ';
+// end sf 
+   var sf13d= radio_val(form.sf13d,0);
+    document.getElementById('sf13d_report').innerHTML=':' +sf13d+ ' ';
+// end sf 
+   var sf13e= radio_val(form.sf13e,0);
+    document.getElementById('sf13e_report').innerHTML=':' +sf13e+ ' ';
+// end sf 
+ var sf13f= radio_val(form.sf13f,0);
+    document.getElementById('sf13f_report').innerHTML=':' +sf13f+ ' ';
+// end sf 
+   var sf14a= radio_val(form.sf14a,0);
+    document.getElementById('sf14a_report').innerHTML=':' +sf14a+ ' ';
+// end sf 
+  var sf14b= radio_val(form.sf14b,0);
+    document.getElementById('sf14b_report').innerHTML=':' +sf14b+ ' ';
+// end sf 
+  var sf14c= radio_val(form.sf14c,0);
+    document.getElementById('sf14c_report').innerHTML=':' +sf14c+ ' ';
+// end sf 
+  var sf14d= radio_val(form.sf14d,0);
+    document.getElementById('sf14d_report').innerHTML=':' +sf14d+ ' ';
+// end sf 
+  var sf14e= radio_val(form.sf14e,0);
+    document.getElementById('sf14e_report').innerHTML=':' +sf14e+ ' ';
+// end sf 
+  var sf14f= radio_val(form.sf14f,0);
+    document.getElementById('sf14f_report').innerHTML=':' +sf14f+ ' ';
+// end sf 
+  var sf14g= radio_val(form.sf14g,0);
+    document.getElementById('sf14g_report').innerHTML=':' +sf14g+ ' ';
+// end sf 
+  var sf14h= radio_val(form.sf14h,0);
+    document.getElementById('sf14h_report').innerHTML=':' +sf14h+ ' ';
+// end sf 
+  var sf14i= radio_val(form.sf14i,0);
+    document.getElementById('sf14i_report').innerHTML=':' +sf14i+ ' ';
+// end sf 
+  var sf14j= radio_val(form.sf14j,0);
+    document.getElementById('sf14j_report').innerHTML=':' +sf14j+ ' ';
+// end sf 
+  var sf14k= radio_val(form.sf14k,0);
+    document.getElementById('sf14k_report').innerHTML=':' +sf14k+ ' ';
+// end sf 
+
+  var hd_pd_p=radio_val(form.hd_pd_p,0);
+  var sf14l= radio_val(form.sf14l,0);
+  var sf14m= radio_val(form.sf14m,0);
+  var hd_pd_message=""
+  if(hd_pd_p==0) {hd_pd_p=sf14l;hd_pd_message="hemodialysis";} else if(hd_pd_p==1) {hd_pd_p=sf14m;hd_pd_message="peritoneal dialysis"}
+   document.getElementById('hd_pd_p_report').innerHTML='modality:'+hd_pd_message+'   '+hd_pd_p+ ' ';
+
+//sf-pd
+   var sf15a= radio_val(form.sf15a,0);
+    document.getElementById('sf15a_report').innerHTML=':' +sf15a+ ' ';
+// end sf 
+   var sf15b= radio_val(form.sf15b,0);
+    document.getElementById('sf15b_report').innerHTML=':' +sf15b+ ' ';
+// end sf 
+   var sf15c= radio_val(form.sf15c,0);
+    document.getElementById('sf15c_report').innerHTML=':' +sf15c+ ' ';
+// end sf 
+   var sf15d= radio_val(form.sf15d,0);
+    document.getElementById('sf15d_report').innerHTML=':' +sf15d+ ' ';
+// end sf 
+   var sf15e= radio_val(form.sf15e,0);
+    document.getElementById('sf15e_report').innerHTML=':' +sf15e+ ' ';
+// end sf 
+   var sf15f= radio_val(form.sf15f,0);
+    document.getElementById('sf15f_report').innerHTML=':' +sf15f+ ' ';
+// end sf 
+   var sf15g= radio_val(form.sf15g,0);
+    document.getElementById('sf15g_report').innerHTML=':' +sf15g+ ' ';
+// end sf 
+   var sf15h= radio_val(form.sf15h,0);
+    document.getElementById('sf15h_report').innerHTML=':' +sf15h+ ' ';
+// end sf 
+
+var sf16= radio_val(form.sf16,0);
+    document.getElementById('sf16_report').innerHTML=':' +sf16+ ' ';
+// end sf 
+
+  var sf16a= radio_val(form.sf16a,0);
+    document.getElementById('sf16a_report').innerHTML=':' +sf16a+ ' ';
+// end sf 
+
+  var sf16b= radio_val(form.sf16b,0);
+    document.getElementById('sf16b_report').innerHTML=':' +sf16b+ ' ';
+
+// end sf 
+  var sf17=radio_val(form.sf17,0);
+    document.getElementById('sf17_report').innerHTML=':' +sf17+ ' ';
+// end sf 
+  var sf18a= radio_val(form.sf18a,0);
+    document.getElementById('sf18a_report').innerHTML=':' +sf18a+ ' ';
+// end sf 
+  var sf18b= radio_val(form.sf18b,0);
+    document.getElementById('sf18b_report').innerHTML=':' +sf18b+ ' ';
+// end sf 
+  var sf18c= radio_val(form.sf18c,0);
+    document.getElementById('sf18c_report').innerHTML=':' +sf18c+ ' ';
+// end sf 
+  var sf19a= radio_val(form.sf19a,0);
+    document.getElementById('sf19a_report').innerHTML=':' +sf19a+ ' ';
+// end sf 
+  var sf19b= radio_val(form.sf19b,0);
+    document.getElementById('sf19b_report').innerHTML=':' +sf19b+ ' ';
+// end sf 
+  var sf20= radio_val(form.sf20,0);
+    document.getElementById('sf20_report').innerHTML=':' +sf20+ ' ';
+// end sf 
+  var sf21= radio_val(form.sf21,0);
+    document.getElementById('sf21_report').innerHTML=':' +sf21+ ' ';
+// end sf 
+  var sf22= radio_val(form.sf22,0);
+    document.getElementById('sf22_report').innerHTML=':' +sf22+ ' ';
+// end sf 
+  var sf23= radio_val(form.sf23,0);
+    document.getElementById('sf23_report').innerHTML=':' +sf23+ ' ';
+// end sf 
+  var sf24a= radio_val(form.sf24a,0);
+    document.getElementById('sf24a_report').innerHTML=':' +sf24a+ ' ';
+// end sf 
+  var sf24b= radio_val(form.sf24b,0);var NOYES=["no","yes"];
+var YESNO=["yes","no"];
+    document.getElementById('sf24b_report').innerHTML=':' +sf24b+ ' ';
+// end sf 
+  var q25= radio_val(form.q25,0);q25=NOYES[q25]
+    document.getElementById('q25_report').innerHTML=':' +q25+ ' ';
+// end sf 
+  var q25a=form.q25a.value;
+    document.getElementById('q25a_report').innerHTML=':' +q25a+ ' ';
+   
+// end sf 
+var q26= form.q26.value
+    document.getElementById('q26_report').innerHTML=':' +q26+ ' ';
+// end sf 
+var q27=form.q27.value
+    document.getElementById('q27_report').innerHTML=':' +q27+ ' ';
+// end sf 
+
+  var q28= radio_val(form.q28,0);var CAUSE=["Don't know","Hypertension", "Diabetes", "Polycystic Kidney Disease", "Chronic Glomerulonephritis", "Chronic Pyelonephritis", "Other(Please specify)"];
+q28=CAUSE[q28];
+    document.getElementById('q28_report').innerHTML=':' +q28+ ' ';
+// end sf 
+
+
+
+
+
+    //var elem = document.getElementById('m_29');
+    //var m = elem.options[elem.selectedIndex].value;
+    var getMonth=form.m_29.value
+    
+  
+    MONTH=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    var getMonth=MONTH[getMonth];
+    var getDay=form.d_29.value; 
+    var getYear=form.y_29.value;
+    var m=getMonth;
+    var d =getDay;
+    var y=getYear;
+
+var birthdate=m+" "+d+","+y;
+
+
+var q29=birthdate;
+
+birthdate = new Date(birthdate);
+
+var msPerDay = 24 * 60 * 60 * 1000 ;
+var daysLeft = (today.getTime()-birthdate.getTime()) / msPerDay;
+var age=daysLeft/365.2425;
+age=Math.round(age*1)/1;
+if (isEmpty(m)) {age="";}if (isEmpty(d)) {age="";}if (isEmpty(y)) {age="";}
+    document.getElementById('q29_report').innerHTML=': Birthdate:' +q29+ '<br>Age: '+age+' ';
+// end sf 
+var EDUCATION=["8th grade or less","Some high school or less","High school diploma or GED","Vocational school or some college","College degree","Professional or graduate degree"];
+
+  var q30= radio_val(form.q30,0);q30=EDUCATION[q30];
+    document.getElementById('q30_report').innerHTML=':' +q30+ ' ';
+// end sf 
+  var q31= radio_val(form.q31,0);var GENDER=["Male","Female"];q31=GENDER[q31];
+    document.getElementById('q31_report').innerHTML=':' +q31+ ' ';
+// end sf 
+  var q32= radio_val(form.q32,0);var RACE=["Asian American or Black"," Hispanic or Latino"," Native American or American Indian"," Asian or Pacific Islander"," White"," Other"]
+    q32=RACE[q32]
+document.getElementById('q32_report').innerHTML=':' +q32+ ' ';
+// end sf 
+  var q33= radio_val(form.q33,0);q33=NOYES[q33];
+    document.getElementById('q33_report').innerHTML=':' +q33+ ' ';
+// end sf 
+  var q34= radio_val(form.q34,0);
+var WORK=["Working full-time","Working part-time","Unemployed, laid off, or looking for work","Retired","Disabled","In School","Keeping house","None of the above"];
+q34=WORK[q34];
+    document.getElementById('q34_report').innerHTML=':' +q34+ ' ';
+// end sf 
+  var q35= form.q35.value;
+    document.getElementById('q35_report').innerHTML=':' +q35+ ' ';
+// end sf 
+  var q36= form.q36.value;
+    document.getElementById('q36_report').innerHTML=':' +q36+ ' ';
+// end sf 
+  var q37= radio_val(form.q37,0);q37=YESNO[q37];
+    document.getElementById('q37_report').innerHTML=':' +q37+ ' ';
+// end sf 
+  var q38= today;var q38_message=today;
+    document.getElementById('q38_report').innerHTML=':' +q38+ ' ';
+    document.getElementById('q38_message').innerHTML=':' +q38+ ' ';
+
+var tr="symptom_problem_list"
+tr=parseFloat(sf14a) + parseFloat(sf14b) +parseFloat(sf14c) +parseFloat(sf14d) +parseFloat(sf14e)+parseFloat(sf14f)+parseFloat(sf14g)+parseFloat(sf14h)+parseFloat(sf14i)+parseFloat(sf14j)+parseFloat(sf14k)+parseFloat(hd_pd_p);
+var n=isFilledOut(sf14a)+isFilledOut(sf14b)+isFilledOut(sf14c)+isFilledOut(sf14d)+isFilledOut(sf14e)+isFilledOut(sf14f)+isFilledOut(sf14g)+isFilledOut(sf14h)+isFilledOut(sf14i)+isFilledOut(sf14j)+isFilledOut(sf14k)+isFilledOut(hd_pd_p);
+tr=evaluateTr(tr,n);
+document.getElementById('symptom_problem_list_report').innerHTML=' Symptom/problem list: '+ tr + '. N=' +n+ '.';
+//end symptom_problem_list
+var esrd=tr;
+var esrd_n=n;
+
+//begin effect_of_kidney_disease 
+tr="effect_of_kidney_disease"
+tr= parseFloat(sf15a) + parseFloat(sf15b) + parseFloat(sf15c) + parseFloat(sf15d) + parseFloat(sf15e) + parseFloat(sf15f) + parseFloat( sf15g) + parseFloat(sf15h)   
+n=isFilledOut(sf15a)+isFilledOut(sf15b)+isFilledOut(sf15c)+isFilledOut(sf15d)+isFilledOut(sf15e)+isFilledOut(sf15f)+isFilledOut(sf15g)+isFilledOut(sf15h)
+tr=evaluateTr(tr,n);
+document.getElementById('effect_of_kidney_disease_report').innerHTML=' Effects of Kidney Disease: '+ tr + '. N=' +n+ '.';
+//end effect_of_kidney_disease
+ esrd=esrd+tr;
+ esrd_n=esrd_n+n;
+
+//begin burden_of_kidney_disease;
+tr="burden_of_kidney_disease";
+tr= parseFloat(sf12a) + parseFloat(sf12b) + parseFloat(sf12c) + parseFloat(sf12d);
+n=isFilledOut(sf12a)+isFilledOut(sf12b)+isFilledOut(sf12c)+isFilledOut(sf12d);
+tr=evaluateTr(tr,n);
+document.getElementById('burden_of_kidney_disease_report').innerHTML=' Burden of Kidney Disease: '+ tr + '. N=' +n+ '.';
+//end burden_of_kidney_disease
+  esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//Begin work_status
+//var tr="work_status";
+tr=parseFloat(sf20) + parseFloat(sf21);
+n=isFilledOut(sf20)+isFilledOut(sf21);
+tr=evaluateTr(tr,n);
+document.getElementById('work_status_report').innerHTML=' Work status: '+ tr + '. N=' +n+ '.';
+//end work_status
+  esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//begin cognitive_function
+ tr="cognitive_function";
+tr=parseFloat(sf13b) + parseFloat(sf13d)+ parseFloat(sf13f);
+n=isFilledOut(sf13b)+isFilledOut(sf13d)+isFilledOut(sf13f);
+tr=evaluateTr(tr,n);
+document.getElementById('cognitive_function_report').innerHTML=' Cognitive function: '+ tr + '. N=' +n+ '.';
+//end cognitive_function
+ esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+
+//begin quality_of_social_interaction
+var tr="quality_of_social_interaction";
+tr=parseFloat(sf13a) + parseFloat(sf13c)+ parseFloat(sf13e);
+n=isFilledOut(sf13a)+isFilledOut(sf13c)+isFilledOut(sf13e);
+tr=evaluateTr(tr,n);
+document.getElementById('quality_of_social_interaction_report').innerHTML=' Quality of Social Interaction: '+ tr + '. N=' +n+ '.';
+//end quality_of_social_interaction
+  esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//begin sexual_function
+  tr="sexual_function";
+tr=parseFloat(sf16a) + parseFloat(sf16b);
+n=isFilledOut(sf16a)+isFilledOut(sf16b);
+tr=evaluateTr(tr,n);
+document.getElementById('sexual_function_report').innerHTML=' Sexual function: '+ tr + '. N=' +n+ '.';
+//end sexual_function
+ esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//var sleep
+ tr="sleep";
+tr=parseFloat(sf17) + parseFloat(sf18a) + parseFloat(sf18b) + parseFloat(sf18c);
+n=isFilledOut(sf17)+isFilledOut(sf18a)+isFilledOut(sf18b)+isFilledOut(sf18c);
+tr=evaluateTr(tr,n);
+document.getElementById('sleep_report').innerHTML=' Sleep: '+ tr + '. N=' +n+ '.';
+//end sleep
+ esrd=esrd+tr;
+ esrd_n=esrd_n+n;
+
+//var social_support
+  tr="social_support";
+tr=parseFloat(sf19a) + parseFloat(sf19b);
+n=isFilledOut(sf19a)+isFilledOut(sf19b);
+tr=evaluateTr(tr,n);
+document.getElementById('social_support_report').innerHTML=' Social support: '+ tr + '. N=' +n+ '.';
+//end social_support
+ esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//begin dialysis_staff_encouragement
+  tr="dialysis_staff_encouragement";
+tr=parseFloat(sf24a) + parseFloat(sf24b);
+n=isFilledOut(sf24a)+isFilledOut(sf24b);
+tr=evaluateTr(tr,n);
+document.getElementById('dialysis_staff_encouragement_report').innerHTML=' Dialysis staff encouragement: '+ tr + '. N=' +n+ '.';
+//end dialysis_staff_encouragement
+ esrd=esrd+tr;
+  esrd_n=esrd_n+n;
+
+//begin patient_satisfaction
+  tr="patient_satisfaction"
+tr=parseFloat(sf23);
+n=isFilledOut(sf23);
+tr=evaluateTr(tr,n);
+document.getElementById('patient_satisfaction_report').innerHTML=' Patient satisfaction: '+ tr + '. N=' +n+ '.';
+//end patient_satisfaction
+  esrd=esrd+tr;
+ esrd_n=esrd_n+n;
+var esrd_mean =esrd/esrd_n
+if (esrd >=0){esrd_mean=round(esrd);} else {esrd_mean="Complete form";}
+document.getElementById('esrd_report').innerHTML=' Kidney Disease Score: '+ esrd_mean + '. N=' +esrd_n+ '.';
+tr=0;
+n=0;
+
+//SF_36
+//begin Physical_functioning
+  tr="physical_functioning";
+tr=parseFloat(sf3a) + parseFloat(sf3b)+parseFloat(sf3c) + parseFloat(sf3d)+parseFloat(sf3e) + parseFloat(sf3f)+parseFloat(sf3g) + parseFloat(sf3h)+parseFloat(sf3i) + parseFloat(sf3j);
+n=isFilledOut(sf3a)+isFilledOut(sf3b)+isFilledOut(sf3c)+isFilledOut(sf3d)+isFilledOut(sf3e)+isFilledOut(sf3f)+isFilledOut(sf3g)+isFilledOut(sf3h)+isFilledOut(sf3i)+isFilledOut(sf3j);
+tr=evaluateTr(tr,n);
+document.getElementById('physical_functioning_report').innerHTML=' Physical functioning: '+ tr + '. N=' +n+ '.';
+//Physical_functioning
+//end physical_functioning
+ var sf36=tr;
+var sf36_n=n;
+
+
+//begin Role_physical
+  tr="role_physical";
+tr=parseFloat(sf4a) + parseFloat(sf4b)+ parseFloat(sf4c)+ parseFloat(sf4d);
+n=isFilledOut(sf4a)+isFilledOut(sf4b)+isFilledOut(sf4c)+isFilledOut(sf4d);
+tr=evaluateTr(tr,n);
+document.getElementById('role_physical_report').innerHTML=' Role physical: '+ tr + '. N=' +n+ '.';
+//role_physical
+//end Role_physical
+ sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+
+
+//begin Pain
+  tr="pain";
+tr=parseFloat(sf7) + parseFloat(sf8);
+n=isFilledOut(sf7)+isFilledOut(sf8);
+tr=evaluateTr(tr,n);
+document.getElementById('pain_report').innerHTML=' Pain: '+ tr + '. N=' +n+ '.'; 
+//end pain
+ sf36=tr+sf36;
+  sf36_n=n+sf36_n;
+
+
+//begin general_health
+  tr="general_health";
+tr=parseFloat(sf1) + parseFloat(sf11a) + parseFloat(sf11b) + parseFloat(sf11c) + parseFloat(sf11d);
+n=isFilledOut(sf1)+isFilledOut(sf11a)+isFilledOut(sf11b)+isFilledOut(sf11c)+isFilledOut(sf11d);
+tr=evaluateTr(tr,n);
+document.getElementById('general_health_report').innerHTML=' General health: '+ tr + '. N=' +n+ '.';
+//end general_health
+ sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+
+//begin Emotional well_being
+  tr="emotional_well_being";
+tr=parseFloat(sf9b)+ parseFloat(sf9c)+parseFloat(sf9d) + parseFloat(sf9f)+ parseFloat(sf9h);
+n=isFilledOut(sf9b)+isFilledOut(sf9c)+isFilledOut(sf9d)+isFilledOut(sf9f)+isFilledOut(sf9h);
+tr=evaluateTr(tr,n);
+document.getElementById('emotional_well_being_report').innerHTML=' Emotional well being: '+ tr + '. N=' +n+ '.';
+//end emotional_well_being
+ sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+
+//begin Role_emotional
+  tr="role_emotional";
+tr=parseFloat(sf5a) + parseFloat(sf15b)+ parseFloat(sf5c);
+n=isFilledOut(sf5a)+isFilledOut(sf5b)+isFilledOut(sf5c);
+tr=evaluateTr(tr,n);
+document.getElementById('role_emotional_report').innerHTML='Role emotional: '+ tr + '. N=' +n+ '.';
+//end role_emotional
+ sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+//begin Social_function
+  tr="social_function";
+tr=parseFloat(sf6) + parseFloat(sf10);
+n=isFilledOut(sf6)+isFilledOut(sf10);
+tr=evaluateTr(tr,n);
+document.getElementById('social_function_report').innerHTML=' Social function: '+ tr + '. N=' +n+ '.';
+//social_function
+//end Social_function
+  sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+//Energy_fatigue
+  tr="energy_fatigue";
+tr=parseFloat(sf9a) + parseFloat(sf9e)+ parseFloat(sf9g)+ parseFloat(sf9i);
+n=isFilledOut(sf9a)+isFilledOut(sf9e)+isFilledOut(sf9g)+isFilledOut(sf9i);
+tr=evaluateTr(tr,n);
+document.getElementById('energy_fatigue_report').innerHTML=' Energy fatigue: '+ tr + '. N=' +n+ '.';
+//end energy_fatigue
+  sf36=tr+sf36;
+ sf36_n=n+sf36_n;
+
+var sf36_mean =sf36/sf36_n
+if (sf36_mean >=0) {sf36_mean=round(sf36_mean);} else {sf36_mean="Complete form";}
+document.getElementById('sf36_report').innerHTML=' 36 Item score: '+  sf36_mean + '. N=' +sf36_n+ '.';  
+var grand_total=sf36+esrd  
+var grand_total_n=sf36_n+esrd_n
+grand_total= grand_total/grand_total_n;
+
+if (grand_total >=0) {grand_total=round(grand_total);} else {grand_total="Complete form";}
+document.getElementById('grand_total_report').innerHTML=' Health score: '+ grand_total + '. N=' +grand_total_n+ '.';   
+}
+
+</script>
+<dtml-var styles>
+</head>
+
+
+<body onClick="window.setInterval('do_qol()',600)";>
+
+
+<form id=kdqol_form name=kdqol_form>
+
+<dtml-comment><input type=submit onClick=do_qol()></dtml-comment>
+<h2 style="text-align:center;">KDQOL</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+
+<table border=1 style="margin:4px;border 1px solid blue;" width=100%>
+<tr>
+<td colspan=2>SCORE CARD - SCORES WILL APPEAR AS FORM IS COMPLETED</td></tr>
+<tr>
+<td valign=top style="font-size:15px;" width=50%>ESRD-targeted Areas<br>
+<ol>
+<li><span id=symptom_problem_list_report>___</span><br>
+<li><span id=effect_of_kidney_disease_report>___</span><br>
+<li><span id=burden_of_kidney_disease_report>___</span><br>
+<li><span id=work_status_report>___</span><br>
+<li><span id= cognitive_function_report>___</span><br>
+<li><span id=quality_of_social_interaction_report>___</span><br>
+<li><span id=sexual_function_report>___</span><br>
+<li><span id=sleep_report>___</span><br>
+<li><span id=social_support_report>___</span><br>
+<li><span id=dialysis_staff_encouragement_report>___</span><br>
+<li><span id=patient_satisfaction_report>___</span><br>
+</ol>
+<span id=esrd_report>__</span>
+
+</td><td valign=top style="font-size:15px;" width=50%>36-item health survey (SF_36)<br>
+<ol>
+<li><span id=physical_functioning_report>___</span><br>
+<li><span id=role_physical_report>___</span><br>
+<li><span id=pain_report>___</span><br>
+<li><span id=general_health_report>___</span><br>
+<li><span id=emotional_well_being_report>___</span><br>
+<li><span id=role_emotional_report>___</span><br>
+<li><span id=social_function_report>___</span><br>
+<li><span id=energy_fatigue_report>___</span><br>
+</ol>
+<span id=sf36_report>___</span>
+</td></tr>
+<tr><td colspan=2>
+<span id=grand_total_report>___</span>
+<hr>
+</td>
+</tr>
+</table>
+
+<div style="border:2px solid black;margin:10;display:block;text-align:left;" >
+<table border=1px width=100%><tr><td colspan=2>
+
+
+
+</div>
+<h3><em>NOTE: Quality of Life is difficult to measure and quantify. 
+Sadly, items that are difficult to access are ignored as performance measures. Here, we bring to light the Kidney Disease 
+Quality of Life form created by the Rand Corporation. This is a sample form, only. No data is being tabulated or scored. 
+Use this form to better understand how one can access quality of life.<div style="text-align:right;">Created for web by Stephen Z. Fadem, M.D., FACP, FASN</div></em></h3>
+
+
+<h1>KIDNEY DISEASE AND QUALITY OF LIFE</h1>
+<h1>SHORT FORM QUESTIONNAIRE</h1>
+<h1>(KDQOL-SF<sup>TM</sup>)</h1>
+<h3>&copy; RAND 1995,1996,1997</h3>
+<div style="display:block;margin:15;">
+<p>The KDQOL-SF<sup>TM</sup> was supported in part by an unrestricted grant from Amgen to RAND, and a subgrant from the University of Arizona to RAND, and a grant 
+from Baxter Healthcare Corporation. </p>
+<p>Hays, R.D., Kallich, J.D., Mapes, D.L., Coons, S.J., Amin, N., & Carter, W.B. (1995) <em>Kidney Disease Quality of Life Short Form 
+(KDQOL-SF<sup>TM</sup>), Version 1.3: A Manual for Use and Scoring.</em> Santa Monica, CA: RAND, P-7994</p>
+</div>
+ <div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">INSTRUCTIONS FOR FILLING OUT SURVEY</div>
+<div style="display:block;text-align:left;">
+<ol >
+<li>This survey asks for your views about your health. This 
+information will help keep track of how you feel and how well you are able to do your usual activities.</li>
+<li>This survey includes a wide variety of questions about your health and your life. We are interested in how you feel about eachof these issues.
+<li> Please answer the questions by circling the appropriate number or by filling in the answer as requested.
+<li> Several items in the survey ask about the effects of kidney disease on your life. Some items will ask about limitations related to your kidney
+ disease, and some items will ask about your well-being. Some questions may look like others, but each one is different. Please answer every question as honesty as possible. If you are unsure about how to answer a question, please give the best answer you can. this will allow us to have an accurate picture of the different experiences of individuals with kidney disease.
+</li>
+</ol>
+<center><h2>THANK YOU FOR COMPLETING THIS SURVEY</h2></center>
+
+<p>Please note that this form will NOT be stored online in anyway. No personal information about you can be accepted. This form is provided for informational
+purposes only.</p> 
+ 
+</div>
+
+</tr><td valign=top>
+<div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">YOUR HEALTH</div>
+<div style="text-align:left;">
+1. In general, would you say your health is:<br>
+Unchecked<input type=radio name=sf1_p id=sf1_p value="unchecked">
+Excellent<input type=radio name=sf1_p id=sf1_p value=100>
+Very good<input type=radio name=sf1_p id=sf1_p value=75>
+Good<input type=radio name=sf1_p id=sf1_p value=50>
+Fair<input type=radio name=sf1_p id=sf1_p value=25>
+Poor<input type=radio name=sf1_p id=sf1_p value=0>
+</td><td valign=top>SF1<span id=sf1_report>___</span><br>
+</td></tr><tr><td valign=top>
+2. <b>Compared to one year ago</b>, how your you rate your health in general <b>now?</b><br>
+<ul>
+<li>Unchecked<input type=radio name=sf2 id=sf2 value="unchecked">
+<li> Much better now than one year ago <input type=radio name=sf2  id=sf2 value=100><br>
+ <li>Somewhat better now than one year ago<input type=radio name=sf2  id=sf2 value=75><br>
+ <li>About the same as one year ago<input type=radio name=sf2   id=sf2value=50><br>
+ <li>Somewhat worse than one year ago<input type=radio name=sf2  id=sf2 value=25><br>
+ <li>Much worse now than one year ago<input type=radio name=sf2  id=sf2 value=0>
+</ul>
+</td><td valign=top>SF2<span id=sf2_report>___</span><br>
+</td></tr><tr><td valign=top>
+3. The following items are about activities you might do during a typical day.<b> Does you health now limit</b> you in these activities? If so, how much?<br>
+<ul style="list-style-type:lower-alpha;">
+<li> <b>Vigorous activities,</b> such as running, lifting heavy objects, participating in strenuous sports<br>
+Unchecked<input    type=radio name=sf3a id=sf3a value="unchecked">
+yes, limited a Lot<input type=radio id=sf3a name=sf3a value=0 checked>
+yes, limited a little<input type=radio id=sf3a name=sf3a value=50>
+No, not limited at all<input type=radio  id=sf3a name=sf3a value=100>
+<li><b>Moderate activities,</b> such as moving a table, pushing a vacuum cleaner, bowling, or playing golf<br>
+Unchecked<input    type=radio name=sf3b id=sf3b value="unchecked">
+yes, limited a Lot<input type=radio name=sf3b  id=sf3b  value=0>
+yes, limited a little<input type=radio name=sf3b  id=sf3b  value=50>
+No, not limited at all<input type=radio name=sf3b  id=sf3b  value=100>
+<br><br>
+<li>Lifting or carrying groceries<br>
+Unchecked<input    type=radio name=sf3c id=sf3c value="unchecked">
+yes, limited a Lot<input type=radio name=sf3c id=sf3c value=0>
+yes, limited a little<input type=radio name=sf3c  id=sf3c value=50>
+No, not limited at all<input type=radio name=sf3c id=sf3c  value=100>
+<br><br>
+<li>Climbing <b>several</b> flights of stairs<br>
+Unchecked<input    type=radio name=sf3d id=sf3d value="unchecked">
+yes, limited a Lot<input type=radio name=sf3d id=sf3d  value=0>
+yes, limited a little<input type=radio name=sf3d  id=sf3d   value=50>
+No, not limited at all<input type=radio name=sf3d  id=sf3d  value=100>
+<br><br>
+<li> Climbing<b>one</b> flights of stairs<br>
+Unchecked<input    type=radio name=sf3e id=sf3e value="unchecked">
+yes, limited a Lot<input type=radio name=sf3e id=sf3e value=0>
+yes, limited a little<input type=radio name=sf3e  id=sf3e  value=50>
+No, not limited at all<input type=radio name=sf3e  id=sf3e value=100>
+<br><br>
+<li> Bending, kneeling or stooping<br>
+Unchecked<input    type=radio name=sf3f id=sf3f value="unchecked">
+yes, limited a Lot<input type=radio name=sf3f id=sf3f value=0>
+yes, limited a little<input type=radio name=sf3f  id=sf3f value=50>
+No, not limited at all<input type=radio name=sf3f  id=sf3f value=100>
+<br><br>
+<li> Walking <b>more than a mile,</b><br>
+Unchecked<input    type=radio name=sf3g id=sf3g value="unchecked">
+yes, limited a Lot<input type=radio name=sf3g id=sf3g value=0>
+yes, limited a little<input type=radio name=sf3g id=sf3g value=50>
+No, not limited at all<input type=radio name=sf3g  id=sf3g value=100>
+<br><br>
+<li>Walking <b>several blocks</b><br>
+Unchecked<input    type=radio name=sf3h id=sf3h value="unchecked">
+yes, limited a Lot<input type=radio name=sf3h id=sf3h value=0>
+yes, limited a little<input type=radio name=sf3h  id=sf3h value=50>
+No, not limited at all<input type=radio name=sf3h  id=sf3h value=100>
+<br><br>
+<li>Walking <b>one block</b><br>
+Unchecked<input    type=radio name=sf3i id=sf3i value="unchecked">
+yes, limited a Lot<input type=radio name=sf3i id=sf3i value=0>
+yes, limited a little<input type=radio name=sf3i id=sf3i  value=50>
+No, not limited at all<input type=radio name=sf3i  id=sf3i value=100>
+<br><br>
+<li> Bathing or dressing yourself<br>
+Unchecked<input    type=radio name=sf3j id=sf3j value="unchecked">
+yes, limited a Lot<input type=radio name=sf3j id=sf3j value=0>
+yes, limited a little<input type=radio name=sf3j  id=sf3j value=50>
+No, not limited at all<input type=radio name=sf3j id=sf3j value=100>
+<br><br>
+</td><td valign=top>
+SF3A<span id=sf3a_report>___</span><br>
+SF3B<span id=sf3b_report>___</span><br>
+SF3C<span id=sf3c_report>___</span><br>
+SF3D<span id=sf3d_report>___</span><br>
+SF3E<span id=sf3e_report>___</span><br>
+SF3F<span id=sf3f_report>___</span><br>
+SF3G<span id=sf3g_report>___</span><br>
+SF3H<span id=sf3h_report>___</span><br>
+SF3I<span id=sf3i_report>___</span><br>
+SF3J<span id=sf3j_report>___</span><br>
+
+
+
+
+
+
+
+</td></tr><tr><td valign=top>
+4. During the<b> past four weeks,</b> have you had any of the following problems with your work or other regular activities <b>as a result of your physical health?</b>
+<ul style="list-style-type:lower-alpha;">
+<li>  Cut down the<b> amount of time </b>you spend on work on other activities?<br>
+Unchecked<input    type=radio name=sf4a id=sf4a value="unchecked">
+Yes<input type=radio name=sf4a id=sf4a value=0>
+No<input type=radio name=sf4a  id=sf4a value=100>
+ 
+
+<li><b>Accomplished less</b> than you would have liked? <br> 
+Unchecked<input    type=radio name=sf4b id=sf4b value="unchecked">
+Yes<input type=radio name=sf4b id=sf4b value=0>
+No<input type=radio name=sf4b  id=sf4b value=100>
+
+
+<li>Were limited in the <b>kind</b> of work or other activites? <br> 
+Unchecked<input    type=radio name=sf4c id=sf4c value="unchecked">
+Yes<input type=radio name=sf4c id=sf4c value=0>
+No<input type=radio name=sf4c  id=sf4c value=100>
+
+<li>Had <b>difficulty</b>performing the work or other activities (for example, it took extra effort)?  <br>
+Unchecked<input    type=radio name=sf4d id=sf4d value="unchecked">
+Yes<input type=radio name=sf4d id=sf4d value=0>
+No<input type=radio name=sf4d  id=sf4d value=100>
+
+</ul>
+
+</td><td valign=top>
+SF4A<span id=sf4a_report>___</span><br>
+SF4B<span id=sf4b_report>___</span><br>
+SF4C<span id=sf4c_report>___</span><br>
+SF4D<span id=sf4d_report>___</span><br>
+
+
+
+
+</td></tr><tr><td valign=top>
+5. During the<b> past four weeks,</b>have you had any of the following problems with your work or other regular daily activities <b>as a result of any emotion problems</b>(such as feeling depressed or anxious)?
+<ul style="list-style-type:lower-alpha;">
+<li>  Cut down the<b> amount of time </b>you spend on work on other activities?</li>
+<br>
+Unchecked<input    type=radio name=sf5a id=sf5a value="unchecked">
+Yes<input type=radio name=sf5a id=sf5a value=0>
+No<input type=radio name=sf5a id=sf5a value=100>
+ 
+
+<li><b>Accomplished less</b> than you would have liked?</li> 
+<br> 
+ Unchecked<input    type=radio name=sf5b id=sf5b value="unchecked">
+Yes<input type=radio name=sf5b id=sf5b value=0>
+No<input type=radio name=sf5b id=sf5b value=100>
+ 
+
+
+<li>Didn't do work or other activities <b>kind</b> as carefully as usual?</li> 
+<br> 
+ Unchecked<input    type=radio name=sf5c id=sf5c value="unchecked">
+Yes<input type=radio name=sf5c id=sf5c value=0>
+No<input type=radio name=sf5c id=sf5c value=100>
+ 
+
+</ul>
+</td><td valign=top>
+SF5A<span id=sf5a_report>___</span><br>
+SF5B<span id=sf5b_report>___</span><br>
+SF5C<span id=sf5c_report>___</span><br>
+
+
+
+
+
+
+</td></tr><tr><td valign=top>
+6. During the<b> past four weeks,</b>to what<b>extent </b> have your<b>physical health or emotion problems</b>interfered with your normal social activities with family, friends, neighbors, or groups?<br>
+Unchecked<input type=radio name=sf6 id=sf6 value="unchecked">
+Not at all<input type=radio name=sf6 id=sf6 value=100>
+Slightly<input type=radio name=sf6  id=sf6 value=75>
+Moderately<input type=radio name=sf6  id=sf6 value=50>
+Quite a bit<input type=radio name=sf6  id=sf6 value=25>
+Extremely<input type=radio name=sf6  id=sf6 value=0>
+</td><td valign=top>
+SF6<span id=sf6_report>___</span><br>
+
+
+
+
+</td></tr><tr><td valign=top>
+
+7. How much<b> bodily</b>pain have you had during the <b>past four weeks?</b> 
+<br> 
+ Unchecked<input    type=radio name=sf7 id=sf7 value="unchecked">
+None<input type=radio name=sf7 id=sf7 value=100>
+Very mild<input type=radio name=sf7 id=sf7  value=80>
+Mild<input type=radio name=sf7 id=sf7 value=60> 
+Moderate<input type=radio name=sf7 id=sf7 value=40>
+Severe<input type=radio name=sf7 id=sf7  value=20>
+Very severe<input type=radio name=sf7 id=sf7  value=0>
+</td><td valign=top>  
+
+
+SF7<span id=sf7_report>___</span><br>
+
+
+</td></tr><tr><td valign=top>
+8. During the<b> past four weeks,</b>how much did <b>pain </b> interfere with your normal work (including work outside the home and housework)?
+<br>
+ Unchecked<input    type=radio name=sf8 id=sf8 value="unchecked">
+Not at all<input type=radio name=sf8 id=sf8 value=100 >
+Slightly<input type=radio name=sf8 id=sf8 value=75 >
+Moderately<input type=radio name=sf8 id=sf8 value=50 >
+Quite a bit<input type=radio name=sf8 id=sf8 value=25 >
+Extremely<input type=radio name=sf8 id=sf8 value=0>
+
+</td><td valign=top>  
+
+
+SF8<span id=sf8_report>___</span><br>
+
+
+
+
+</td></tr><tr><td valign=top>
+9. These questions are about how you feel and how things 
+have been with you during the past 4 weeks. For each quesiton, please give the one answer that comes closese to the way you have been feeling.<br><br>
+
+How much of the time during the past 4 weeks
+<ul style="list-style-type:lower-alpha;">
+<li>Did you feel full of pep?</li><br>
+ Unchecked<input    type=radio name=sf9a id=sf9a value="unchecked">
+All of the time<input type=radio name=sf9a id=sf9a value=100>
+Most of the time<input type=radio name=sf9a id=sf9a  value=80>
+A good bit of the time<input type=radio name=sf9a id=sf9a value=60 >
+Some of the time<input type=radio name=sf9a id=sf9a  value=40>
+A little of the time<input type=radio name=sf9a id=sf9a value=20 >
+None of the time<input type=radio name=sf9a id=sf9a  value=0>
+<br><br>
+
+<li>Have you been a very nervous person?</li><br>
+Unchecked<input    type=radio name=sf9b id=sf9b value="unchecked">
+All of the time<input type=radio name=sf9b id=sf9b value=0>
+Most of the time<input type=radio name=sf9b id=sf9b value=20>
+A good bit of the time<input type=radio name=sf9b id=sf9b value=40 >
+Some of the time<input type=radio name=sf9b id=sf9b  value=60>
+A little of the time<input type=radio name=sf9b id=sf9b value=80 >
+None of the time<input type=radio name=sf9b id=sf9b  value=100>
+
+
+<br><br>
+<li>Have you felt so down in the dumps that nothing could cheer you up?</li><br>
+Unchecked<input    type=radio name=sf9c id=sf9c value="unchecked">
+All of the time<input type=radio name=sf9c id=sf9c value=0>
+Most of the time<input type=radio name=sf9c id=sf9c value=20>
+A good bit of the time<input type=radio name=sf9c id=sf9c value=40 >
+Some of the time<input type=radio name=sf9c id=sf9c  value=60>
+A little of the time<input type=radio name=sf9c id=sf9c value=80 >
+None of the time<input type=radio name=sf9c id=sf9c  value=100>
+
+<br><br>
+<li>Have you felt calm and peaceful?</li><br>
+Unchecked<input    type=radio name=sf9d id=sf9d value="unchecked">
+All of the time<input type=radio name=sf9d id=sf9d value=100>
+Most of the time<input type=radio name=sf9d id=sf9d value=80>
+A good bit of the time<input type=radio name=sf9d id=sf9d value=60 >
+Some of the time<input type=radio name=sf9d id=sf9d  value=40>
+A little of the time<input type=radio name=sf9d id=sf9d value=20 >
+None of the time<input type=radio name=sf9d id=sf9d  value=0>
+
+<br><br>
+<li>Did you a lot of energy?</li><br>
+Unchecked<input    type=radio name=sf9e id=sf9e value="unchecked">
+All of the time<input type=radio name=sf9e id=sf9e value=100>
+Most of the time<input type=radio name=sf9e id=sf9e value=80>
+A good bit of the time<input type=radio name=sf9e id=sf9e value=60 >
+Some of the time<input type=radio name=sf9e id=sf9e  value=40>
+A little of the time<input type=radio name=sf9e id=sf9e value=20 >
+None of the time<input type=radio name=sf9e id=sf9e  value=0>
+
+
+<br><br>
+<li>Have you felt downhearted and blue?</li><br> 
+Unchecked<input    type=radio name=sf9f id=sf9f value="unchecked">
+All of the time<input type=radio name=sf9f id=sf9f value=0>
+Most of the time<input type=radio name=sf9f id=sf9f value=20>
+A good bit of the time<input type=radio name=sf9f id=sf9f value=40 >
+Some of the time<input type=radio name=sf9f id=sf9f  value=60>
+A little of the time<input type=radio name=sf9f id=sf9f value=80 >
+None of the time<input type=radio name=sf9f id=sf9f  value=100>
+
+<br><br>
+<li>Did you feel worn out?</li><br>
+Unchecked<input    type=radio name=sf9g id=sf9g value="unchecked">
+All of the time<input type=radio name=sf9g id=sf9g value=0>
+Most of the time<input type=radio name=sf9g id=sf9g value=20>
+A good bit of the time<input type=radio name=sf9g id=sf9g value=40 >
+Some of the time<input type=radio name=sf9g id=sf9g  value=60>
+A little of the time<input type=radio name=sf9g id=sf9g value=80 >
+None of the time<input type=radio name=sf9g id=sf9g  value=100>
+<br><br>
+<li>Have you been a happy person?</li><br>
+Unchecked<input    type=radio name=sf9h id=sf9h value="unchecked">
+All of the time<input type=radio name=sf9h id=sf9h value=100>
+Most of the time<input type=radio name=sf9h id=sf9h value=80>
+A good bit of the time<input type=radio name=sf9h id=sf9h value=60 >
+Some of the time<input type=radio name=sf9h id=sf9h   value=40>
+A little of the time<input type=radio name=sf9h id=sf9h value=20 >
+None of the time<input type=radio name=sf9h id=sf9h  value=0>
+<br><br>
+ 
+<li>Did you feel tired</li><br>
+Unchecked<input    type=radio name=sf9i id=sf9i value="unchecked">
+All of the time<input type=radio name=sf9i id=sf9i  value=0>
+Most of the time<input type=radio name=sf9i id=sf9i  value=20>
+A good bit of the time<input type=radio name=sf9i id=sf9i  value=40 >
+Some of the time<input type=radio name=sf9i id=sf9i   value=60>
+A little of the time<input type=radio name=sf9i id=sf9i  value=80 >
+None of the time<input type=radio name=sf9i id=sf9i  value=100>
+
+</ul>
+</td><td valign=top>
+SF9A<span id=sf9a_report>___</span><br>
+SF9B<span id=sf9b_report>___</span><br>
+SF9C<span id=sf9c_report>___</span><br>
+SF9D<span id=sf9d_report>___</span><br>
+SF9E<span id=sf9e_report>___</span><br>
+SF9F<span id=sf9f_report>___</span><br>
+SF9G<span id=sf9g_report>___</span><br>
+SF9H<span id=sf9h_report>___</span><br>
+SF9I<span id=sf9i_report>___</span><br>
+
+
+</td></tr><tr><td valign=top>
+10. During past 4 weeks, how much of the time have your physical health or emotional problems interfered with your social activities?
+<br>
+Unchecked<input    type=radio name=sf10 id=sf10 value="unchecked">
+All of the time<input type=radio name=sf10 id=sf10 VALUE=0 >
+Most of the time<input type=radio name=sf10 id=sf10 VALUE=25 >
+Some of the time<input type=radio name=sf10 id=sf10 VALUE=50 >
+A little of the time<input type=radio name=sf10id=sf10 VALUE=75 >
+None of the time<input type=radio name=sf10 id=sf10  VALUE=100>
+</td><td valign=top>
+
+
+
+SF10<span id=sf10_report>___</span><br>
+
+
+
+</td></tr><tr><td valign=top>
+
+11. Please choose the answer that best describes how TRUE or FALSE each of the following statements is for you.
+<ul style="list-style-type:lower-alpha;">
+<li>I seem to get sick a little easier than other people</li><br>
+Unchecked<input    type=radio name=sf11a id=sf11a value="unchecked">
+ Definitely True<input type=radio name=sf11a id=sf11a value=0  >
+ Mostly True<input type=radio name=sf11a id=sf11a value=25>
+ Don't Know<input type=radio name=sf11a id=sf11a value=50 >
+ Mostly False<input type=radio name=sf11a id=sf11a value=75 >
+ Always False<input type=radio name=sf11a id=sf11a value=100 >
+ 
+<br>
+<li>I am as healthy as anybody I know</li><br>
+Unchecked<input    type=radio name=sf11b id=sf11b value="unchecked">
+Definitely True<input type=radio name=sf11b id=11b value=100>
+Mostly True<input type=radio name=sf11b id=11b value=75 >
+Don't Know<input type=radio name=sf11b id=11b value=50 >
+Mostly False<input type=radio name=sf11b id=11b value=25 >
+Always False<input type=radio name=sf11b id=11b  value=0>
+<br>
+<li>I expect my health to get worse</li><br>
+Unchecked<input    type=radio name=sf11c id=sf11c value="unchecked">
+ Definitely True<input type=radio name=sf11c id=sf11c value=0 >
+ Mostly True<input type=radio name=sf11c id=sf11c value=25 >
+ Don't Know<input type=radio name=sf11c id=sf11c value=50 >
+ Mostly False<input type=radio name=sf11c id=sf11c value=75 >
+ Always False<input type=radio name=sf11c id=sf11c value=100 >
+<br>
+<li>My health is excellent</li><br>
+Unchecked<input    type=radio name=sf11d id=sf11d value="unchecked">
+Definitely True<input type=radio name=sf11d id=sf11d  value=100 >
+Mostly True<input type=radio name=sf11d id=sf11d value=75 >
+Don't Know<input type=radio name=sf11d id=sf11d value=50 >
+Mostly False<input type=radio name=sf11d id=sf11d value=25>
+Always False<input type=radio name=sf11d id=sf11d value=0  >
+<br><br>
+</ul>
+</div>
+<div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">YOUR KIDNEY DISEASE</div>
+<div style="text-align:left;">
+</td><td valign=top>
+
+
+
+SF11A<span id=sf11a_report>___</span><br>
+SF11B<span id=sf11b_report>___</span><br>
+SF11C<span id=sf11c_report>___</span><br>
+SF11D<span id=sf11d_report>___</span><br>
+
+
+
+
+
+</td></tr><tr><td valign=top>
+12. How TRUE or FALSE is eachof the following statements for you?
+<ul style="list-style-type:lower-alpha;">
+<li>My kidney disease interferes too much with my life</li><br>
+Unchecked<input    type=radio name=sf12a id=sf12a value="unchecked">
+Definitely True<input type=radio name=sf12a id=sf12a  value=0 >
+Mostly True<input type=radio name=sf12a id=sf12a value=25 >
+Don't Know<input type=radio name=sf12a id=sf12a  value=50>
+Mostly False<input type=radio name=sf12a id=sf12a  value=75>
+Always False<input type=radio name=sf12a id=sf12a  value=100 >
+<br>
+<li>Too much time is spent dealing with my kidney disease</li><br>
+Unchecked<input    type=radio name=sf12b id=sf12b value="unchecked">
+
+Definitely True<input type=radio name=sf12b id=sf12b  value=0 >
+Mostly True<input type=radio name=sf12b id=sf12b  value=25 >
+Don't Know<input type=radio name=sf12b id=sf12b   value=50>
+Mostly False<input type=radio name=sf12b id=sf12b   value=75>
+Always False<input type=radio name=sf12b id=sf12b  value=100 >
+<br>
+<li>I feel frustrated dealing with my kidney disease</li><br>
+Unchecked<input    type=radio name=sf12c id=sf12c value="unchecked">
+
+Definitely True<input type=radio name=sf12c id=sf12c  value=0 >
+Mostly True<input type=radio name=sf12c id=sf12c value=25 >
+Don't Know<input type=radio name=sf12c id=sf12c  value=50>
+Mostly False<input type=radio name=sf12c id=sf12c  value=75>
+Always False<input type=radio name=sf12c id=sf12c  value=100 >
+<br>
+
+<li>I feel like a burden on my family</li><br>
+Unchecked<input    type=radio name=sf12d id=sf12d value="unchecked">
+
+Definitely True<input type=radio name=sf12d id=sf12d  value=0 >
+Mostly True<input type=radio name=sf12d id=sf12d  value=25 >
+Don't Know<input type=radio name=sf12d id=sf12d   value=50>
+Mostly False<input type=radio name=sf12d id=sf12d   value=75>
+Always False<input type=radio name=sf12d id=sf12d   value=100 >
+
+
+</ul>
+</td><td valign=top>
+
+
+
+
+SF12A<span id=sf12a_report>___</span><br>
+SF12B<span id=sf12b_report>___</span><br>
+SF12C<span id=sf12c_report>___</span><br>
+SF12D<span id=sf12d_report>___</span><br>
+
+
+
+   </td></tr><tr><td valign=top>
+13. These questions are about how you feel and how things have ben going during the past 4 weeks. For each question, please give the one answer that comes closest to the way you have been feeling?
+How much of the time during the past 4 weeks
+<ul style="list-style-type:lower-alpha;">
+Unchecked<input    type=radio name=sf13a id=sf13a value="unchecked">
+
+None of the Time<input type=radio name=sf13a id=sf13a value=100>
+A Little of the Time<input type=radio name=sf13a id=sf13a value=80>
+Some of the Time<input type=radio name=sf13a id=sf13a value=60>
+A Good bit of the Time<input type=radio name=sf13a id=sf13a value=40>
+Most of the Time<input type=radio name=sf13a id=sf13a value=20>
+All of the Time<input type=radio name=sf13a id=sf13a value=0>
+<br>
+
+<li>Did you react slowly to things that were said or done?</li><br>
+Unchecked<input    type=radio name=sf13b id=sf13b value="unchecked">
+
+None of the Time<input type=radio name=sf13b id=sf13b value=100>
+A Little of the Time<input type=radio name=sf13b id=sf13b value=80>
+Some of the Time<input type=radio name=sf13b id=sf13b  value=60>
+A Good bit of the Time<input type=radio name=sf13b id=sf13b  value=40>
+Most of the Time<input type=radio name=sf13b id=sf13b  value=20>
+All of the Time<input type=radio name=sf13b id=sf13b value=0>
+<br>
+<li>Did you act irritable toward those around you?</li><br>
+Unchecked<input    type=radio name=sf13c id=sf13c value="unchecked">
+None of the Time<input type=radio name=sf13c id=sf13c value=100>
+A Little of the Time<input type=radio name=sf13c id=sf13c value=80>
+Some of the Time<input type=radio name=sf13c id=sf13c value=60>
+A Good bit of the Time<input type=radio name=sf13c id=sf13c value=40>
+Most of the Time<input type=radio nname=sf13c id=sf13c value=20>
+All of the Time<input type=radio name=sf13c id=sf13c value=0>
+<br>
+<li>Did you have difficulty concentrating or thinking?</li><br>
+<br>
+Unchecked<input    type=radio name=sf13d id=sf13d value="unchecked">
+None of the Time<input type=radio name=sf13d id=sf13d value=100>
+A Little of the Time<input type=radio name=sf13d id=sf13d value=80>
+Some of the Time<input type=radio name=sf13d id=sf13d value=60>
+A Good bit of the Time<input type=radio name=sf13d id=sf13d value=40>
+Most of the Time<input type=radio name=sf13d id=sf13d value=20>
+All of the Time<input type=radio name=sf13d id=sf13d value=10>
+<br>
+<li>Did you get along well with other people?</li><br>
+Unchecked<input    type=radio name=sf13e id=sf13e value="unchecked">
+None of the Time<input type=radio name=sf13e id=sf13e value=0>
+A Little of the Time<input type=radio name=sf13e id=sf13e value=20>
+Some of the Time<input type=radio name=sf13e id=sf13e value=40>
+A Good bit of the Time<input type=radio name=sf13e id=sf13e value=60>
+Most of the Time<input type=radio name=sf13e id=sf13e value=80>
+All of the Time<input type=radio name=sf13e id=sf13e value=100>
+<br>
+<li>Did you become confused?</li><br>
+Unchecked<input    type=radio name=sf13f id=sf13f value="unchecked">
+None of the Time<input type=radio name=sf13f id=sf13f value=100>
+A Little of the Time<input type=radio name=sf13f id=sf13f value=80>
+Some of the Time<input type=radio name=sf13f id=sf13f value=60>
+A Good bit of the Time<input type=radio name=sf13f id=sf13f value=40>
+Most of the Time<input type=radio name=sf13f id=sf13f value=20>
+All of the Time<input type=radio name=sf13f id=sf13f value=0>
+
+</ul>
+</td><td valign=top>
+SF13A<span id=sf13a_report>___</span><br>
+SF13B<span id=sf13b_report>___</span><br>
+SF13C<span id=sf13c_report>___</span><br>
+SF13D<span id=sf13d_report>___</span><br>
+SF13E<span id=sf13e_report>___</span><br>
+SF13F<span id=sf13f_report>___</span><br> 
+
+
+
+
+
+
+
+
+ </td></tr><tr><td valign=top>
+14. During the past 4 weeks, to what extent were you bothered by each of the following?
+<ul style="list-style-type:lower-alpha;">
+<li>Soreness in your muscles?</li><br>
+Unchecked<input    type=radio name=sf14a id=sf14a value="unchecked">
+Not at all bothered<input type=radio radio name=sf14a id=sf14a value=100>
+Somewhat bothered<input type=radio radio name=sf14a id=sf14a  value=75>
+Moderately bothered<input type=radio radio name=sf14a id=sf14a  value=50>
+Very Much Bothered<input type=radio radio name=sf14a id=sf14a  value=25>
+Extremely Bothered<input type=radio radio name=sf14a id=sf14a  value=0>
+<br>
+<li>Chest pain?</li><br>
+Unchecked<input    type=radio name=sf14b id=sf14b value="unchecked">
+Not at all bothered<input type=radio radio name=sf14b id=sf14b value=100>
+Somewhat bothered<input type=radio radio name=sf14b id=sf14b  value=75>
+Moderately bothered<input type=radio radio name=sf14b id=sf14b  value=50>
+Very Much Bothered<input type=radio radio name=sf14b id=sf14b  value=25>
+Extremely Bothered<input type=radio radio name=sf14b id=sf14b  value=0>
+<br>
+<li>Cramps?</li><br>
+Unchecked<input    type=radio name=sf14c id=sf14c value="unchecked">
+Not at all bothered<input type=radio radio name=sf14c id=sf14c value=100>
+Somewhat bothered<input type=radio radio name=sf14c id=sf14c  value=75>
+Moderately bothered<input type=radio radio name=sf14c id=sf14c  value=50>
+Very Much Bothered<input type=radio radio name=sf14c id=sf14c  value=25>
+Extremely Bothered<input type=radio radio name=sf14c id=sf14c  value=0>
+<br>
+<li>Itchy skin?</li><br>
+Unchecked<input    type=radio name=sf14d id=sf14d value="unchecked">
+Not at all bothered<input type=radio radio name=sf14d id=sf14d value=100>
+Somewhat bothered<input type=radio radio name=sf14d id=sf14d  value=75>
+Moderately bothered<input type=radio radio name=sf14d id=sf14d  value=50>
+Very Much Bothered<input type=radio radio name=sf14d id=sf14d  value=25>
+Extremely Bothered<input type=radio radio name=sf14d id=sf14d  value=0>
+<br>
+<li>Dry skin?</li><br>
+Unchecked<input    type=radio name=sf14e id=sf14e value="unchecked">
+Not at all bothered<input type=radio radio name=sf14e id=sf14e value=100>
+Somewhat bothered<input type=radio radio name=sf14e id=sf14e  value=75>
+Moderately bothered<input type=radio radio name=sf14e id=sf14e  value=50>
+Very Much Bothered<input type=radio radio name=sf14e id=sf14e  value=25>
+Extremely Bothered<input type=radio radio name=sf14e id=sf14e  value=0>
+<br>
+<li>Shortness of breath?</li><br>
+Unchecked<input    type=radio name=sf14f id=sf14f value="unchecked">
+Not at all bothered<input type=radio radio name=sf14f id=sf14f value=100>
+Somewhat bothered<input type=radio radio name=sf14f id=sf14f  value=75>
+Moderately bothered<input type=radio radio nname=sf14f id=sf14f  value=50>
+Very Much Bothered<input type=radio radio name=sf14f id=sf14f  value=25>
+Extremely Bothered<input type=radio radio name=sf14f id=sf14f value=0>
+<br>
+<li>Faintness or dizziness?</li><br>
+Unchecked<input    type=radio name=sf14g id=sf14g value="unchecked">
+Not at all bothered<input type=radio radio name=sf14g id=sf14g value=100>
+Somewhat bothered<input type=radio radio name=sf14g id=sf14g  value=75>
+Moderately bothered<input type=radio radio name=sf14g id=sf14g  value=50>
+Very Much Bothered<input type=radio radio name=sf14g id=sf14g  value=25>
+Extremely Bothered<input type=radio radio name=sf14g id=sf14g  value=0>
+<br>
+<li>Lack of appetite?</li><br>
+Unchecked<input    type=radio name=sf14h id=sf14h value="unchecked">
+Not at all bothered<input type=radio radio name=sf14h id=sf14h value=100>
+Somewhat bothered<input type=radio radio name=sf14h id=sf14h  value=75>
+Moderately bothered<input type=radio radio name=sf14h id=sf14h  value=50>
+Very Much Bothered<input type=radio radio name=sf14h id=sf14h  value=25>
+Extremely Bothered<input type=radio radio name=sf14h id=sf14h  value=0>
+<br>
+
+<li>Washed out or drained?</li><br>
+Unchecked<input    type=radio name=sf14i id=sf14i value="unchecked">
+Not at all bothered<input type=radio radio name=sf14i id=sf14i value=100>
+Somewhat bothered<input type=radio radio name=sf14i id=sf14i  value=75>
+Moderately bothered<input type=radio radio name=sf14i id=sf14i  value=50>
+Very Much Bothered<input type=radio radio name=sf14i id=sf14i  value=25>
+Extremely Bothered<input type=radio radio name=sf14i id=sf14i  value=0>
+<br>
+<li>Numbness in hands or feet?</li><br>
+Unchecked<input    type=radio name=sf14j id=sf14j value="unchecked">
+Not at all bothered<input type=radio radio name=sf14j id=sf14j value=100>
+Somewhat bothered<input type=radio radio name=sf14j id=sf14j value=75>
+Moderately bothered<input type=radio radio name=sf14j id=sf14j value=50>
+Very Much Bothered<input type=radio radio name=sf14j id=sf14j value=25>
+Extremely Bothered<input type=radio radio name=sf14j id=sf14j value=0>
+<br>
+<li>Nausea or upset stomach?</li><br>
+Unchecked<input    type=radio name=sf14k id=sf14k value="unchecked">
+Not at all bothered<input type=radio radio name=sf14k id=sf14k value=100>
+Somewhat bothered<input type=radio radio name=sf14k id=sf14k value=75>
+Moderately bothered<input type=radio radio name=sf14k id=sf14k value=50>
+Very Much Bothered<input type=radio radio name=sf14k id=sf14k value=25>
+Extremely Bothered<input type=radio radio name=sf14k id=sf14k value=0>
+<br>
+<li>Problems with your access site (hemo only)<input type=radio name=hd_pd_p id=hd_pd_p value=0 checked>?</li><br>
+Unchecked<input    type=radio name=sf14l id=sf14l value="unchecked">
+Not at all bothered<input type=radio radio name=sf14l id=sf14l value=100>
+Somewhat bothered<input type=radio radio name=sf14l id=sf14l value=75>
+Moderately bothered<input type=radio radio name=sf14l id=sf14l value=50>
+Very Much Bothered<input type=radio radio name=sf14l id=sf14l value=25>
+Extremely Bothered<input type=radio radio name=sf14l id=sf14l value=0>
+<br>
+<li>Problems with your cathether site (peritoneal only)<input type=radio name=hd_pd_p id=hd_pd_p value=1>?</li><br>
+Unchecked<input    type=radio name=sf14m id=sf14m value="unchecked">
+Not at all bothered<input type=radio radio name=sf14m id=sf14m value=100>
+Somewhat bothered<input type=radio radio name=sf14m id=sf14m value=75>
+Moderately bothered<input type=radio radio name=sf14m id=sf14m value=50>
+Very Much Bothered<input type=radio radio name=sf14m id=sf14m value=25>
+Extremely Bothered<input type=radio radio name=sf14m id=sf14m value=0>
+<br>
+</ul><br>
+</div>
+<div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">EFFECTS OF KIDNEY DISEASE ON YOUR DAILY LIFE</div>
+<div style="display:block;text-align:left;">
+</td><td valign=top>
+SF14A<span id=sf14a_report>___</span><br>
+SF14B<span id=sf14b_report>___</span><br>
+SF14C<span id=sf14c_report>___</span><br>
+SF14D<span id=sf14d_report>___</span><br>
+SF14E<span id=sf14e_report>___</span><br>
+SF14F<span id=sf14f_report>___</span><br>
+SF14G<span id=sf14g_report>___</span><br>
+SF14H<span id=sf14h_report>___</span><br>
+SF14I<span id=sf14i_report>___</span><br>
+SF14J<span id=sf14j_report>___</span><br>
+SF14K<span id=sf14k_report>___</span><br>
+
+SF14L/M<span id=hd_pd_p_report>___</span><br>
+
+
+
+
+</td></tr><tr><td valign=top>
+
+15. Some people are bothered by the effects of kidney disease on their daily life, while others are not. How much does kidney disease bother you in each of the following areas?
+<ul style="list-style-type:lower-alpha;">
+<li>Fluid restrictions?</li><br>
+Unchecked<input    type=radio name=sf15a id=sf15a value="unchecked">
+Not at all bothered<input type=radio name=sf15a id=sf15a  value=100>
+Somewhat bothered<input type=radio name=sf15a id=sf15a value=75>
+Moderately bothered<input type=radio name=sf15a  id=sf15a value=50>
+Very Much Bothered<input type=radio name=sf15a  id=sf15a value=25>
+Extremely Bothered<input type=radio name=sf15aid=sf15a value=0>
+<br>
+<li>Dietary restrictions?</li><br> 
+Unchecked<input    type=radio name=sf15b id=sf15b value="unchecked">
+Not at all bothered<input type=radio name=sf15b id=sf15b  value=100>
+Somewhat bothered<input type=radio name=sf15b id=sf15b value=75>
+Moderately bothered<input type=radio name=sf15b id=sf15b value=50>
+Very Much Bothered<input type=radio name=sf15b id=sf15b value=25>
+Extremely Bothered<input type=radio name=sf15b id=sf15b value=0>
+<br>
+<li>Your ability to work around the house?</li><br> 
+Unchecked<input    type=radio name=sf15c id=sf15c value="unchecked">
+
+Not at all bothered<input type=radio name=sf15c id=sf15c  value=100>
+Somewhat bothered<input type=radio name=sf15c id=sf15c value=75>
+Moderately bothered<input type=radio name=sf15c  id=sf15c value=50>
+Very Much Bothered<input type=radio name=sf15c  id=sf15c value=25>
+Extremely Bothered<input type=radio name=sf15c id=sf15c value=0>
+<li>Your ability to travel?</li><br> 
+Unchecked<input    type=radio name=sf15d id=sf15d value="unchecked">
+
+Not at all bothered<input type=radio name=sf15d id=sf15d  value=100>
+Somewhat bothered<input type=radio name=sf15d id=sf15d value=75>
+Moderately bothered<input type=radio name=sf15d  idsf15d= value=50>
+Very Much Bothered<input type=radio name=sf15d  id=sf15d value=25>
+Extremely Bothered<input type=radio name=sf1d id=sf15d value=0>
+<br>
+<li>Being dependent on doctors and other medical staff?</li><br>
+Unchecked<input    type=radio name=sf15e id=sf15e value="unchecked">
+
+Not at all bothered<input type=radio name=sf15e id=sf15e  value=100>
+Somewhat bothered<input type=radio name=sf15e id=sf15e value=75>
+Moderately bothered<input type=radio name=sf15e  id=sf15e= value=50>
+Very Much Bothered<input type=radio name=sf15e  id=sf15e value=25>
+Extremely Bothered<input type=radio name=sf15e id=sf15e value=0>
+<br>
+<li>Stress or worries caused by kidney disease?</li><br> 
+Unchecked<input    type=radio name=sf15f id=sf15f value="unchecked">
+
+Not at all bothered<input type=radio name=sf15f id=sf15f  value=100>
+Somewhat bothered<input type=radio name=sf15f id=sf15f value=75>
+Moderately bothered<input type=radio name=sf15f id=sf15f value=50>
+Very Much Bothered<input type=radio name=sf15f id=sf15f value=25>
+Extremely Bothered<input type=radio name=sf15f id=sf15f value=0>
+<br>
+<li>Your sex life?</li><br> 
+Unchecked<input    type=radio name=sf15g id=sf15g value="unchecked">
+
+Not at all bothered<input type=radio name=sf15g id=sf15g  value=100>
+Somewhat bothered<input type=radio name=sf15g id=sf15g value=75>
+Moderately bothered<input type=radio name=sf15g id=sf15g value=50>
+Very Much Bothered<input type=radio name=sf15g id=sf15g value=25>
+Extremely Bothered<input type=radio name=sf15g id=sf15g value=0>
+<br>
+<li>Your personal appearance?</li><br>
+Unchecked<input    type=radio name=sf15h id=sf15h value="unchecked">
+
+Not at all bothered<input type=radio name=sf15h id=sf15h value=100>
+Somewhat bothered<input type=radio name=sf15h id=sf15h value=75>
+Moderately bothered<input type=radio name=sf15h id=sf15h value=50>
+Very Much Bothered<input type=radio name=sf15h id=sf15h value=25>
+Extremely Bothered<input type=radio name=sf15h id=sf15h value=0>
+<br>
+</ul>
+<b>The next three questions are personal and relate to your sexual activity, but your answers are important in understanding how kidney disease impacts on people's lives.</b><br>
+</td><td valign=top>
+
+
+SF15A<span id=sf15a_report>___</span><br>
+SF15B<span id=sf15b_report>___</span><br>
+SF15C<span id=sf15c_report>___</span><br>
+SF15D<span id=sf15d_report>___</span><br>
+SF15E<span id=sf15e_report>___</span><br>
+SF15F<span id=sf15f_report>___</span><br>
+SF15G<span id=sf15g_report>___</span><br>
+SF15H<span id=sf15h_report>___</span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td></tr><tr><td valign=top>
+16. Have you had sexual activity in the past 4 weeks? (If "No" Please skip to Question 17)
+<br>
+Unchecked<input    type=radio name=sf16 id=sf16 value="unchecked">
+Yes<input type=radio name=sf16 id=sf16 value=YES>
+No<input type=radio name=sf16 id=sf16  value=NO>
+<br>
+
+<ul style="list-style-type:lower-alpha;">
+<li>Enjoyng sex?</li>
+<br> 
+Unchecked<input    type=radio name=sf16a id=sf16a value="unchecked">
+Not a Problem<input type=radio name=sf16a id=sf16a value=100 >
+A Little Problem<input type=radio name=sf16a id=sf16a value=75 >
+Somewhat of a Problem<input type=radio name=sf16a id=sf16a  value=50>
+Very Much a Problem<input type=radio name=sf16a id=sf16a value=25 >
+Severe Problem<input type=radio name=sf16a id=sf16a value=0  >
+<br>
+ 
+<li>Becoming sexually aroused?</li>
+<br>
+Unchecked<input    type=radio name=sf16b id=sf16b value="unchecked">
+
+Not a Problem<input type=radio name=sf16b id=sf16b value=100 >
+A Little Problem<input type=radio name=sf16b id=sf16b value=75 >
+Somewhat of a Problem<input type=radio name=sf16b id=sf16b  value=50>
+Very Much a Problem<input type=radio name=sf16b id=sf16b value=25 >
+Severe Problem<input type=radio name=sf16b id=sf16b value=0  >
+<br>
+</ul>
+</td><td valign=top>
+
+SF16<span id=sf16_report>___</span><br>
+SF16A<span id=sf16a_report>___</span><br>
+SF16B<span id=sf16b_report>___</span><br>
+
+
+
+
+
+
+
+
+
+</td></tr><tr><td valign=top>
+ <b>For the following question, pleas rate your sleep using a scale ranging from 0 representing "very bad" to 10 representing "very good".<br><br>
+If you think your sleep is half-way between "very bad" and "very good," please circle 5. If you think your sleep is one level better than 5, circle 6. If you think your sleep is one level worse than 5, circle 4 (and so on)</b><br>
+
+17. On a scale from <b>0</b>to<b>10,</b> how would you rate your sleep overall?
+<br><br> 
+Unchecked<input    type=radio name=sf17 id=sf17 value="unchecked">
+Very Bad 0<input type=radio name=sf17 id=sf17 value=0 checked>
+1<input type=radio name=sf17 id=sf17 value=10>
+2<input type=radio name=sf17 id=sf17 value=20>
+3<input type=radio name=sf17 id=sf17 value=30>
+4<input type=radio name=sf17 id=sf17 value=40>
+5<input type=radio name=sf17 id=sf17 value=50>
+6<input type=radio name=sf17 id=sf17 value=60>
+7<input type=radio name=sf17 id=sf17 value=70>
+8<input type=radio name=sf17 id=sf17 value=80>
+9<input type=radio name=sf17 id=sf17 value=90>
+Very Good 10<input type=radio name=sf17 id=sf17 value=100>
+</td><td valign=top>
+
+SF17<span id=sf17_report>___</span><br>
+
+
+
+
+
+
+
+</td></tr><tr><td valign=top>
+18. How often during the past 4 weeks did you
+<ul style="list-style-type:lower-alpha;">
+<li>Awaken during the night and have trouble falling asleep again?</li>
+<br>
+Unchecked<input    type=radio name=sf18a id=sf18a value="unchecked">
+None of the Time<input type=radio name=sf18a id=sf18a value=100 >
+A Little of the Time<input type=radio name=sf18a id=sf18a value=80 >
+Some of  the Time<input type=radio name=sf18a id=sf18a  value=60>
+A Good bit of the Time<input type=radio name=sf18a id=sf18a value=40 >
+Most of the Time<input type=radio name=sf18a id=sf18a  value=20 >
+All of the Time<input type=radio name=sf18a id=sf18a  value=0>
+<br>
+
+<li>Get the amount of sleep you need?</li>
+<br> 
+Unchecked<input    type=radio name=sf18b id=sf18b value="unchecked">
+None of the Time<input type=radio name=sf18b id=sf18b  value=0>
+A Little of the Time<input type=radio name=sf18b id=sf18b  value=20>
+Some of  the Time<input type=radio name=sf18b id=sf18b  value=40>
+A Good bit of the Time<input type=radio name=sf18b id=sf18b  value=60 >
+Most of the Time<input type=radio name=sf18b id=sf18b  value=80>
+All of the Time<input type=radio name=sf18b id=sf18b  value=100>
+<br>
+
+<li>Have trouble staying awake during the day?</li><br> 
+Unchecked<input    type=radio name=sf18c id=sf18c value="unchecked">
+None of the Time<input type=radio name=sf18c id=sf18c value=100 >
+A Little of the Time<input type=radio name=sf18c id=sf18c value=80 >
+Some of  the Time<input type=radio name=sf18c id=sf18c value=60 >
+A Good bit of the Time<input type=radio name=sf18c id=sf18c value=40 >
+Most of the Time<input type=radio name=sf18c id=sf18c value=20 >
+All of the Time<input type=radio name=sf18c id=sf18c  value=0>
+<br>
+<br>
+</ul>
+</td><td valign=top><br>
+
+SF18A<span id=sf18a_report>___</span><br>
+SF18B<span id=sf18b_report>___</span><br>
+SF18C<span id=sf18c_report>___</span><br> 
+
+
+
+
+
+
+<br> </td></tr><tr><td valign=top>
+19. Concerning your family and friends, how satisfied are you with
+<ul style="list-style-type:lower-alpha;">
+<li>the amount of time you are able to spend with your family and friends? 
+<br> 
+Unchecked<input    type=radio name=sf19a id=sf19a value="unchecked">
+Very dissatisfied<input type=radio name=sf19a id=sf19a value=0>
+Somewhat dissatisfied<input type=radio name=sf19a id=sf19a value=33.3 >
+Somewhat satisfied<input type=radio name=sf19a id=sf19a value=66.7 >
+Very satisfied<input type=radio name=sf19a id=sf19a value=100 >
+<br>
+<li>The support you receive from your family and friends? 
+<br>
+ Unchecked<input    type=radio name=sf19b id=sf19b value="unchecked">
+Very dissatisfied<input type=radio name=sf19b id=sf19b value=0 >
+Somewhat dissatisfied<input type=radio name=sf19b id=sf19b  value=33.3>
+Somewhat satisfied<input type=radio name=sf19b id=sf19b value=66.7 >
+Very satisfied<input type=radio name=sf19b id=sf19b  value=100>
+<br>
+ 
+</ul>
+</td><td valign=top>
+SF19A<span id=sf19a_report>___</span><br>
+SF19B<span id=sf19b_report>___</span><br>
+
+
+
+
+</td></tr><tr><td valign=top>
+20. During the past 4 weeks, did you work at a paying job?
+<br>
+ Unchecked<input    type=radio name=sf20 id=sf20 value="unchecked">
+Yes<input type=radio name=sf20 id=sf20 value=100 >
+No<input type=radio name=sf20 id=sf20 value=0>
+</td><td valign=top>
+SF20<span id=sf20_report>___</span><br>
+
+
+
+
+
+ </td></tr><tr><td valign=top>
+21. Does your health keep you from working at a paying job?
+<br> 
+ Unchecked<input    type=radio name=sf21 id=sf21 value="unchecked">
+Yes<input type=radio name=sf21 id=sf21 value=0 >
+No<input type=radio name=sf21 id=sf21 value=100>
+<br>
+<br>
+22. Overall, how would you rate your health?
+</td>
+
+
+
+<td valign=top>
+SF21<span id=sf21_report>___</span><br>
+
+
+</td></tr><tr><td valign=top>
+
+Worst possible (as bad or worse than being dead)<input type=radio name=sf22 id=sf22 value=0  >
+  Unchecked<input    type=radio name=sf22 id=sf22 value="unchecked">
+ 1<input type=radio name=sf22 id=sf22  value=10  >
+ 2<input type=radio name=sf22 id=sf22  value=20  >
+ 3<input type=radio name=sf22 id=sf22  value=30  >
+ 4<input type=radio name=sf22 id=sf22  value=40  >
+ 5 Half-way between worst and best<input type=radio name=sf22 id=sf22 value=50>
+ 6<input type=radio name=sf22 id=sf22  value=60  >
+ 7<input type=radio name=sf22 id=sf22  value=70  >
+ 8<input type=radio name=sf22 id=sf22  value=80  >
+ 9<input type=radio name=sf22 id=sf22  value=90  >
+Best possible health 10<input type=radio name=sf22 id=sf22  value=100 >
+<br>
+</div>
+<div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">SATISFACTION WITH CARE</div>
+<div style="display:block;text-align:left;">
+</td><td valign=top>
+
+
+SF22<span id=sf22_report>___</span><br>
+
+</td></tr><tr><td valign=top>
+
+23. Think about the care you receive for kidney dialysis. In terms of your satisfaction, how would you rate the friendliness and interest shown in you as a person?
+
+
+ Unchecked<input    type=radio name=sf23 id=sf23 value="unchecked">
+Very Poor<input type=radio name=sf23 id=sf23 value=0> 
+Poor<input type=radio name=sf23 id=sf23 value=16.7 >
+Fair<input type=radio name=sf23 id=sf23 value=33.33  >
+Good<input type=radio name=sf23 id=sf23 value=50 >
+Very Good<input type=radio name=sf23 id=sf23 value=67 >
+Excellent<input type=radio name=sf23 id=sf23 value=83 >
+The Best<input type=radio name=sf23 id=sf23  value=100 >
+</td><td valign=top>SF23<span id=sf23_report>___</span><br>
+
+
+</td></tr><tr><td valign=top>
+24. How TRUE or FALSE is each of the following statements?
+<ul style="list-style-type:lower-alpha;">
+ 
+
+<li>Dialysis staff encourage me to be as independent as possible</li>
+<br>
+Unchecked<input type=radio name=sf24a id=sf124a value="unchecked">
+Definitely True<input type=radio name=sf24a id=sf24a value=100 >
+Mostly True<input type=radio name=sf24a id=sf24a value=75 >
+Don't Know<input type=radio name=sf24a id=sf24a value=50 >
+Mostly False<input type=radio name=sf24a id=sf24a value=25 >
+Definitely False<input type=radio name=sf24a id=sf24a value=0  >
+<br>
+
+<li>Dialysis staff support me in coping with my kidney disease</li><br>
+
+Definitely True<input type=radio name=sf24b id=sf24b value=100 >
+ Unchecked<input    type=radio name=sf24b id=sf24b value="unchecked">
+
+Mostly True<input type=radio name=sf24b id=sf24b value=75 >
+Don't Know<input type=radio name=sf24b id=sf24b value=50 >
+Mostly False<input type=radio name=sf24b id=sf24b value=25 >
+Definitely False<input type=radio name=sf24b id=sf24b value=0  >
+<br>
+</ul>
+</div>
+<div style="margin:6px;border:1px solid black;text-align:center;font-size:16px;">BACKGROUND INFORMATION</div>
+<div style="text-align:left;">
+</td>
+
+<td valign=top>SF24A<span id=sf24a_report>___</span><br>
+SF24B<span id=sf24b_report>___</span><br>
+
+
+
+</td></tr><tr><td valign=top>
+25. Do you currently take prescription medications regularly (4 or more days a week) that are prescribed by your doctor for a medical condition? Please don't count over the counter medications like antacids or aspirin.If "No" please skip to Question 26.
+<br> 
+
+No<input type=radio name=q25 id=q25 value=0  >
+Yes<input type=radio name=q25 id=q25 value=1  >
+<br><br>
+
+
+25a. How many different prescription medications do you currently take? Number of Medications:
+<input   type=text name=q25a id=q25a size=2><br>
+</td><td valign=top>
+
+q25<span id=q25_report>___</span><br>
+q25a<span id=q25a_report>___</span><br>
+</td></tr>
+<td valign=top>
+26.How many days total in the last 6 months did you stay in any hospital overnight or longer?(if none, please write in 0)<input type=text name=q26 id=q26 size=4>days<br>
+</td>
+<td valign=top>q26<span id=q26_report>___</span><br>
+</td></tr>
+<tr><td valign=top>
+27. How many days total in the last 6 months did you receive care at a hospital, but came home the same day? (if none, please write in 0)<input type=text name=q27 id=q27 size=5>days<br>
+</td><td valign=top>q27<span id=q27_report>___</span><br>
+</td></tr><tr><td valign=top>
+28.What caused your kidney disease?
+<br>
+
+Don't know<input type=radio name=q28 id=q28 value=0>
+Hypertension (High Blood Pressure)<input type=radio name=q28 id=q28 value=1>
+Diabetes<input type=radio name=q28 id=q28 value=2>
+Polycystic Kidney Disease<input type=radio name=q28 id=q28 value=3>
+Chronic Glomerulonephritis<input type=radio name=q28 id=q28 value=4>
+Chronic Pyelonephritis<input type=radio name=q28 id=q28 value=5>
+Other (please specify)<input type=radio name=q28 id=q28 value=6>
+
+</td><td valign=top>q28<span id=q28_report>___</span><br>
+</td></tr><tr><td valign=top>
+29.When were you born?
+
+<select name=m _29 id=m_29 > 
+<option value=0>Jan</option>
+<option value=1>Feb</option>
+ <option value=2>Mar</option>
+<option value=3>Apr</option>
+<option value=4>May</option>
+<option value=5>Jun</option>
+<option value=6>Jul</option>
+<option value=7>Aug</option>
+<option value=8>Sep</option>
+<option value=9>Oct</option>
+<option value=10>Nov</option>
+<option value=11>Dec</option>
+</select>
+<input type=text name=d_29 id=d_29 size=2>
+
+Year (four digits) <input type=text name=y_29 id=y_29 size=5> <br><br>
+</td><td valign=top>q29<span id=q29_report>___</span><br>
+</td></tr><tr><td valign=top>
+30. What is the highest level of school you have completed?
+<br>
+
+8th grade or less<input type=radio name=q30 id=q30 value=0>
+Some high school or less<input type=radio name=q30 id=q30 value=1 >
+High school diploma or GED<input type=radio name=q30 id=q30 value=2 >
+Vocational school or some college<input type=radio name=q30 id=q30 value=3  >
+College degree<input type=radio name=sf id=q30 value=4 >
+Professional or graduate degree<input type=radio name=q30 id=q30 value=5  >
+</td><td valign=top>q30<span id=q30_report>___</span><br>
+</td></tr><tr><td valign=top>
+
+31.What is your gender?<br>
+
+Male<input type=radio name=q31  id=q31 value=0>
+Female<input type=radio name=q31  id=q31 value=1 >
+</td><td valign=top>q31<span id=q31_report>___</span><br>
+</td></tr><tr><td valign=top>
+
+32.How do ou describe yourself?<br> 
+
+Asian American or Black<input type=radio name=q32 id=q32 value=0>
+Hispanic or Latino<input type=radio name=q32 id=q32 value=1>
+Native American or American Indian<input type=radio name=q32 id=q32 value=2>
+Asian or Pacific Islander<input type=radio name=q32 id=q32 value=3>
+White <input type=radio name=q32 id=q32 value=4>
+Other (please specify)<input type=radio name=q32 id=q32 value=5>
+</td><td valign=top>S32<span id=q32_report>___</span><br>
+</td></tr><tr><td valign=top>
+
+33.Are you currently married<br>
+
+No<input type=radio name=q33 id=q33 value=0>
+Yes<input type=radio name=q33 id=q33 value=1>
+</td><td valign=top>S33<span id=q33_report>___</span><br>
+</td></tr><tr><td valign=top>
+34.During the last 30 days, were you:
+<br> 
+
+1. Working full-time<input type=radio name=q34 id=q34 value=0>
+2. Working part-time<input type=radio name=q34 id=q34 value=1>
+3. Unemployed, laid off, or looking for work<input type=radio name=q34 id=q34 value=2>
+4. Retired<input type=radio name=q34 id=q34  value=3>
+5. Disabled<input type=radio name=q34 id=q34  value=4>
+6. In School<input type=radio name=q34 id=q34  value=5>
+7. Keeping house<input type=radio name=q34 id=q34  value=6>
+8. None of the above<input type=radio name=q34 id=q34 value=7>
+</td><td valign=top>q34<span id=q34_report>___</span>
+</td></tr><tr><td valign=top>
+35.What kind of health insurance do you have?
+<input type=text name=q35  id=q35 size=8>
+
+</td><td valign=top>q35<span id=q35_report>___</span><br>
+</td></tr><tr><td valign=top>
+36.What was you total household income (from all sources) before taxes in the LAST CALENDAR YEAR, including yourself, your partner, and others you regard as family who live in your household? (Please remember your answers are confidential)
+<input type=text size=5 name=q36 id=q36>
+
+</td><td valign=top>q36<span id=q36_report>___</span>
+</td></tr><tr><td valign=top>
+
+
+37.Did someone help you fill out this survey?<br>
+YES<input type=radio id=q37 name=q37 value=0>NO<input type=radio id=q37 name=q37 value=1><br><br>
+</td><td valign=top>q37<span id=q37_report>___</span><br>
+</td></tr><tr><td valign=top>
+
+38. What is today's date?<span id=q38_message></span>
+
+
+
+
+
+<center><h2>THANK YOU. YOU HAVE COMPLETED THE SURVEY<dtml-comment> FOR TAKING PART IN THIS SURVEY</dtml-comment</h2></center>
+
+
+</td><td valign=top>
+q38<span id=q38_report>___</span><br></td></tr>
+</table>
+
+
+<dtml-var dtml_footer>
+</td>
+</tr>
+</table>
+</form>
+
+
+
+
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

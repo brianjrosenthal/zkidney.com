@@ -1,0 +1,95 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quick URR and KTV from BUN | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/quick-urr">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+
+  </style>
+  <script language="Javascript">
+
+
+function log(num){
+num = Math.log(num)
+return num
+}
+
+var form
+function calculate(form,bun_0,bun_1){
+form=document.getElementById('quick');
+var bun_0=form.bun_0.value;
+var bun_1=form.bun_1.value;
+var urr=bun_0-bun_1;
+
+urr=eval(urr)/eval(bun_0);
+
+var z=urr;
+ktv=log(bun_0/bun_1);
+ 
+urr=urr*100
+urr=Math.round(urr*1)/1;
+ktv=Math.round(ktv*10)/10;
+document.getElementById("ktv_report").innerHTML=ktv;
+document.getElementById("urr_report").innerHTML=""+urr+"%";
+}
+</script>
+</head>
+
+<body onLoad="window.setInterval('calculate()',250)";>
+<form id="quick">
+  <h2 style="text-align:center;">Quick URR and Kt/V</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+
+
+
+<p>BUN(beginnng) <input name=bun_0 size=6 value=100 onkeyup=calculate(this.form)>
+BUN(end) <input name=bun_1 size=6 value=30 onkeyup=calculate(this.form)><br>
+<hr>
+Urea reduction ratio (URR) <span id=urr_report>???</span><br>
+kt/v  <span id=ktv_report>???</span>
+  </p>
+</form>
+ 
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

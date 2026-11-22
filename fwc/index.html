@@ -1,0 +1,112 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FWC - Free Water Clearance | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/fwc">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+<script language="Javascript">
+
+<!--
+                  
+                        var form
+                        
+			function add(form,uosm,sosm,vol){
+                        form=document.getElementById('osm_form');
+                        
+                        var vol=form.vol.value
+                       
+                       
+                        var uosm=form.uosm.value;
+                        var sosm=form.sosm.value;
+                     
+                        var temp=eval(uosm)/eval(sosm)
+                      
+                        temp=1-temp
+           
+                        var fwc=eval(vol)*temp
+                        
+                        fwc=Math.round(fwc*100)/100
+                       
+                         
+                        document.getElementById('fwc_calculated').innerHTML='<b>'+fwc+' </b>'
+                        
+			}
+  
+//-->
+
+</script>
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style>   
+
+</head>
+
+
+
+<body onload="window.setInterval('add()', 250 );">
+<div>
+
+<FORM id="osm_form">
+
+<h2 style="text-align:center;">Free Water Clearance</h2>
+              
+                <p>
+                      
+                        vol (liters)<INPUT size=4 value=1.5 name=vol><br>
+                        
+                        urine osm (mmols)<INPUT size=4 value=400 name=uosm><br>
+                  serum osm (mmols)<INPUT size=4 value=250 name=sosm><br></p>
+                
+<p> The free water clearance (CH<sub>2</sub>O) is <span id="fwc_calculated"></span></p> 
+                  <p>The formula is Free water =  CH<sub>2</sub>O=V X (1-U<sub>osm</sub>/S<sub>osm</sub>)</p>
+<p>If the free water clearance is negative, it means that the kidney is concentrating urine while if it is positive it means the kidney is diluting urine.These functions keep us in balance during hot days, or when we overingest water, but in circumstances where the urine is abnormally concentrating water, the serum sodium level may fall (hyponatremia). This condition is known as the syndrome of inappropriate antidiuretic hormone (SIADH). ADH is a hormone associated with urine concentration, but is also increased with stress, certain medications, and  cancer. Over dilution can likewise cause hypernatremia. 
+  
+  Alternatively the free water clearance can be calculated by measuring the serum and urine sodium and the serum potassium (K).</p> 
+                  <p>  V X (1-{(U<sub>Na</sub>+U<sub>K</sub>)/Serum Na})</p>
+<p>Copyright &copy  2024 by Stephen Z. Fadem, M.D., FASN. All rights reserved</p>
+<p>
+ DISCLAIMER:<br>
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same.
+
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+
+  <div>
+                </FORM>
+</body>
+</html>

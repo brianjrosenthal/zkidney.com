@@ -1,0 +1,179 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ellipsoid Volume | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/ellipsoid">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+<script language=Javascript>
+
+
+function radio_val(items,defaultVal)
+{
+var val;
+for(var i=0;i < items.length;i++)
+    {
+if (items[i].checked) return items[i].value;
+return defaultVal;
+     }
+}
+
+var form;
+
+function calculate(form,la,lb,lc,ra,rb,rc){
+
+form = document.getElementById('elli_form');
+var la  = document.getElementById('la').value;
+var lb  = document.getElementById('lb').value;
+var lc  = document.getElementById('lc').value;
+var ra = document.getElementById('ra').value;
+var rb = document.getElementById('rb').value;
+var rc = document.getElementById('rc').value;
+
+var ellipsoid = eval(3.14159*4)
+elli=ellipsoid/24
+var lelli=la*lb*lc;
+var relli=ra*rb*rc;
+lelli=lelli*elli;
+relli=relli*elli;
+lelli=Math.round(lelli*10)/10;
+relli=Math.round(relli*10)/10;
+
+
+document.getElementById("lelli_report").innerHTML ='<b>  '+ lelli+ 'cc</b>';
+document.getElementById("relli_report").innerHTML ='<b>  '+ relli+ 'cc</b>';
+
+}
+</script>
+
+
+
+  
+  <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+
+Input[type="text"]{
+  font-size:15px;
+  }
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+  
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+table { 
+  width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+</head>
+
+
+
+<body onload="window.setInterval('calculate()',250);">
+<h1 style="text-align:center;">Volume of an Ellipsoid</h1>
+  <h3 style="text-align:center;">Stephen Z. Fadem, M.D., FASN</h3>
+<form id="elli_form">
+<table style="text-align:center;">
+  
+<tr><td>Left kidney height</td><td> <input name=la id=la value="12" type="text" size="4" >cm</td></tr>
+<tr><td>Left kidney width</td><td> <input name=lb id=lb value="6" type="text" size="4" >cm</td></tr>
+<tr><td>Left kidney depth</td><td><input name=lc id=lc value="3" type="text" size="4" >cm</td></tr>
+<tr><td>Right kidney height</td><td> <input name=ra id=ra value="12" type="text" size="4" >cm</td></tr>
+<tr><td>Right kidney width</td><td> <input name=rb id=rb value="6" type="text" size="4" >cm</td></tr>
+<tr><td>Right kidney depth</td><td><input name=rc id=rc value="3" type="text" size="4" >cm</td></tr>
+
+<tr><td colspan=2>Left Kidney Volume = <span id="lelli_report"></span></td></tr>
+<tr><td colspan=2>Right Kidney Volume = <span id="relli_report"></span></td></tr>
+</table>
+</form>
+ 
+  </body>
+  </html>

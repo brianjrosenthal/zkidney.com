@@ -1,0 +1,905 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKD-EPI21 Smartphone | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/epi-sp">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:#eee;
+margin:2px;
+}
+
+ 
+div #nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+color:white;
+background-color:595b60;
+font-size:10px;
+margin:0 auto;
+overflow:hidden;
+text-align:justify
+vertical-align:middle;
+}
+
+
+
+div #nav ul{
+
+
+list-style:none;
+text-align:justify;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:4em;
+z-index:1000;
+text-align:center;
+display:inline;
+margin:0 auto;
+  
+  top:0;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:black;
+  position:relative;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:gray;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:0px solid #00F; font-size:12px;}
+th{background:#white;width:auto; text-align:center; padding:5px 0;border:0px solid blue;}
+td{width:auto; text-align:center; padding:5px 0;border:1px gray
+  #00F;background:white;}
+tr:nth-child(even) {background:white;}   
+</style>
+
+<script language=javascript>
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+  function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+function calculateEPI(form,creatinine, creatinine_metric_p,female_sex_P,black_race_p,age,cystatin,stage_p, adjusted_p, feet, inches,height_metric_p, centimeters, kilograms, weight_metric_p,gt_3months_p,acr) 
+{
+
+form = document.getElementById('gfr_form');
+
+ 
+ 
+
+ function fixNumber(value){
+ if (isNaN(value)) {
+        value= '';
+}
+else if ((value <=0.01)||(value>200))
+{value=0;}
+else 
+{value=value ;}
+};
+
+
+
+ var cys=form.cystatin.value;
+fixNumber(cys);
+if ((cys <=0.001)||(cys > 20)){cys=0.0000;}
+  
+
+var acr=form.acr.value;
+
+if (isNaN(acr)){acr="";}
+
+
+else if (acr == 0){acr=0.001;} 
+else if (acr>0.001) {acr=acr;}
+
+
+
+var creatinine = form.creatinine.value;
+var creatinine_metric_p = (radio_val(form.creatinine_metric_p,1) > 0); 
+var cr = creatinine * (creatinine_metric_p ? 0.011312 :1 ); // MW creatinine 113.12);
+creatinine=Math.round(creatinine*100)/100;
+  if (isNaN(cr)) {cr= '';}
+else if ((cr <=0.01)||(cr>3500))
+{cr=0;}
+else 
+{cr=cr ;}
+  
+
+
+     var age = form.age.value
+        if (isNaN(age)) {
+        age= '';
+}
+else if ((age <=0.01)||(age>200))
+{age=0;}
+else 
+{age=age ;}
+
+        var female_sex_p = (radio_val(form.female_sex_p,1) > 0); // default tangri
+        var black_race_p = (radio_val(form.black_race_p,0) > 0); // default black
+       
+        var stage_p= radio_val(form.stage_p,1);
+
+      
+ var race=""   
+       if (black_race_p>0) 
+{   
+
+      race="African American";
+}
+else
+{
+race="Non African American";
+}
+var female
+var male
+ var gender=""   
+       if (female_sex_p>0) //female
+{   
+
+      gender="female";
+}
+else if (female_sex_p==0) //male
+{
+gender="male";
+}
+        
+         var gt_3months_p = document.getElementById('gt_3months_p').checked;
+        var adjusted_p = document.getElementById('adjusted_p').checked;
+        var height_metric_p = document.getElementById('height_metric_p').checked;
+        var weight_metric_p = document.getElementById('weight_metric_p').checked;
+        var changed_p = false;
+        var error_p = false;
+        
+
+        var bad_age_p = age < 18;
+        
+        error_p = (error_p || bad_age_p);
+        var multiplier_p = (radio_val(form.multiplier_p,1)>0); // default is  traceable
+    
+
+ 
+var epi09=0
+var cysckd=0
+var epi21=0
+var cysepi21=0
+
+var cystatinc=0;
+cystatinc=cys;
+cystatinc=cys/.8
+
+        if (cys  <=0.8) {
+     
+        cysckd=133*Math.pow(cystatinc,-.499)*Math.pow(0.996,age);} 
+     
+        
+        else if (cys > 0.8) {
+     
+        cysckd=133*Math.pow(cystatinc,-1.328)*Math.pow(0.996,age);
+       
+        }
+        
+         cysckd=cysckd*(female_sex_p ? .932 : 1.0);
+        
+       
+
+var scr  
+ 
+
+if ((cr  <=0.7)  &&  (cys <= 0.8) && (female_sex_p>0))//female cys-epi-21
+{test=1;scr=cr/.7;
+cysepi21=135*Math.pow(scr,-0.219)*Math.pow(cystatinc,-0.323)*Math.pow(0.9961,age)*0.963;}
+if ((cr  <=0.7)  &&  (cys > 0.8) && (female_sex_p>0))//female 
+{test=2;scr=cr/.7;
+cysepi21=135*Math.pow(scr,-0.219)*Math.pow(cystatinc,-0.778)*Math.pow(0.9961,age)*0.963;}
+if ((cr  >0.7)  &&  (cys <= 0.8) && (female_sex_p>0))//female 
+{test=3;scr=cr/.7;
+cysepi21=135*Math.pow(scr,-0.544)*Math.pow(cystatinc,-0.323)*Math.pow(0.9961,age)*0.963;}
+if ((cr  >0.7)  &&  (cys > 0.8) && (female_sex_p>0))//female 
+{test=4;scr=cr/.7;
+cysepi21=135*Math.pow(scr,-0.544)*Math.pow(cystatinc,-0.778)*Math.pow(0.9961,age)*0.963;}
+ if ((cr  <=0.9)  &&  (cys<= 0.8) && (female_sex_p==0))//fmale 
+{test=5;scr=cr/.9;
+cysepi21=135*Math.pow(scr,-0.144)*Math.pow(cystatinc,-0.323)*Math.pow(0.9961,age);}
+if ((cr  <=0.9)  &&  (cys > 0.8) && (female_sex_p==0))//male
+ {test=6;scr=cr/.9;
+cysepi21=135*Math.pow(scr,-0.144)*Math.pow(cystatinc,-0.778)*Math.pow(0.9961,age);}
+if ((cr  >0.9)  &&  (cys <= 0.8) && (female_sex_p==0))//male 
+{test=7;scr=cr/.9;
+cystepi21=135*Math.pow(scr,-0.544)*Math.pow(cystatinc,-0.323)*Math.pow(0.9961,age);}
+if ((cr  >0.9)  &&  (cys > 0.8) && (female_sex_p==0))//male
+ {test=8;scr=cr/.9;
+cysepi21=135*Math.pow(scr,-0.544)*Math.pow(cystatinc,-0.778)*Math.pow(0.9961,age);}
+
+
+  if ((cr  <=0.7)  &&  (female_sex_p>0))//female 
+        { 
+        scr=cr/.7; 
+        epi09=144*Math.pow(scr,-0.329)*Math.pow(0.993,age);
+        epi21=142*Math.pow(scr,-0.241)*Math.pow(0.9938,age)*1.012;
+        }
+
+        else if ((cr  > 0.7)   && (female_sex_p>0))  //female
+        {
+        scr=cr/.7;
+            epi09=144*Math.pow(scr,-1.209)*Math.pow(0.993,age);
+       epi21=142*Math.pow(scr,-1.200)*Math.pow(0.9938,age)*1.012;
+        }
+         else if ((cr  <= 0.9)   && ( female_sex_p==0))  //male 
+        {
+         scr=cr/.9;
+            epi09=141*Math.pow(scr,-0.411)*Math.pow(0.993,age);
+       epi21=142*Math.pow(scr,-0.302)*Math.pow(0.9938,age);
+        }
+        else if ((cr  > 0.9 )  && (female_sex_p==0))  //male
+        {
+         scr=cr/.9;
+            epi09=141*Math.pow(scr,-1.209)*Math.pow(0.993,age);
+         epi21=142*Math.pow(scr,-1.200)*Math.pow(0.9938,age);
+        }
+        
+epi09=epi09*(black_race_p ? 1.159 : 1.0);
+
+
+var NumElements=4;
+gfr=new Array(NumElements);
+gfr[0]="NumElements";
+gfr[1]=epi09;
+gfr[2]=cysckd;
+gfr[3]=epi21;
+gfr[4]=cysepi21;
+var cysckdepi21r=cysckd/epi21
+cysckdepi21r=Math.round(cysckdepi21r*10)/10;
+
+for ( i=0;i<5;i++) {
+
+ if (isNaN(gfr[i])) {
+        gfr[i] = '';
+       } else { 
+          gfr[i] = gfr[i];
+       }
+}
+for (i=0;i<5;i++){
+
+if ((gfr[i] <=0.01)||( gfr[i]>200)){gfr[i]=0} else
+{
+gfr[i]=Math.round(gfr[i]*1)/1;
+}
+}
+
+
+
+document.getElementById('epi09_report').innerHTML = '<b>' + gfr[1] + '</b>'; 
+document.getElementById('cysckd_report').innerHTML = '<b>' + gfr[2] + '</b>'; 
+document.getElementById('epi21_report').innerHTML = '<b>' +gfr[3]+   '</b>';
+document.getElementById('cysepi21_report').innerHTML = '<b>' +gfr[4]+ '</b>';
+document.getElementById('cysratio_report').innerHTML='<b>'+cysckdepi21r+'</b>';
+
+ document.getElementById('demographics_report').innerHTML='  in a  '+age+' year old ' +race+ ' ' +gender + '. ';
+if (multiplier_p==0) {document.getElementById('idms_message').innerHTML ='<br><b>THE CKD-EPI  EQUATIONS ARE ONLY VALID WITH CREATININE ASSAYS THAT ARE TRACEABLE TO IDMS AND SERUM CYSTATIN C ASSAYS THAT ARE TRACEABLE TO IFCC (INTERNATIONAL FEDERATION OF CLINICAL CHEMISTRY)METHODS</b><br>'} 
+else if(multiplier_p>0) {document.getElementById('idms_message').innerHTML =''};
+        if (bad_age_p) {
+           document.getElementById('gfr_message').innerHTML = '<p class="mdrd">This formula is valid only for adults over 18. <br>'+  
+ 'Use the<A class="mdrd" href="http://www.kidney.org/professionals/kdoqi/gfr_calculatorPed.cfm" target="_blank"> Pediatric Calculator</a> for persons under 18 years of age.</p>'; 
+ 
+        }
+       else {
+            document.getElementById('gfr_message').innerHTML = '';
+       }
+
+ 
+
+     
+   var stage_gfr=""
+      if (stage_p==1) 
+      {
+
+ stage_gfr=gfr[1];
+      
+      }
+      else if (stage_p==2) 
+      {
+  
+    stage_gfr=gfr[2];
+      }
+      else if (stage_p==3)
+     {
+         stage_gfr=gfr[3];
+     }
+      else if (stage_p==4) 
+     {
+ 
+      stage_gfr=gfr[4];
+     }
+   
+
+
+        if (stage_gfr >= 90 && stage_gfr <=180) {stage="1";}
+        else if (stage_gfr < 90 && stage_gfr >= 60){stage="2";}
+        else if (stage_gfr < 60 && stage_gfr >= 45){stage="3a";}
+        else if (stage_gfr < 45 && stage_gfr >= 30){stage="3b";}
+        else if (stage_gfr < 30 && stage_gfr>= 15){stage="4";}
+        else if (stage_gfr < 15 && stage_gfr >=0.003) {stage="5";}
+        else if ((stage_gfr <0.003)||( stage_gfr > 180)) {stage="";}
+        
+var tangriage= age/10;
+tangriage=tangriage-7.036;
+tangriage=tangriage*-.2201;
+
+if (female_sex_p==0) //female 
+{tangrigender=1-.5642;
+tangrigender=0.2467*tangrigender;}
+else if (female_sex_p==01) //Male = 1 - personal communication - Tangri 11/22/21
+{tangrigender=0-.5642;
+tangrigender=0.2467*tangrigender;
+}
+
+var tangrigfr=stage_gfr;
+
+tangrigfr=tangrigfr/5;
+tangrigfr-=7.222;
+tangrigfr*=-.5567;
+
+var tangriacr=Math.log(acr)-5.137;
+tangriacr*=.4510;
+
+var expbeta=Math.exp(tangriage+tangrigender+tangrigfr+tangriacr);// From https://jamanetwork.com/journals/jama/fullarticle/2481005   JAMA 2016; 315 :164-74 & 822 (correction) supplement AND Tangri -  personal communication
+
+
+var tangri5NON= 1-(0.9365**expbeta);
+var tangri2NON= 1-(0.9832**expbeta);
+var tangri5NA= 1-(0.9240**expbeta);
+var tangri2NA= 1-(0.9750**expbeta);
+tangri2NON=Math.round(tangri2NON*10000)/100;
+tangri5NON=Math.round(tangri5NON*10000)/100;
+tangri2NA=Math.round(tangri2NA*10000)/100;
+tangri5NA=Math.round(tangri5NA*10000)/100;
+document.getElementById('tangribeta_report').innerHTML = '<p >expbetasum: '+Math.round(expbeta*100)/100+'<br>tangriage: '+Math.round(tangriage*100)/100+'<br>tangrigfr: ' +Math.round(tangrigfr*100)/100+ '<br>tangriacr: ' +Math.round(tangriacr*100)/100+ '<br>tangrigender: ' +Math.round(tangrigender*100)/100+ '</p>';
+
+
+
+   if (gt_3months_p == true) {
+                        document.getElementById('stage_message').innerHTML = '<h3 > The patient has stage '+stage+ ' CKD.</h3>'+ 
+'<a href="http://www.kdigo.org/clinical_practice_guidelines/ckd.php"><br>KDIGO</a> 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease';
+		        }
+          else {
+                     document.getElementById('stage_message').innerHTML = '';
+                 }
+
+
+
+
+            
+           
+            var inches = 0;
+            var feet = 0;
+            var height=0;
+            
+           
+            feet=document.getElementById("feet").value;
+            inches=document.getElementById("inches").value;
+          
+            centimeters=document.getElementById("centimeters").value;
+
+if (isNaN(centimeters)) 
+{
+        centimeters= '';
+       } 
+else if ((centimeters <=0.01)||( centimeters>500))
+{
+centimeters=0;
+}
+else
+ {
+centimeters=centimeters;
+}
+
+            var kilograms=document.getElementById("kilograms").value;
+            
+if (isNaN(kilograms)) 
+{
+        kilograms= '';
+       } 
+else if ((kilograms <=0.01)||( kilograms>500))
+{
+kilograms=0;
+}
+else
+ {
+kilograms=kilograms;
+}
+
+     
+                feet=parseInt(feet);
+     
+                inches=parseInt(inches);
+                centimeters=parseInt(centimeters);
+                kilograms=parseInt(kilograms);
+               
+               
+
+if (adjusted_p == true)
+{
+document.getElementById("bsa_adjust").style.display="inline";
+}
+else 
+{
+document.getElementById("bsa_adjust").style.display="none";
+}
+
+
+
+        if (height_metric_p > 0)   
+        {
+        feet=feet*12;
+        document.getElementById("feet").style.display="inline";
+        inches=inches;document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+        feet=feet+inches;
+        centimeters=feet*2.54;
+                }
+        else  if (height_metric_p == 0)               
+            {
+              document.getElementById("centimeters").style.display="inline";
+              centimeters=centimeters*1;
+              document.getElementById("feet").style.display="none";
+              document.getElementById("inches").style.display="none";
+            }
+   
+ 
+ 
+if (weight_metric_p>0) //
+{
+kilograms=.45*kilograms;
+}
+else if (weight_metric_p==0)//
+  {
+kilograms=kilograms;
+ }
+
+       
+      
+      
+       
+// make sure height and weight are valid
+            var range_height= Array(0,250);
+            var range_kilograms= Array(0,250);
+             var meters=centimeters/100
+           
+         
+ //BSA = (W 0.425 x H 0.725) x 0.007184
+
+            var bsa=.007184 * Math.pow(kilograms,0.425)
+                  bsa=bsa*Math.pow(centimeters,0.725) 
+
+
+
+var watson_wt=0;
+var watson_ht=0;
+var watson_age=0;
+var tbw=0;
+
+if (female_sex_p>0) //female     
+{   
+watson_wt=kilograms*0.2466;
+watson_ht=meters*10.69;
+tbw=2.097+watson_wt+watson_ht;     
+}
+else  if (female_sex_p==0) //male
+{
+watson_wt=kilograms*.3362;
+watson_ht=meters*10.74;
+watson_age=.09516*age;
+tbw=2.447+watson_wt+watson_ht-watson_age;
+}
+
+if (isNaN(tbw)) 
+{
+        tbw= '';
+}
+else if ((tbw <=0.01)||(tbw>200))
+{
+value=0;
+}
+else 
+{
+tbw=Math.round(tbw*100)/100;
+}
+
+
+
+
+var agfr=gfr[1]*bsa/1.73;
+if (isNaN(agfr)) 
+{
+        agfr= '';
+       } 
+else if ((agfr <=0.01)||( agfr>200))
+{
+agfr=0;
+}
+else
+ {
+agfr=Math.round(agfr*1)/1;
+}
+
+var bgfr=gfr[2]*bsa;  
+if (isNaN(bgfr)) 
+{
+        bgfr= '';
+       } 
+else if ((bgfr <=0.01)||( bgfr>200))
+{
+bgfr=0;
+}
+else
+ {
+bgfr=Math.round(bgfr*1)/1;
+}
+
+
+var cgfr=gfr[3]*bsa/1.73; 
+if (isNaN(cgfr)) 
+{
+        cgfr= '';
+       } 
+else if ((cgfr <=0.01)||( cgfr>200))
+{
+cgfr=0;
+}
+else
+ {
+cgfr=Math.round(cgfr*1)/1;
+}
+
+
+var dgfr=gfr[4]*bsa/1.73; 
+if (isNaN(dgfr)) 
+{
+        dgfr= '';
+       } 
+else if ((dgfr <=0.01)||( dgfr>200))
+{
+dgfr=0;
+}
+else
+ {
+dgfr=Math.round(dgfr*1)/1;
+}
+
+
+
+
+if (isNaN(bsa))
+ {
+        bsa= '';
+}
+else if ((bsa <=0.01)||(bsa>200))
+{
+bsa=0;
+}
+else 
+{
+bsa=Math.round(bsa*100)/100 ;
+}
+
+
+
+var bmi=kilograms/Math.pow(meters,2);
+if (isNaN(bmi))
+{
+bmi= '';
+}
+else if ((bmi <=0.01)||(bmi>200))
+{
+bmi=0;
+}
+else 
+{
+bmi=Math.round(bmi*100)/100;
+}
+
+
+        var cg=140-age
+        cg= cg*kilograms
+        cr= cr*72
+        cg=cg/cr
+        cg=cg* (female_sex_p ? 0.85 : 1.0)
+
+        cg=Math.round(cg*100)/100
+kilograms=Math.round(kilograms*10)/10;
+centimeters=Math.round(centimeters*10)/10; 
+ 
+document.getElementById("output").innerHTML = +bsa+  " m<sup>2</sup>"
+document.getElementById("output1").innerHTML =+agfr+ " "
+document.getElementById("output2").innerHTML =+bgfr+ " "
+document.getElementById("output3").innerHTML =+cgfr+ " "
+document.getElementById("output4").innerHTML =+dgfr+ " "
+document.getElementById("bmi_report").innerHTML = +bmi+ "kg/m<sup>2</sup> "  
+document.getElementById("tbw_report").innerHTML = +tbw+ " liters  " 
+document.getElementById("height_report").innerHTML = +centimeters+ " cm  "       
+document.getElementById("weight_report").innerHTML = +kilograms+ "kg   " 
+document.getElementById("cg_report").innerHTML=+cg+ "mL/min/1.73m<sup>2</sup>"
+document.getElementById("tangri2_report").innerHTML="2 Yr Tangri Predictor (North America)"+tangri2NA+ "%<BR>2 Yr Tangri Kidney Failure Predictor (Non NA)"+tangri2NON+	"%"	
+document.getElementById("tangri5_report").innerHTML="5 Yr Tangri Predictor (North America)"+tangri5NA+ "%<BR>5 Yr Tangri Kidney Failure Predictor (Non NA)"+tangri5NON+	"%" 
+     
+ //-->
+}
+</script>
+
+
+</head>
+<BODY onload="window.setInterval('calculateEPI()',250);">
+  <FORM id="gfr_form" name="gfr_form">
+<fieldset id="fieldset_style">
+<center><div id="nav" style="text:align:center;">
+<ul>
+<li><a href="../pred-sp/">HOME</a></li>
+<li><a href="../epi-sp/">EPI</a></li>
+<li><a href="../cci-sp/">CCI</a></li>
+<li><a href="../krn-sp/">KRN</a></li>
+<li><a href="../mis-sp/">MIS</a></li>
+<li><a href="../sq-sp/">SQ</a></li>
+</ul>
+  </div></center><br>
+  <p>
+<a style="text-align:center;" href="https://renalworld.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57></a></p>
+  <h3 style="text-align:center;">CKD-EPI WITH TANGRI EQ</h3>
+<h4 style="text-align:center;">by Stephen Z. Fadem and Brian Rosenthal</h4>
+<p style="text-align:center;color:gray;margin 0 0 10 0;font-style:italic;font-family:times, serif;"><a href="../old-gfrs/">link to original gfrs</a></p>
+
+
+
+<div>
+
+
+
+   
+ <table style="width:100%;margin:10px;padding:5px;text-align:center;font-size:13;">    
+<tr>
+ <td>eGFRcr09  <br><span id="epi09_report" >epi9</span></td>
+  
+<td>eGFRcys12  <br><span id="cysckd_report">cys-ckd</span></td>
+  
+  <td>eGFRcr21  <br><span id="epi21_report">epi21</span></td>
+  
+  <td>eGFRcr-cys21  <br><span id="cysepi21_report">cys-epi21</span></td>
+   </tr>
+   
+
+<tr>
+<td colspan=4>
+
+(All values expressed in ml/min/1.73 m<sup>2</sup>)<br>
+
+</td>
+  
+    
+</tr>
+  </table>
+  <table "text-align:bottom">
+<tr>
+<td valign=bottom style="font-size:11px;text-align:center;">Serum Cr</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Serum Cys C<br> (mg/L)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Age (yrs)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Race</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Gender</td>
+<td valign=bottom style="font-size:11px;text-align:center;">ACR<br>(mg/g)</td>
+
+</tr>
+<tr>
+
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  id="input_creatinine" name="creatinine" value="1 " size="3"  ><br>
+ <input type="radio" id="radio_creatinine_mg" name="creatinine_metric_p" value="0" CHECKED> mg/dL<br>
+ <input type="radio" id="radio_creatinine_umol" name="creatinine_metric_p" value="1" >&mu;mol/L
+</td>
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  id="cystatin" name="cystatin" value="1" size="3"  ></td>
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  name="age" value="54 " size="4"  ></td>
+<td valign=top style="font-size:11px;text-align:center;"><INPUT TYPE="radio" id="radio_race_afam" name="black_race_p" value="1" CHECKED>AA<br>
+      <INPUT TYPE="radio" id="radio_race_other" name="black_race_p" value="0">O*</td>
+<td valign=top style="font-size:11px;text-align:center;"> <INPUT TYPE="radio" id="radio_gender_male" NAME="female_sex_p" VALUE="0">M<br>
+      <INPUT TYPE="radio" id="radio_gender_female" NAME="female_sex_p" VALUE="1" CHECKED>F</td>
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  name="acr" value="? " size="5" ></td>
+  </tr></table>
+<p style="font-size:11px;text-align:left;"<br>
+	
+<input type="checkbox" id="gt_3months_p">
+<label for "gt_3months_p">Chronic kidney disease (GFR less than 60 or kidney damage for at least 3 months)</label> 
+<span id="demographics_report"></span><br>
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="1">eGFRcr (2009)<BR>	
+        <Input type="radio" id="stage_p" Name="stage_p" VALUE="2">eGFR-cystatin C (2012)<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="3" CHECKED>eGFRcr(2021)<BR>	
+	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="4">eGFR-cr-cystatin C (2021)<br>
+TRACEABLE TO IDMS <a href="http://touchcalc.com/ip_epi_gfr/idms" target="_blank"><span style="font-size:11;">?</span></a>
+    
+      <INPUT TYPE="radio" id="radio_idms_no" NAME="multiplier_p" VALUE="0" >N
+      <INPUT TYPE="radio" id="radio_idms_yes" NAME="multiplier_p" VALUE="1" CHECKED> Y<br>
+
+
+<span id="tangri2_report"></span><br>
+<span id="tangri5_report"></span><br>
+
+<span  id="idms_message"></span><br>
+<span  id="stage_message"></span><span id="gfr_message"></span><br>
+
+*O=non African American (non in 2021 Eq). Cr=creatinine. Cys=cystatin. Eq=Equation. <br>
+
+
+
+
+ <div id="mdrd_support" style=font-size:11px;>
+ <a class="mdrd" href="https://kidneyfailurerisk.com">Another Version of the Kidney Failure Risk Equation</a><br>
+
+<input type="checkbox" name="adjusted_p" id="adjusted_p">Remove body surface area (BSA) adjustment to express GFR in ml/min. Also displays BSA, BMI, TBW, and Cockcroft-Gault Estimated Creatinine Clearance. Shows Tangri Values and Constants.
+<span id="bsa_adjust" style="display:inline;">
+
+<p>Height<input type="radio" id="height_metric_p" name="height_metric_p" value="0">feet - inches<input  id="feet" name="feet" type="text" value="5 " size="3"><input  id="inches" name="inches"  type="text" value="9 " size="4"><input  type="radio" id="height_metric_p" name="height_metric_p" value="1">centimeters</td><td><input   id="centimeters" name="centimeters" type="text" value=" " size="5 "></P>
+<p>Weight  <input  id="kilograms" name="kilograms" type="text" value=" 72" size="5"><input  type="radio" id="weight_metric_p" name="weight_metric_p" value="0">lb<input  type="radio" id="weight_metric_p" name="weight_metric_p" value="1">kg</p>
+        
+<p>
+BSA (m<sup>2</sup>)  = (W<sup>0.425</sup> x H<sup> 0.725</sup>) x 0.007184<br>
+Unadjusted CKD-EPI eGFR (ml/min) = eGFR (ml/min/1.73 m<sup>2</sup>) x BSA (m<sup>2</sup>) / 1.73<br>
+<div >Cockcroft-Gault Estimated CrCl = <span id="cg_report"style="font-weight:bold;">cg</span></div>
+<div >BSA =  <span id="output" style="font-weight:bold;"> </span></div>
+<div >BMI = <span id="bmi_report" style="font-weight:bold;"> </span></div>
+<div >TBW = <span id="tbw_report" style="font-weight:bold;"> </span></div> 
+<div >Cystatin/Epi GFR ratio=<span id="cysratio_report" style="font-weight:bold;"></span><div>
+<div >Height = <span id="height_report"style="font-weight:bold;">height</span></div>
+<div >Weight = <span id="weight_report"style="font-weight:bold;">weight</span></div>
+
+<div >BMI = body mass index </div>
+<div >TBW = total body water (Watson) </div>
+
+<table style="width:100%;">
+<tr><td colspan=4  style="font-size:11px;font-weight:bold;">UNADJUSTED GFR</td></tr>
+<tr>
+<td style="font-size:11px;text-align:center;valign:top;">CKD-EPI CR EQ(2009)</td>
+<td style="font-size:11px;text-align:center;valign:top;">CYS-EPI EQ(2012)</td>
+<td style="font-size:11px;text-align:center;valign:top;">CKD-EPI EQ(2021)</td>
+<td style="font-size:11px;text-align:center;valign:top;">CYS-EPI EQ (2021)</td>
+
+
+</tr>
+<tr>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output1">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output2">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output3">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output4">____</span></td>
+  </tr></table>
+
+  <p>ml/min. <span id="arg1_report"><br></span></p>
+
+
+
+
+<HR>
+<p>Tangri Equation Values and Constants:<br>
+<a href="https://jamanetwork.com/journals/jama/fullarticle/2481005">JAMA 2016; 315 :164-74 & 822</a><br>
+Male=1 Female=0 </p>
+<p><span id="tangribeta_report">beta</span></p>
+
+<p>Tangri 5 yr Non NA Constant=0.9365<br>
+Tangri 2 yr Non NA Constant=0.9832<br>
+Tangri 5 yr NA Constant=0.9240<br>
+Tangri 2 yr NA Constant=0.9750<br></p>
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<p style="font-size:10;text-align:justify;width:100%;"> 
+DISCLAIMER:<br>
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. <BR>
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+<center><a style="text-align:center;" href="https://renalworld.com/calc"><img style="text-align:center;" src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57 style="font-family:sans-serif;font-size:10;text-align:center;">TOUCHCALC</a></center>
+  </div>
+</body>
+</html>

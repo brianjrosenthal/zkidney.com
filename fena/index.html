@@ -1,0 +1,84 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractional Sodium Excretion (FENA) | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/fena">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+ <script language=Javascript> 
+
+var form;
+
+function calculate(form,una,ucr,na,cr)
+  {
+
+form = document.getElementById('fena');
+var na  = document.getElementById('na').value;
+var cr  = document.getElementById('cr').value;
+var una  = document.getElementById('una').value;
+var ucr = document.getElementById('ucr').value;
+var fena = una/ucr
+var temp = na/cr
+fena = fena/temp
+fena = fena*100
+fena = Math.round(fena*100)/100
+
+document.getElementById("fena_report").innerHTML ='<b>  '+ fena+ '% </b>';
+}
+
+</script>
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style> 
+
+</head>
+
+<body onload="window.setInterval('calculate()',250);">
+<h2 style="text-align:center;">Fractional Excretion of Sodium (FENA)</h2>
+  <p style="text-align:center;">by Stephen Fadem and Brian Rosenthal</>
+<form id="fena">
+
+
+serum sodium <input name=na id=na value="140" type="text" size="4">mEq/L<br>
+serum creatinine<input name=cr id=cr value="3" type="text" size="4" >mg/dL<br>
+urine sodium <input name=una id=una value="20" type="text" size="4" >mEq/L<br>
+urine creatinine <input name=ucr id=ucr value="300" type="text" size="4" >mg/dL<br>
+Fractional Sodium Excretion = <span id="fena_report"></span>
+</form>
+ 
+  </body>
+  </HTML>

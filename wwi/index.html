@@ -1,0 +1,432 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weight Adjusted Waist Index (WWI) | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/wwi">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+<script language="Javascript">
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+ function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+
+
+
+var form
+
+   form=document.getElementById('wwi');     
+
+function calculate(form, waist_centimeters,  waist_inches,  waist_metric_p,feet,inches,centimeters,weight,height_metric_p,weight_metric_p, waist_metric_p) {
+//declarations
+               
+              var waist_inches=document.getElementById("waist_inches").value; 
+
+            
+              var waist_centimeters=document.getElementById('waist_centimeters').value; 
+             var feet=document.getElementById('feet').value; 
+      
+             var inches=document.getElementById('inches').value; 
+             var centimeters=document.getElementById('centimeters').value; 
+             var weight=document.getElementById('weight').value; 
+           
+          
+             var weight_metric_p
+             var height_metric_p
+             var waist_metric_p
+             waist_inches=parseInt(waist_inches);
+            waist_centimeters=parseInt(waist_centimeters);
+            feet=parseInt(feet);
+            inches=parseInt(inches);
+     
+            centimeters=parseInt(centimeters);
+            weight=parseInt(weight);
+   
+      
+
+
+        
+//inches and pounds are checked and defaults and equal 1
+//converts inches to centimeters
+        if (window.document.wwi.height_metric_p[0].checked)   
+        {
+        feet=+feet*12;
+        document.getElementById("feet").style.display="inline";
+        inches=inches;document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+
+        feet=+feet+ +inches;
+     
+        centimeters=+feet*2.54;
+                }
+        else {
+              centimeters=centimeters*1;
+              document.getElementById("centimeters").style.display="inline";
+              document.getElementById("feet").style.display="none";
+              document.getElementById("inches").style.display="none";
+            }
+        
+       
+        
+          weight=weight*((window.document.wwi.weight_metric_p[0].checked)?.45:1);
+         
+     
+
+
+
+       
+
+
+ if (window.document.wwi.waist_metric_p[0].checked)   
+        {
+        
+        document.getElementById("waist_inches").style.display="inline";
+        document.getElementById("waist_centimeters").style.display="none";
+         
+        waist_inches=waist_inches*1;
+        waist_centimeters=waist_inches*2.54;
+            }  
+ 
+        else {
+              
+              document.getElementById("waist_centimeters").style.display="inline";
+              
+              document.getElementById("waist_inches").style.display="none";
+              
+ 
+              waist_centimeters=waist_centimeters*1;
+            }
+
+
+
+
+    
+          
+            var x = centimeters;
+            var h= centimeters;
+            var y = weight;
+            var sqy=Math.sqrt(y)
+
+            //convert cms to meters
+           
+          
+            x=  x/100;
+            x = x*x;
+
+
+            //divide weight by height squared
+            var bmi = y/x;
+
+            bmi = round(bmi,1);
+
+            var w = +waist_centimeters;
+            var win= +w/2.54
+
+            var wwi =w/sqy;
+
+            wwi=round(wwi,1);
+            
+            var bmi_text = explain_bmi_text(bmi);
+              var wwi_text = explain_wwi_text(wwi);
+
+         
+         function cdc()
+         {
+         var cdc_uri="<a href='http://www.cdc.gov/nchs/about/major/nhanes/growthcharts/clinical_charts.htm#Clin%201'> Please Refer to the CDC Clinical Charts for Children</a>";
+       if (document.wwi.age_under20_p.checked) {
+                      document.getElementById("children_message").innerHTML = cdc_uri;
+           }         
+      else {
+                    document.getElementById("children_message").innerHTML = "";
+          }
+         }
+         
+         function explain_bmi_text(bmi)
+         {
+         if(bmi < 18.5){bmi_text="The BMI of "+bmi+" kg/m<sup>2</sup> is less than ideal and may reflect poor nutrition.";}
+         else if(bmi >= 20 && bmi < 25){bmi_text="The BMI of "+bmi+" kg/m<sup>2</sup> is ideal. The normal BMI is less than 25 and greater than 20.";}
+         else if (bmi >= 25 && bmi < 30) {bmi_text="The BMI of "+bmi+" kg/m<sup>2</sup> is over the ideal body weight (BMI greater than 25 but less than 30.)";}
+         else if (bmi >= 30) {bmi_text="The BMI of "+bmi+" kg/m<sup>2</sup> is a cardiovascular risk factor. Obesity is defined as a BMI greater than 30.";}
+
+        
+        
+        return(bmi_text)
+         }
+
+        function explain_wwi_text(wwi)
+         {
+         if (wwi <10.54) {wwi_text="The WWI "+wwi+" is in the first quartile. This is most healthy. PLoS One. 2024;19(6)";}
+         else if (wwi > 10.54 && wwi <11.12 ) {wwi_text="The WWI "+wwi+" is in the second quartile. There is room for improvement. PLoS One. 2024;19(6)";}
+         else if (wwi > 11.12 && wwi < 11.70) {wwi_text="The WWI "+wwi+" is in the third quartile. This is a diabetes predictor. PLoS One. 2024;19(6)";}
+         else if (wwi >= 11.70) {wwi_text="The WWI "+wwi+" is in the fourth quartile. This is least healthy. PLoS One. 2024;19(6)";}
+
+         return (wwi_text)
+         }
+        
+
+      
+            cdc_uri=cdc();
+          
+             win=round(win,1);
+             y=round(y,1);
+             h=round(h,1);
+            
+            document.getElementById("wwi_report").innerHTML = wwi
+            document.getElementById("bmi_report").innerHTML = bmi  + " kg/m<sup>2</sup>"
+            document.getElementById("explain_bmi").innerHTML = bmi_text
+            document.getElementById("explain_wwi").innerHTML = wwi_text
+      document.getElementById("waist_report").innerHTML = win + "in";
+            document.getElementById("weight_report").innerHTML = y + " kg";
+             document.getElementById("height_report").innerHTML=h + "cm";
+        
+
+        }
+
+    
+
+        
+
+    </script>
+
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style>          
+
+
+
+
+
+
+<fieldset id="fieldset_style">
+</head>
+<body onload="window.setInterval('calculate()',1)";>
+
+<FORM id=wwi name="wwi">
+
+
+<h2 style="color:black;text-align:center;">Weight Adjusted Waist Index (WWI)</h2>
+<h4 style="color:black;text-align:center;font-decoration:italic;">programmed by Stephen Z Fadem</h4>
+
+
+<p style="font-weight:bold;">Height</p>
+<p><input  type="radio" name="height_metric_p" checked>feet inches
+   <input  type="radio" name="height_metric_p">centimeters</p>
+<p style="font-weight:bold;"><input  id="feet" type="text" value="5" size="3">
+        <input id="inches" type="text" value="9" size="4">
+    <input  id="centimeters" type="text" value="176" size="5">
+
+<p style="font-weight:bold;">Weight</p>         
+<p> Enter and select <input  id="weight" name="weight" type="text" value="170" size="5">
+         <input    type="radio" name="weight_metric_p" checked>pounds
+         <input    type="radio"name="weight_metric_p">kilograms</p>
+        
+
+<p style="font-weight:bold;">Waist Circumference</P
+
+
+  <p><input  id="waist_inches" type="text" value="36" size="4">
+   <input  id="waist_centimeters" type="text" value="100" size="4"><input  type="radio" name="waist_metric_p" checked> inches
+  <input type="radio" name="waist_metric_p">centimeters</p
+
+<br>
+
+ Age under 20 years old
+ <input   type="checkbox" name="age_under20_p"><br><span id ="children_message"></span><br>
+BODY MASS INDEX (BMI) = weight / height squared<br>
+<div style="font-weight:bold;font-size:15pt">BMI =  <span style="font-weight:bold;font-size:15pt" id="bmi_report"></span><br>
+<span style="padding:4px;font-size:12pt;font-weight:normal;" id="explain_bmi"></span></div>
+
+WEIGHT-ADJUSTED WAIST INDEX (WWI) = Waist girth / Square root of weight<br>
+<div style="font-weight:bold;font-size:15pt">WWI =  <span style="font-weight:bold;font-size:15pt" id="wwi_report"></span><br>
+<span style="padding:4px;font-size:12pt;font-weight:normal;" id="explain_wwi"></span></div>
+<p>
+Weight=<span id="weight_report" ></span><br>
+Height=<span id="height_report" ></span><br>
+Waist=<span id="waist_report" ></span><br>
+  </p>
+  <p>
+Abnormal men: &ge; 40in (102 cm)<br>
+Abnormal women: &ge; 35in (88 cm)<br>
+
+<span style="padding:4px;font-size:12pt;font-weight:normal;">Ref: Evidence Systematic Review; 2020 Jul. PMID: 35129906</span><br>
+Copyright &copy; 2024 Stephen Z Fadem, MD All rights reserved.
+<p>
+</form>
+
+
+Elevated waist circumference:<br>
+Men - Equal to or greater than 40 inches (102 cm)<br>
+Women - Equal to or greater than 35 inches (88 cm)<br> 
+Waist circumference / square root of weight = predictor of diabetes<br>
+Elevated triglycerides:<br>
+Equal to or greater than 150 mg/dL<br>
+Reduced HDL ("good") cholesterol:<br>
+Men - Less than 40 mg/dL<br>
+Women - Less than 50 mg/dL <br>
+Elevated blood pressure:<br>
+Equal to or greater than 120/70 mm Hg<br> 
+Elevated fasting glucose:<br>
+Equal to or greater than 100 mg/dL <br>
+  √
+<p>
+  References<br>
+1.
+The association between weight-adjusted-waist index and total bone mineral density in adolescents: NHANES 2011-2018.
+Wang X, Yang S, He G, Xie L.
+Front Endocrinol (Lausanne). 2023 May 17;14:1191501. doi: 10.3389/fendo.2023.1191501. eCollection 2023.
+PMID: 37265707 Free PMC article.<br>
+2.
+Association between the weight-adjusted waist index and stroke: a cross-sectional study.
+Ye J, Hu Y, Chen X, Yin Z, Yuan X, Huang L, Li K.
+BMC Public Health. 2023 Sep 1;23(1):1689. doi: 10.1186/s12889-023-16621-8.
+PMID: 37658310 Free PMC article.<br>
+3.
+The association between weight-adjusted-waist index and abdominal aortic calcification in adults aged ≥ 40 years: results from NHANES 2013-2014.
+Qin Z, Du D, Li Y, Chang K, Yang Q, Zhang Z, Liao R, Su B.
+Sci Rep. 2022 Nov 27;12(1):20354. doi: 10.1038/s41598-022-24756-8.
+PMID: 36437292 Free PMC article.
+4.
+Association between weight-adjusted-waist index and female infertility: a population-based study.<br>
+Wen Z, Li X.
+Front Endocrinol (Lausanne). 2023 Aug 8;14:1175394. doi: 10.3389/fendo.2023.1175394. eCollection 2023.
+PMID: 37614708 Free PMC article.<br>
+5.
+The association between weight-adjusted-waist index and increased urinary albumin excretion in adults: A population-based study.
+Qin Z, Chang K, Yang Q, Yu Q, Liao R, Su B.
+Front Nutr. 2022 Aug 12;9:941926. doi: 10.3389/fnut.2022.941926. eCollection 2022.
+PMID: 36034904 Free PMC article.<br>
+6.
+Relationship between weight-adjusted-waist index and erectile dysfunction in the United State: results from NHANES 2001-2004.
+Cao S, Hu X, Shao Y, Wang Y, Tang Y, Ren S, Li X.
+Front Endocrinol (Lausanne). 2023 Apr 25;14:1128076. doi: 10.3389/fendo.2023.1128076. eCollection 2023.
+PMID: 37181040 Free PMC article.<br>
+7.
+Association between weight-adjusted-waist index and chronic kidney disease: a cross-sectional study.
+Li X, Wang L, Zhou H, Xu H.
+BMC Nephrol. 2023 Sep 11;24(1):266. doi: 10.1186/s12882-023-03316-w.
+PMID: 37691097 Free PMC article.<br>
+8.
+Association between weight-adjusted-waist index and the risk of hyperuricemia in adults: a population-based investigation.
+Ding Y, Xu Z, Zhou X, Luo Y, Xie R, Li Y.
+Front Endocrinol (Lausanne). 2023 Oct 11;14:1236401. doi: 10.3389/fendo.2023.1236401. eCollection 2023.
+PMID: 37900143 Free PMC article.<br>
+9.
+The association between weight-adjusted-waist index and depression: Results from NHANES 2005-2018.
+Li M, Yu X, Zhang W, Yin J, Zhang L, Luo G, Liu Y, Yang J.
+J Affect Disord. 2024 Feb 15;347:299-305. doi: 10.1016/j.jad.2023.11.073. Epub 2023 Nov 23.
+PMID: 38000467<br>
+10.
+Weight-adjusted waist as an integrated index for fat, muscle and bone health in adults.
+Kim KJ, Son S, Kim KJ, Kim SG, Kim NH.
+J Cachexia Sarcopenia Muscle. 2023 Oct;14(5):2196-2203. doi: 10.1002/jcsm.13302. Epub 2023 Aug 7.
+PMID: 37550773 Free PMC article.<br>
+11.
+Relationship between weight-adjusted waist circumference index and prevalence of gallstones in U.S. adults: a study based on the NHANES 2017-2020.
+Ke B, Sun Y, Dai X, Gui Y, Chen S.
+Front Endocrinol (Lausanne). 2023 Oct 27;14:1276465. doi: 10.3389/fendo.2023.1276465. eCollection 2023.
+PMID: 37964952 Free PMC article.<br>
+12.
+Association between Weight-Adjusted Waist Index and depressive symptoms: A nationally representative cross-sectional study from NHANES 2005 to 2018.
+Liu H, Zhi J, Zhang C, Huang S, Ma Y, Luo D, Shi L.
+J Affect Disord. 2024 Apr 1;350:49-57. doi: 10.1016/j.jad.2024.01.104. Epub 2024 Jan 12.
+PMID: 38220117 Review.<br>
+13.
+Association between weight-adjusted-waist index and risk of cardiovascular diseases in United States adults: a cross-sectional study.
+Fang H, Xie F, Li K, Li M, Wu Y.
+BMC Cardiovasc Disord. 2023 Sep 1;23(1):435. doi: 10.1186/s12872-023-03452-z.
+PMID: 37658325 Free PMC article.<br>
+14.
+Higher weight-adjusted waist index is associated with increased likelihood of kidney stones.
+Liu H, Ma Y, Shi L.
+Front Endocrinol (Lausanne). 2023 Sep 20;14:1234440. doi: 10.3389/fendo.2023.1234440. eCollection 2023.
+PMID: 37800142 Free PMC article.<br>
+15.
+Association between weight-adjusted-waist index with hepatic steatosis and liver fibrosis: a nationally representative cross-sectional study from NHANES 2017 to 2020.
+Shen Y, Wu Y, Fu M, Zhu K, Wang J.
+Front Endocrinol (Lausanne). 2023 May 19;14:1159055. doi: 10.3389/fendo.2023.1159055. eCollection 2023.
+PMID: 37274346 Free PMC article.<br>
+16.
+Associations between weight-adjusted waist index and bone mineral density: results of a nationwide survey.
+Zhang Y, Wu H, Li C, Liu C, Liu M, Liu X, Yin Q, Li X, Xie R.
+BMC Endocr Disord. 2023 Aug 3;23(1):162. doi: 10.1186/s12902-023-01418-y.
+PMID: 37537589 Free PMC article.<br>
+17.
+Association of weight-adjusted-waist index with non-alcoholic fatty liver disease and liver fibrosis: a cross-sectional study based on NHANES.
+Hu Q, Han K, Shen J, Sun W, Gao L, Gao Y.
+Eur J Med Res. 2023 Aug 3;28(1):263. doi: 10.1186/s40001-023-01205-4.
+PMID: 37537679 Free PMC article.<br>
+18.
+The relationship between weight-adjusted-waist index and total bone mineral density in adults aged 20-59.
+Guo M, Lei Y, Liu X, Li X, Xu Y, Zheng D.
+Front Endocrinol (Lausanne). 2023 Nov 23;14:1281396. doi: 10.3389/fendo.2023.1281396. eCollection 2023.
+PMID: 38075068 Free PMC article.<br>
+19.
+Associations of weight-adjusted-waist index and depression with secondary infertility.
+Sun F, Liu M, Hu S, Xie R, Chen H, Sun Z, Bi H.
+Front Endocrinol (Lausanne). 2024 Mar 7;15:1330206. doi: 10.3389/fendo.2024.1330206. eCollection 2024.
+PMID: 38516413 Free PMC article.<br>
+20.
+Associations between weight-adjusted waist index and fractures: a population-based study.
+Tao J, Zhang Y, Tan C, Tan W.
+J Orthop Surg Res. 2023 Apr 10;18(1):290. doi: 10.1186/s13018-023-03776-8.
+PMID: 37038167 Free PMC article.
+  </p>
+  <center><img src="../assets/img/1e9c3c_34c176c5b006406a80d35f5ed41f0fed_mv2.gif" width="300" border="1px"></center>
+               

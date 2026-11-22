@@ -1,0 +1,387 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geriatric Nutrition Risk Index | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/gnri">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[ {font-size:14px;
+background-color:white;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+
+var form
+
+function calculate(form,ht_ft,ht_in,ht_cm,wt,knee_ht_metric_p,ht_metric_p,gender_sex_p,age,alb,alb_metric_p,wt_metric_p)   {
+var width = window.innerwidth
+var height=  window.innerHeight
+width=400
+height=700
+   
+     form=document.getElementById('gnri_form');
+       var ht_ft = document.getElementById('ht_ft').value;
+       var ht_in = document.getElementById('ht_in').value;
+       var ht_cm=document.getElementById('ht_cm').value;
+       var age=document.getElementById('age').value;
+       var alb=document.getElementById('alb').value;
+       var wt=document.getElementById('wt').value;
+
+      
+       
+       var gender_sex_p = (radio_val(form.gender_sex_p,1) > 0); // default female
+       var alb_metric_p = (radio_val(form.alb_metric_p,0) > 0); // default g/dL
+       var ht_metric_p = (radio_val(form.ht_metric_p,1) > 0); //default cm
+       var knee_ht_metric_p= (radio_val(form.knee_ht_metric_p,0)>0);//height
+       var wt_metric_p=(radio_val(form.wt_metric_p,1)>0);//default kg
+       var h;
+       var wlo;
+       var gnri;
+
+ 
+
+
+ 
+if (wt_metric_p >0) {
+document.getElementById('wt_report').innerHTML=' Weight:' + round(wt) +' kg';
+}
+else{
+var wt_lb=wt;
+wt=eval(wt)/2.2;
+document.getElementById('wt_report').innerHTML=' Weight: '+ round(wt) +' kg  (' +round(wt_lb)+ ' lbs)';
+}
+ 
+ 
+if (ht_metric_p>0){
+ht=ht_cm
+document.getElementById('ht_ft').style.display="none";
+document.getElementById('ht_in').style.display="none";
+document.getElementById('ht_cm').style.display="inline";
+} 
+else {
+ht_ft=ht_ft*12;
+ht_in=ht_in;
+ht_in=eval(ht_ft*2.54)+eval(ht_in*2.54)
+ht=ht_in
+document.getElementById('ht_ft').style.display="inline";
+document.getElementById('ht_in').style.display="inline";
+document.getElementById('ht_cm').style.display="none";
+}
+
+
+
+if (alb_metric_p > 0) {
+var alb_meas='g/L'
+}
+else{
+alb=alb*10
+var alb_meas='g/dL'
+}
+
+var wlo_factor
+if (gender_sex_p > 0) {
+wlo_factor=2.5;var g="in females"
+                                        } else
+                                        {
+wlo_factor=4;var g="in males"
+                                        }
+
+
+var knee
+var kh=ht
+
+
+ if (gender_sex_p > 0) {
+                kh=1.83*kh
+                kh=kh-.24*age
+                kh=kh+84.88       //females
+                                         } 
+                        else {
+                kh =2.02*kh
+                kh =kh -0.4*age
+                kh =kh +64.19 //males  
+                                 } 
+ 
+if (knee_ht_metric_p > 0) 
+           {
+      h=kh;
+      knee="knee ht estimation";
+           }
+      else                {
+                         
+       knee="direct measurement";
+       h=ht;        
+                              }
+var temp1 =h-100
+var temp2 =h-150
+temp2=temp2/wlo_factor
+wlo=temp1-temp2
+h=round(h)
+gnri=eval(wt)/eval(wlo);
+gnri=41.7*gnri;
+var temp=alb*1.49;
+gnri=eval(temp)+eval(gnri);
+gnri=Math.round(gnri);
+wlo=Math.round(wlo);
+
+var risk
+if (gnri <82) {risk="HIGH RISK"} else if
+(gnri >=82 && gnri <92) {risk="MEDIUM RISK"} else if
+(gnri >=92 && gnri <98) {risk="LOW RISK"} else if
+(gnri >=98) {risk="NO RISK"} 
+
+document.getElementById('gnri_report').innerHTML="GNRI:  "+ gnri  +"<br> (ALB:"+alb+ "  " +g+ " in "+ alb_meas+")" ;
+document.getElementById('wlo_report').innerHTML=' IDEAL WT (Lorentz - Wlo):  '+wlo +  ' kg  (Ht: '  +   h  +'cm  by    '+ knee+ ')';
+document.getElementById('risk_report').innerHTML=risk;
+
+            
+}
+ 
+</script>
+
+</head>
+
+<body onLoad="window.setInterval('calculate()',250);">
+<fieldset id="fieldset_style">
+
+
+<form id="gnri_form">
+
+<h2 style="text-align:center;">Geriatric Nutrition Risk Index</h2>
+<h4 style="font-style:italic;text-align:center";>programmed by Stephen Z Fadem</h4>
+
+
+
+<p><input id="wt" size=3 value=70> pounds <input type="radio" name="wt_metric_p" value=0> kilograms <input type="radio" name="wt_metric_p" value=1 checked></p>
+
+
+<p>entered height<input type="radio" name="knee_ht_metric_p" value=0 checked>knee height<input type="radio" name="knee_ht_metric_p" value=1>
+  </p>
+<p>Inches<input type="radio" name="ht_metric_p" value=0>Centimeters<input type="radio" name="ht_metric_p"  value=1 checked>&nbsp;<input id=ht_ft size=3 value=5>feet&nbsp; <input id=ht_in size=3 value=9>inches &nbsp;<input id=ht_cm size=3 value=175> centimeters</p>
+
+<p>GENDER: Male&nbsp; <input type="radio" name="gender_sex_p" value=0>Female&nbsp;<input type="radio" name="gender_sex_p" value=1 checked >
+</p>
+  <p>AGE:&nbsp; <input id=age value=60 size=3>yrs</p>
+<p>ALBUMIN: <input id=alb value=3 size=4>g/dL <input type="radio" name="alb_metric_p" value=0 checked >g/L<input type="radio" name="alb_metric_p" value=1  ></p>
+
+
+<p style="font-weight:bold;">GERIATRIC NUTRITION RISK INDEX <span id="gnri_report" ></span></p>
+
+<p style="font-weight:bold;"><span id="wlo_report"></span></p>
+
+<p style="font-weight:bold;">RISK: <span id="risk_report"></span></p>
+
+<p style="font-weight:bold;"><span id="wt_report"></span></p>
+
+<hr>
+<p style="text-align:left;">
+Bouillanne O, Morineau G, Dupont C, Coulombel I, Vincent JP, Nicolis I, Benazeth 
+S, Cynober L, Aussel C.  Geriatric Nutritional Risk Index: a new index for evaluating at-risk elderly medical patients. Am J Clin Nutr 82:777-83, 2005</p>
+<p style="text-align:left;">Emanuele Cereda, Daniela Limonta, Chiara Pusani, Alfredo Vanotti. Feasible Use of Estimated Height for Predicting Outcome by the Geriatric Nutritional Risk Index in Long-Term Care Resident Elderly. 
+Gerontology 53:184-186: 2007</p>
+ <hr>
+<p>For men: ht=(2.02 X knee height) - (0.04 X age)+64.19<br>For women: ht=(1.83 X knee height) - (0.24 X age)+84.88</p>
+<p>For men: Wlo = ht - 100 -((H-150)/4)<br>For women: Wlo = ht - 100 -((H-150)/2.5)<br><hr>
+ GNRI = ( (albumin X 1.489) + (41.7 X measured weight/Wlo)<br>Wlo = Calculated Ideal Body Weight (Lorentz Formula)</P<br>
+
+  <p>&copy; 2024 Stephen Z. Fadem, MD, FASN. All rights reserved.</p>
+</form>

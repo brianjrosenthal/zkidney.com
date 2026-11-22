@@ -1,0 +1,568 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCI - Charlson Comorbidity Index | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/cci">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+<script language="javascript">
+
+ function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+var thisField;
+function isEmpty(thisField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = thisField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+function radio_val(items,defaultVal) {
+        
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+           
+          return defaultVal;
+    }
+
+ function parse(s) {
+      if (s=""){
+     return 0;
+               }
+     else if (s>=0) {return parseFloat(s);
+               }
+}
+  
+    
+    
+
+var form="cci_form";
+form=document.getElementById('cci_form');
+function do_cci(form)  {
+//var total(CCI1)=["i1","i2","i3","i4","i5","i6","i7","i8","i9","i10"]
+//var total(CCI2)=["i11","i12","i13","i14","i15","i16"];
+//var total(CCI3)=["i17"]
+//var total(CCI6)=["i18","i19"];
+//total+=total;
+var cci1=1;//CCI1=["i1","i2","i3","i4","i5","i6","i7","i8","i9","i10"]
+var cci2=2;//CCI2=["i11","i12","i13","i14","i15","i16"];
+var cci3=3;//CCI3=["i17"]
+var cci6=6;//CCI6=["i18","i19"];
+
+
+var age=document.getElementById('age').value;
+var alb=document.getElementById('alb').value;
+var lla=document.getElementById('lla').value;
+var age1=parseInt(age)
+
+if (document.getElementById('MI').checked==true) {var i1=cci1;} else {i1=0;}
+if (document.getElementById('CHF').checked==true) {var i2=cci1;} else {i2=0;}
+if (document.getElementById('PVD').checked==true) {var i3=cci1;} else {i3=0;}
+if (document.getElementById('CVA').checked==true) {var i4=cci1;} else {i4=0;}
+if (document.getElementById('dementia').checked==true) {var i5=cci1;} else {i5=0;}
+if (document.getElementById('COPD').checked==true) {var i6=cci1;} else {i6=0;}
+if (document.getElementById('CTD').checked==true) {var i7=cci1;} else {i7=0;}
+if (document.getElementById('PUD').checked==true) {var i8=cci1;} else {i8=0;}
+if (document.getElementById('CLD_mild').checked==true) {i9=cci1;} else {i9=0;}
+if (document.getElementById('DM_mild').checked==true) {var i10=cci1;} else {i10=0;}
+
+if (document.getElementById('hemiplegia').checked==true) {var i11=cci2;} else {i11=0;}
+if (document.getElementById('CKD').checked==true) {var i12=cci2;} else {i12=0;}
+if (document.getElementById('DM_severe').checked==true) {var i13=cci2;} else {i13=0;}
+if (document.getElementById('tumor').checked==true) {var i14=cci2;} else {i14=0;}
+if (document.getElementById('leukemia').checked==true) {var i15=cci2;} else {i15=0;}
+if (document.getElementById('lymphoma').checked==true) {var i16=cci2;} else {i16=0;}
+if (document.getElementById('CLD_severe').checked==true) {var i17=cci3;} else {i17=0;}
+
+if (document.getElementById('mets').checked==true) {var i18=cci6;} else {i18=0;}
+if (document.getElementById('AIDS').checked==true) {var i19=cci6;} else {i19=0;}
+
+
+
+var points=0;
+points=i1+i2+i3+i4+i5+i6+i7+i8+i9+i10+i11+i12+i13+i14+i15+i16+i17+i18+i19;
+if (points < 2) {
+invalid_data_message="Data not available if CCI less than 2.";
+     }
+else if (points >=2) {
+invalid_data_message="";
+     }
+var cci=points;
+
+if (age1 <=40){
+age1=0;
+}
+else if (age1 > 40) {
+var age1=eval(age1-40);
+age1=eval(age1/10);
+age1=parseInt(age1)
+
+
+
+}
+points +=age1;
+
+var lla1=lla
+lla=eval(3.5/lla);
+if (alb < 3.5) {
+low_alb_message="Since the lower limits of albumin for lab are &lt; 3.5 g/dL enter lower limits of albumin (LLA) below";
+alb=alb*lla;
+}
+else if (alb >=3.5) {
+low_alb_message="";
+alb=alb*1;
+}
+document.getElementById('invalid_data_report').innerHTML=""+invalid_data_message+""
+document.getElementById('low_alb_report').innerHTML=""+low_alb_message+"";
+document.getElementById('conversion_report').innerHTML="LLA="+lla1+". 3.5/lla = conversion factor = "+round(lla)+ " and corrected albumin =" +round2(alb)+"";
+ 
+
+
+
+var ALBM;
+var MISCULIN;
+var CCIM;
+if (alb >=3.5) {
+          ALBM=["86","76","5.9","7.1"]; 
+               }
+
+else if (alb < 3.5) {  
+         ALBM = ["50","17","14.7","11.4"]; 
+             }
+
+//low alb
+if ((points <=1)&&(alb < 3.5)) {
+        MISCULIN=["invalid","invalid"," "," "];
+        }		
+else if ((points <=3.0) && (alb < 3.5)){
+        MISCULIN=["91","87","10","11"];
+        }
+
+else if ((points <=5) && (alb <3.5)) { 
+        MISCULIN = ["73","61","9","12"]; 
+        }
+
+else if ((points <=7) && (alb <3.5)){ 
+        MISCULIN = ["69","49","7","8"]; }
+
+		else if (alb <3.5) { 
+		MISCULIN=["52","30","9","10"]; 
+		}
+		
+//high alb
+		
+if ((points <=1) && (alb >=3.5)) { 
+        MISCULIN = ["invalid","invalid"," "," "] 
+        }
+
+else if ((points <=3) && (alb >=3.5 )) { 
+        MISCULIN = ["93","89","3","5"]; 
+        }
+
+else if ((points <=5) && (alb >=3.5 )) { 
+        MISCULIN = ["89","75","4",",6"]; 
+        }
+
+else if ((points <=7)&& (alb >=3.5 )) { 
+        MISCULIN = ["84","67","4","5"]; 
+        }
+
+else if (alb >=3.5) { 
+		
+		MISCULIN =["75","52","5","6"];
+		 
+		}
+var invalid_data_message="";
+if (points <= 1) {
+invalid_data_message="Data not available if CCI less than2.";
+     }
+else if (points >1) {
+invalid_data_message="";
+     }
+
+//CCI
+
+		if (points <=3) { 
+		CCIM = ["98","95","3.1","5.3"]; 
+		}
+
+		else if ((points <=5)&&(points > 3)) { 
+		CCIM = ["89","80","8.8","10.4"]; 
+		}
+
+		else if ((points >5)&&(points <=7)) { 
+		CCIM = ["79","55","9.6","11.4"]; 
+		}
+
+		else if (points >7) { 
+		CCIM =["64","35","10.8","10.8"]; 
+		} 
+		
+		
+
+	document.getElementById('points_report').innerHTML=" Score: "+cci+"   Age factored in: " +points+ "";
+        document.getElementById('cci1_report').innerHTML=""+CCIM[0]+" &pm; "+ CCIM[2]+" "; 
+        document.getElementById('cci2_report').innerHTML=""+CCIM[1]+" &pm; "+ CCIM[3]+" ";
+        document.getElementById('alb1_report').innerHTML=""+ALBM[0]+" &pm; "+ ALBM[2]+" ";           
+        document.getElementById('alb2_report').innerHTML=""+ALBM[1]+" &pm; "+ ALBM[3]+" "; 
+        document.getElementById('misculin1_report').innerHTML=""+MISCULIN[0]+" &pm; "+ MISCULIN[2]+" "; 
+        document.getElementById('misculin2_report').innerHTML=""+MISCULIN[1]+" &pm; "+ MISCULIN[3]+" "; 
+		
+
+
+}
+</script>
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+
+Input[type="text"]{
+  font-size:15px;
+  }
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+table { width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+
+<title>Shared Decision Making </title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style
+<link href="/news.css" rel="stylesheet" type="text/css">
+</style>
+
+</head>
+
+<body onload="window.setInterval('do_cci(form)', 250 );">
+
+<form id="cci_form">
+<h2>Charlson Comorbidity Scoring System</h2>
+<h3> Estimating Prognosis for Dialysis Patients </h3>
+<p>programmed by Stephen Z. Fadem, M.D., FACP, FASN</p>
+<p>Age<input type="text" name="age" size="6" id="age" value="">yrs &nbsp;&nbsp;
+Serum Albumin<input type="text" name="alb" id="alb" size="6" value="">g/dL</p>
+<p><span id=low_alb_report>___</span></p>
+
+<p>One Point</p>
+<ul style="list-style:none";>
+<li><input type="checkbox" name="MI" id="MI" >Myocardial infarction (history, not ECG changes only)</li>
+<li><input type="checkbox" name="CHF" id="CHF" >Congestive heart failure</li>
+<li><input type="checkbox" name="PVD" id="PVD" > Peripheral disease (includes aortic aneurysm >= 6 cm</li>
+<li><input type="checkbox" name="CVA" id="CVA" >Cerebrovascular disease: CVA with mild or no residua or TIA</li>
+<li><input type="checkbox" name="dementia" id="dementia" > Dementia</li> 
+<li><input type="checkbox" name="COPD" id="COPD" > Chronic pulmonary disease </li>
+<li><input type="checkbox" name="CTD" id="CTD" > Connective tissue disease</li>
+<li><input type="checkbox" name="PUD" id="PUD" > Peptic ulcer disease</li>
+<li><input type="checkbox" name="CLD_mild" id="CLD_mild" > Mild liver disease (without portal hypertension, inlcudes chronic hepatitis) </li>
+<li><input type="checkbox" name="DM_mild" id="DM_mild" >Diabetes without end-organ damage (excludes diet-controlled alone) </li>
+</ul>
+<p>Two Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="hemiplegia" id="hemiplegia" >Hemiplegia</li>
+<li><input type="checkbox" name="CKD" id="CKD" > Moderate or severe renal disease</li>
+<li><input type="checkbox" name="DM_severe" id="DM_severe" > Diabetes with end-organ damage (retinopathy, neuropathy,nephropathy, or brittle diabetes) </li>
+<li><input type="checkbox" name="tumor" id="tumor" > Tumor without metastasis (exclude if > 5 y from diagnosis)</li>
+<li><input type="checkbox" name="leukemia" id="leukemia" > Leukemia(acute or chronic)</li>
+<li><input type="checkbox" name="lymphoma" id="lymphoma" > Lymphoma</li>
+</ul>
+<p>Three Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="CLD_severe" id="CLD_severe" >Moderate or severe liver disease</li>
+</ul>
+<p>Six Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="mets" id="mets" >Metastatic solid tumor</li>
+<li><input type="checkbox" name="AIDS" id="AIDS" >AIDS (not just HIV positive)</li>
+</ul>
+
+
+<p>Charlson Comorbidity Index (CCI)<span id="points_report"> ____</span>.  <span id="invalid_data_report"></span></p>
+<table>
+<tr>
+<th>SURVIVAL</th><th>1 YEAR</th><th>2 YEAR</th>
+</tr>
+<tr>
+<td><a href="http://nephron.com/cci_support.html#table1">Survival based on CCI</a></td><td><span id=cci1_report> __</span></td><td><span id=cci2_report> __ </span></td>
+</tr>
+<tr>
+
+<td><a href="http://nephron.com/cci_support.html#table22">Survival based on Serum Albumin</a></td><td><span id=alb1_report>__</span></td><td><span id=alb2_report> __</span></td>
+</tr>
+<tr>
+
+<td><a href="#t2_probability">Survival based upon both serum alb and CCI</a></td><td><span id=misculin1_report> __</span></td><td><span id=misculin2_report> __</span></td> 
+</tr>
+</table>
+
+<hr>
+<p>Prognosis for ESRD patients can be estimated using the Charlson Comorbidity Index (CCI), 
+shown in <a href="../assets/img/1e9c3c_963f3d2c473f47fbaf6d7d2113ffe0c5_mv2.png>below"</a>, and the serum <a href="http://nephron.com/cci_support.html#table22">
+albumin</a>. Based on the medical literature referencedbelow, the CCI is a good prognostic tool for ESRD patients, 
+and is easier to use in the non-research setting than the Index of Coexistent Diseases. CCI scores were calculated in 1761 individuals
+who participated in a comorbidity assessment project <a href="#8">8</a> conducted between 1998-2001 in 41 dialysis units from Dialysis 
+Clinic Inc. (DCI), a non-for profit dialysis" provider. All were hemodialysis patients with
+similar demographic characteristics as contemporary
+USRDS populations: the mean age was 62 (SD 15); 28% were African American; 52% were male; and 44% had diabetes as the cause of ESRD.
+Forty eight percent were incident to dialysis, meaning that they had started dialysis less than a year prior to the time of the comorbidity assessment. 
+The prognostic calculator (see <a href="#t2_probability">Table 2</a> is based on observation of this study population and provides estimates 
+of one and two year survival probabilities across subgroups defined by CCI Level and serum albumin. The 95% confidence intervals have been included to aid in interpretation of the data.</p>
+
+ 
+<p>In the systematic literature review conducted by the RPA-ASN workgroup that developed the  second clinical practice guideline (CPG),  
+<a href="http://www.renalmd.org/publications/downloads/CPG_Executive_Summary.pdf">Shared Decision-Making in the Appropriate Initiation of and Withdrawal from Dialysis</a>, serum
+albumin was found to be an independent predictor of mortality. The bromcresol green assay with normal range of 3.5 to 5.0 g/dL was used to measure serum albumin.<a href="#albumininfo">*</a> </p>
+ 
+<p>Nephrologists should use the estimate of survival obtained from this calculator according to the recommendations of appropriate clinical practice guidelines, 
+i.e.<a href="http://www.renalmd.org/publications/downloads/CPG_Executive_Summary.pdf">Shared Decision-Making in the Appropriate Initiation of and Withdrawal from Dialysis.</a>
+This guideline recommends shared decision-making between the physician and the patient (or if the patient lacks decision-making capacity, 
+the patient&#146;s legal representative). The estimate of survival should be used only to assist in promoting informed""consent in deciding whether to commence 
+or stop dialysis. Patient and family""education about prognosis should always consider the patient's preferences. 
+Not all patients may want to be informed of their prognosis. Instead, some patients may prefer that a family member or friend be informed of their prognosis and participate in dialysis decision-making. 
+Like other information to be disclosed in the process of obtaining informed consent or refusal, an estimate of prognosis needs to be provided in a culturally sensitive manner. 
+In addition, prognosis alone may not be a sufficient reason for some patients and families to refuse dialysis, particularly when dialysis may allow the achievement of certain goals. 
+Patients and families may choose to commence dialysis regardless of the estimate of survival obtained from this calculator or any recommendation from their nephrologist. 
+The ultimate decision as to whether to commence or stop dialysis should be shared between the patient (or his/her legal representative) and the treating nephrologist.</p>
+<p>The authors and owners of this program make no warranties or representations with respect to the application of this calculator in individual cases. Any recommendations made by a nephrologist 
+based upon the information obtained from this calculator are the sole responsibility of the user.</p>
+<p>*<a id="albumininfo" name="albumininfo"></a>Nephrologists will need to enter the lower limit of albumin (LLA) if it is less than 3.5 g/dL. 
+This program will autoadjust the patient&#146;s serum albumin level for the normal range for the serum albumin assay based upon the LLA entered. For example, if a patient&#146;s serum albumin level is 3.3 g/dL 
+and the lower limit of normal (LLA) on the assay used to measure the patient's blood is 3.2g/dL, the serum albumin level will be adjusted up (i.e. normalized). 
+The program will multiply the level by a correction factor of 3.5/LLA. For instance, if the LLA is 3.2, this would be 1.094. </p> 
+<p>This calculator defaults to an LLA of 3.5 g/dL or a correction factor of 1. If different, please correct in the box provided:  LLA <input type="text" name="lla"  id="lla" size="6" value="3.5">g/dL.</p> 
+<p>The conversion factor will be <span id="conversion_report"> conversion_factor</span>.</p>
+ 
+</form>
+<img src="../assets/img/1e9c3c_963f3d2c473f47fbaf6d7d2113ffe0c5_mv2.png" width="640" height="391"><BR>
+<table>
+<tr>
+<th colspan=7>
+Table 2<br>One and Two-Year Survival Probabilities** Across Charlson Comorbidity Index Levels<br>
+Albumin &le; 3.5g/dL
+</th>
+</tr>
+<tr>
+<td>CCI Level</td>
+<td>n</td>
+<td>Frequency<a href="#frequency">*</a></td>
+<td>Probability of 1 yr survival</td> 
+<td>95% confidence interval</td>
+<td>Probability of 2 yr survival</td>
+<td>confidence interval</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>34</td>
+<td>2% </td>
+<td>0.91</td>
+<td>(0.81-1.00) </td>
+<td>0.87 </td>
+<td>(0.77-0.99) </td>
+</tr>
+<tr>
+<td>4-5</td> 
+<td>97 </td>
+<td>6% </td>
+<td>0.73 </td>
+<td>(0.64-0.82) </td>
+<td>0.61 </td>
+<td>(0.49-0.73) </td>
+</tr>
+<tr>
+<td>6-7 </td>
+<td>173 </td>
+<td>10% </td>
+<td>0.69 </td>
+<td>(0.62-0.77) </td>
+<td>0.49 </td>
+<td>(0.41-0.59) </td>
+</tr>
+<tr>
+<td> &gt;8 </td>
+<td>138 </td>
+<td>8% </td>
+<td>0.52 </td>
+<td>(0.43-0.61) </td>
+<td>0.30 </td> 
+<td>(0.20-0.40) </td>
+</tr>
+<tr>
+<th colspan=7>Albumin &ge; 3.5g/dL CCI</th>
+</tr>
+<tr>
+<td>CCI Level</td>
+<td>n</td>
+<td>Frequency<a href="#frequency">*</a></td>
+<td>Probability of 1 yr survival</td> 
+<td>95% confidence interval</td>
+<td>Probability of 2 yr survival</td>
+<td>confidence interval</td>
+</tr>
+<tr>
+<td>2-3 </td>
+<td>230 </td>
+<td>13% </td>
+<td>0.93 </td>
+<td>(0.90-0.96) </td> 
+<td>0.89 </td>
+<td>(0.84-0.93) </td>  
+</tr>
+<tr>
+<td>4-5 </td>
+<td>299 </td>
+<td>17% </td>
+<td>0.89 </td>
+<td>(0.85-0.92) </td>
+<td>0.75  </td>
+<td>(0.69-0.80)  </td>
+</tr>
+<tr>
+<td>6-7 </td>
+<td>488  </td>
+<td>28% </td> 
+<td>0.84  </td>
+<td>(0.80-0.87) </td> 
+<td>0.67  </td>
+<td>(0.63-0.72)  </td>
+</tr>
+<tr>
+<td> &gt;8 </td>
+<td>302</td>  
+<td>17% </td>
+<td>0.75 </td>
+<td>(0.70-0.80)</td>  
+<td>0.52 </td> 
+<td>(0.45-0.58)</td>
+
+</tr>
+</table>
+
+
+<p>*<a name="frequency"></a>Frequency of subjects within groups divided by CCI Level and serum albumin </p> 
+<p>** <a name="survival"></a>Survival probabilityestimates are based on observation of 1761 incident and prevalent hemodialysis 
+patients from 41 dialysis facilities of Dialysis Clinic Inc.[8] See text for details.</p>
+<h2>References</h2>
+<ol>
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=10856407&dopt=Abstract"> Beddhu S, Bruns FJ, Saul M, Seddon P, Zeidel  ML: A Simple Comorbidity Scale Predicts Clinical  Outcomes and Costs in Dialysis Patients. The  American Journal of Medicine 108:609-613,  2000</a></li> 
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=3558716&dopt=Abstract"> Charlson ME, Pompei P, Ales KL, MacKenzie  CR: A New Method of Classifying Prognostic  Comorbidity in Longitudinal Studies: Development  and Validation. Journal of Chronic Diseases  40:373-383, 1987</a></li> 
+<li><a name="3ref" id="3ref"></a><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=11157375&dopt=Abstract"> Fried L, Bernardini J, Piraino B: Charlson  Comorbidity Index as a Predictor of Outcomes  in Incident Peritoneal Dialysis Patients.  American Journal of Kidney Diseases 37:337-342,  2001</a></li> 
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=12830464&dopt=Abstract"> Hemmelgarn BR, Manns BJ, Quan H, Ghali WA:  Adapting the Charlson Comorbidity Index for  Use in Patients with ESRD. American Journal of Kidney Diseases 42:125-132, 2003</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=12538750&dopt=Abstract"> Van Manen JG, Korevaar JC, Dekker FW, Boeschoten  EW, Bossuyt PMM, Krediet RT: Adjustment for  Comorbidity in Studies on Health Status in  ESRD Patients: Which Comorbidity Index to  Use? Journal of the American Society of Nephrology  14:478-485, 2003</a></li> 
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=12087565&dopt=Abstract"> Van Manen JG, Korevaar JC, Dekker FW, Boeschoten  EW, Bossuyt PMM, Krediet RT: How to Adjust  for Comorbidity in Survival Studies in ESRD  Patients: A Comparison of Different Indices.  American Journal of Kidney Diseases 40:82-89,  2002</a></li> 
+<li><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=14703198&dopt=Abstract"> Fried L, Bernardini J, Piraino B: Comparison  of the Charlson Comorbidity Index and the  Davies Score as a predictor of outcomes in  PD patients. Perit Dial Int 23:568-573, 2003</a></li> 
+<li><a name="8"></a><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=14736967&dopt=Abstract"> Miskulin, D., Martin, A., Brown, R., Fink,  N., Coresh, J., Powe, N., Zager, P., Meyer,  K. and Levey, A., Predicting One-Year Mortality in an Outpatient Hemodialysis Population:" A Comparison of Comorbidity Instruments. Nephrol  Dial Transplant, 19:413-20,2004.  </a></li>
+</ol>
+ 
+
+
+
+
+
+</body>
+
+</html>

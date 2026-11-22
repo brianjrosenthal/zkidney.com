@@ -1,0 +1,330 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cystatin C Calculator | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/cystatin-c">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+  
+  <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        font-size:14px;
+        }
+    
+    input{
+      font-size:14px;
+      color:black;
+      background-color:white;
+      
+    }
+p ul li a div {
+
+        font-size:12px;
+  
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+
+  
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+    
+    input[type=text]{
+      color:red;
+      font-size:15px;
+    }
+</style>
+
+<script language=javascript>
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+var form
+
+form=document.getElementById('cystatin_form');
+function calculate(form,cyc) {
+//var cyc = isNumberKey(cyc);
+cyc=document.getElementById('cyc').value;
+//var cyc=form.cyc.value;
+
+var gfr_dade =77.24* Math.pow(cyc,-1.2623);//
+var gfr_epi =76.7* Math.pow(cyc,-1.19);//
+var gfr_dak =99.43* Math.pow(cyc,-1.5837);//
+
+if  (cyc <0.3) {
+gfr_dade="___";
+gfr_epi="___";
+gfr_dak="___";
+}
+
+
+
+else if (cyc>=0.3){
+
+gfr_dade=round(gfr_dade);
+gfr_epi=round(gfr_epi);
+gfr_dak=round(gfr_dak);
+}
+
+
+
+document.getElementById("gfr_dade_report").innerHTML=''+gfr_dade  + ' mL/min' ;   
+document.getElementById("gfr_dak_report").innerHTML=''+gfr_dak + ' mL/min'  ;
+document.getElementById("gfr_epi_report").innerHTML=''+gfr_epi + ' mL/min'  ;
+
+};
+
+</script>
+</head>
+<BODY BGCOLOR="#FFFFFF" onload="window.setInterval('calculate()',250)";>
+
+<h1 style="text-align:center;">Cystatin C Calculator</h1>
+
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+<form id="cystatin_form">
+
+GFR Dade Behring* Assay =  77.24  X cys<sup>-1.2623</sup><br>
+GFR Dako Assay=99.43 X cys<sup>-1.5837</sup><br>
+GFR Dade* (Epi) Assay =  76.7  X cys<sup>-1.19</sup><br>
+cys = serum cystatin c <br>
+cystatin c &ndsp; <input  size=3  id="cyc" value=.7> in mg/L<br>
+GFR: (Dade Behring Calibration):<span id=gfr_dade_report>___</span><br>
+GFR:(Dako Calibration)<span id=gfr_dak_report>___</span><br>
+GFR:(Dade Epi)<span id=gfr_epi_report>___</span><br>
+<HR>
+*Dade Behring is now Siemens
+
+
+</form>
+
+<h3>RESOURCES: CYSTATIN GFR</h3>
+<div style="margin:2px;width:100%;font-size:12px;">
+<p>Serum creatinine has a drawback in the measurement of glomerular filtration rate (GFR) in that it may vary according to muscle mass. Cystatin C is a 13 kilodalton protein that is filtered by the glomerulus and reabsorbed and metabolized by tubular cells.  The amount that is excreted into the urine is negligible.  Its production is very steady, and not dependent on muscle mass. It has been proposed as an alterate marker
+Ifor estimating GFR. (coresh) </p>
+<p> The literature is emerging, and showing that it has a benefit as a marker. Here are two formulae that might be useful in demonstrating the relationships between serum creatinine and serum cystatin C in adults. A Pediatric Cystatin GFR for Dako has been evaluated by Schwartz, et al (5)  </p> 
+
+<h3>CYSTATIN FORMULA</h3>
+
+DADE (chemiluminescence) ADULT GFR =  77.24  X cys <sup>-1.2623</sup><br>
+DADE (chemiluminescence) ADULT GFR (EPI) =  76.24  X cys <sup>-1.19</sup><br>
+DAKO (immunoassay) ADULT GFR =99.43 X cys <sup>-1.5837</sup><br>
+DAKO PEDIATRIC FORMULA USED:<br><br>
+
+GFR (ml/min per 1.73 m<sup>2</sup>)=39.1[height (m)/Scr
+(mg/dl)]<sup>0.516</sup> * [1.8/cys (mg/L)]<sup>0.294</sup>[30/BUN
+(mg/dl)]<sup>0.169</sup>[1.099]<sup>male</sup>[height (m)/1.4]<sup>0.188</sup>.
+<br><br>
+cys = serum cystatin c (in mg/L)<br>
+
+<br>
+
+
+ 
+
+<h3>CYSTATIN REFERENCES</h3>
+<ol style="font-size:12;">
+<li> <a href="http://diagnostics.siemens.com/siemens/en_GLOBAL/gg_diag_FBAs/files/Dimension_Vista/Nephelometry_Advertorial.pdf">Dade-Behring Assay from Siemens</a></li>
+<li><a href="http://www.dakousa.com/index/prod_search/prod_products.htm?productareaid=8&baseprodidver=A223002005">Dako Control set</a></li>
+<li>Stevens LA, Padala S, Levey AS. Advances in glomerular filtration
+rate-estimating equations. <a href="http://www.ncbi.nlm.nih.gov/pubmed/20393287">Curr Opin Nephrol Hypertens. 2010 May;19(3):298-307.
+</a>
+</li>
+<li>Stevens LA, Coresh J, Schmid CH, Feldman HI, Froissart M, Kusek J, Rossert J, Van
+Lente F, Bruce RD 3rd, Zhang YL, Greene T, Levey AS. Estimating GFR using serum cystatin C alone and in combination with serum
+creatinine: a pooled analysis of 3,418 individuals with CKD. <a href="http://www.ncbi.nlm.nih.gov/pubmed/18295055">Am J Kidney Dis. 2008 Mar;51(3):395-406</a></li>
+<li><a href="http://touchcalc.com/calculators/cystatin_children_gfr">Cystatin Children's GFR Calculator</a></li>
+<li>Schwartz, GJ, Munoz, A, Schneider, MF, Mak, RH, Kaskel, F, Warady, BA & Furth, SL: New Equations to Estimate GFR in Children with CKD.<a href="http://www.ncbi.nlm.nih.gov/pubmed/19158356"> J Am Soc Nephrol:ASN.2008030287, 2009.</a>
+</li>
+<li>Larsson A, Malm J, Grubb A, Hansson LO. Calculation of glomerular filtration rate expressed in mL/min from plasma
+cystatin C values in mg/L. <a href="http://www.ncbi.nlm.nih.gov/pubmed/15025426">Scand J Clin Lab Invest. 2004;64(1):25-30.</a></li>
+<li>Menon V, Shlipak MG, Wang X, Coresh J, Greene T, Stevens L, Kusek JW, Beck GJ,
+Collins AJ, Levey AS, Sarnak MJ.Cystatin C as a risk factor for outcomes in chronic kidney disease.<a href="http://www.ncbi.nlm.nih.gov/pubmed/15025426">Ann Intern Med. 2007 Jul 3;147(1):19-27.</a></li>
+<li>Stevens, LA, Coresh, J, Schmid, CH, et al. Estimating GFR using  serum cystatin C alone and in combination with serum creatinine: a pooled analysis of 3,418 individuals with CKD.<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2390827/">Am J Kidney Dis. 2008; 51(3):395-406</a></li>
+
+
+</ol>
+
+
+  </body>
+  </html>

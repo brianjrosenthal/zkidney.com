@@ -1,0 +1,474 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corrected Standard KtV | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/corrected-standard-ktv">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+   var form;
+        form = document.getElementById('std_ktv');
+
+
+function radio_val(items,defaultVal) {
+        var val;
+        // alert(items.value);
+        for(var i = 0; i < items.length; i++) {
+                // alert([i,items.length,items[i],items[i].checked,items[i].value]);
+                if (items[i].checked) return items[i].value;        }
+        return defaultVal;
+    }
+
+
+function do_ktv(form,kl,time,weight,prcnt,hb,height,age,N,gender_sex_p,height_metric_p,feet,inches,centimeters,koa,qb,qd)    {
+        var gender_sex_p = (radio_val(form.gender_sex_p,0) > 0); // default male;         
+        var kl = form.kl.value;
+         var mf=gender_sex_p;
+         var time = form.time.value;
+         var N = form.N.value;
+         var age=form.age.value;
+         var inches=0
+         var feet=0
+         var centimeters=0
+        inches = form.inches.value;
+         feet = form.feet.value;
+         var centimeters=form.centimeters.value;
+         var height_metric_p = (radio_val(form.height_metric_p,0) > 0); //default feet and inches
+         var height=0;
+
+ if (height_metric_p > 0)  
+         
+                {
+        inches = form.inches.value;
+        feet = form.feet.value;
+        feet= feet*12
+        inches=eval(feet)+eval(inches)
+        centimeters=inches*2.54
+        height=centimeters
+        document.getElementById("feet").style.display="inline";
+        document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+      
+        document.getElementById("cms_span").style.display="none";
+        document.getElementById("ft_span").style.display="inline";
+        document.getElementById("in_span").style.display="inline";
+                } else
+                {
+        centimeters=form.centimeters.value;
+        centimeters=centimeters*1;
+        document.getElementById("centimeters").style.display="inline";
+        document.getElementById("feet").style.display="none";
+        document.getElementById("inches").style.display="none";
+        document.getElementById("cms_span").style.display="inline";
+        document.getElementById("ft_span").style.display="none";
+        document.getElementById("in_span").style.display="none";
+        height=centimeters  
+                }
+           
+        
+        
+          
+
+
+        
+        
+        
+         var prcnt = form.prcnt.value;
+         var weight = form.weight.value;
+         var hb = form.hb.value;
+         var vol= prcnt*weight;
+         vol=vol/100;
+         var ktv=kl*time;
+         ktv=ktv/vol;
+         ktv=ktv/1000;
+         hb=hb*3/100;
+         hb=hb*.22;
+         hb=parseFloat(.94-hb);
+         var ktve=ktv/hb;
+         var t1=eval(time)+35
+
+         var t2=time/t1;
+         ektv=parseInt(35)+parseInt(time);
+         ektv=parseFloat(time/ektv);
+         ektv=parseFloat(ktve*ektv);
+         var spktv=parseFloat(ektv/t2);
+         var expektv=Math.exp(-ektv);
+         var tempexpektv=1-expektv;
+         var s=10080*tempexpektv;
+         s=s/time;
+         var temp1=tempexpektv/ektv;
+         var temp2=N*time;
+         var temp2=10080/temp2;
+         var temp2=temp2-1;
+         temp1=temp1+temp2;
+         var std=s/temp1;
+         var watson1m=2.447;
+         var watson1m=watson1m-0.09516*age;
+         var watson2m=0.1074*height;
+         var watson3m=0.3362*weight;
+         var watsonm=watson1m+watson2m+watson3m;
+         var watson1f=-2.097;
+         var watson2f=0.1069*height;
+         var watson3f=0.2466*weight;
+         var watsonf=watson1f+watson2f+watson3f
+         if (mf>0) { 
+           watson=watsonm
+                           } else 
+                           {
+           watson=watsonf
+                           }
+         var dubois1=Math.pow(weight,0.425)
+         var dubois2=Math.pow(height,0.725)
+         var dubois=dubois1*dubois2
+         var dubois=dubois*0.007184;
+         var watdub1=watson/dubois;
+         var watdub=watdub1/20;
+         var sanstd=std*watdub;
+        
+
+         
+         var koa = form.koa.value;
+         var qb = form.qb.value;
+         var qd = form.qd.value;
+
+        
+      
+      
+     // (1-exp(koa*(qb-qd)/qb*qd)))/(1/qb-1/qd*exp(koa*(qb-qd)/qb*qd)))
+       
+       var deltaq=qb-qd;
+       var multiq=qb*qd;
+       temp=Math.exp(koa*(deltaq/multiq));
+       var top=1-temp;
+       var recipqb=1/qb;
+       var bottom=1/qd*temp;
+       bottom=recipqb-bottom;
+       var k=top/bottom;
+       k=Math.round(k*100)/100;
+      
+  
+         document.getElementById('k_report').innerHTML=k;
+      
+       
+         
+        
+
+      
+       document.getElementById('abc').innerHTML=Math.round(ktv*10)/10;
+       document.getElementById('def').innerHTML=Math.round(vol*100)/100;
+       document.getElementById('ghi').innerHTML=Math.round(ktve*100)/100;
+       document.getElementById('hij').innerHTML=Math.round(ektv*100)/100;
+      document.getElementById('klm').innerHTML=Math.round(spktv*100)/100;
+       document.getElementById('nop').innerHTML=Math.round(std*100)/100;
+
+      document.getElementById('watson_report').innerHTML=Math.round(watson*100)/100;
+      document.getElementById('dubois_report').innerHTML=Math.round(dubois*100)/100;
+
+       document.getElementById('qrx').innerHTML=Math.round(watdub1*100)/100;
+       document.getElementById('qrs').innerHTML=Math.round(watdub*100)/100;
+       document.getElementById('tuv').innerHTML=Math.round(sanstd*100)/100;
+     
+
+};
+ 
+
+
+
+ //-->
+</script>
+
+
+</head>
+<BODY onload="window.setInterval('do_ktv(std_ktv)',250);">
+
+
+<form id="std_ktv">
+  
+
+<h2 style="text-align:center;">Corrected Standard Kt/V</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+  
+  
+  
+<h3>THE PATIENT</h3>
+Male <INPUT TYPE="radio" NAME="gender_sex_p" VALUE="1" CHECKED>
+     
+Female  <INPUT TYPE="radio" NAME="gender_sex_p" VALUE="0" ><br>
+Feet inches  <input type="radio" name="height_metric_p"  value=1 checked>
+ Centimeters  <input type="radio" name="height_metric_p"  value=0 ><br> 
+
+<input id=feet size=4 value=5><span id="ft_span">feet</span> <input id=inches size=6 value=9><span id="in_span"> inches</span><br>
+
+<input id=centimeters size=6 value=175><span id="cms_span">cms</span><br>
+
+
+
+     
+
+Weight in kg <input name="weight" value="70" size="4"><br>
+Age in years <input name="age" value="30" size="4"><br>
+Hgb (Hemoglobin in grams) <input name="hb" value = "11" size="4"><br>  
+Body Water Percent (from below)* <input  name="prcnt" value="60" size="4"><br>
+Volume of distribution (by percent):<span id="def">vr</span><br>
+TBW<sub>Watson</sub><span id=watson_report>???</span>  Anthropometric vol<br>
+BSA<sub>Dubois</sub><span id=dubois_report>???</span>  Body Surface Area<br>
+(anthropometric vol / body surface area): <span id="qrx">san_ratio </span><br>
+
+(anthropometric vol / body surface area)/20: <span id="qrs">san_ratio </span><br>
+
+<a href="https://zkidney.com/ckd-epi21-smartphone" target="_BLANK"> Check Watson and DuBois equations on CKD-EPI</a><br>
+
+
+
+
+<br> 
+<h3>DIALYSIS</h3>
+K (dialyzer clearance in cc/min)<a href="#dialyzer_clearance" target="_BLANK"><sup>&#8224;</sup></a><input  name="kl" value="321" size="4"><br>
+T (time of dialysis in minutes)&nbsp;   <input  name="time" value="240" size="4"><br>
+Number of treatments per week <input name="N" value="3" size="3"><br>
+
+
+<h3>Kt/Vs</h3>
+Kt/V (estimated):<span id="abc">???</span><br>
+Effective spKt/V (corrected for hgb):<span id="ghi">???</span><br>
+Estimated equilibrated eKt/V<sub>urea</sub> (Clearance t<sub>urea</sub> = 35 min): <span id="hij">ktve</span></br>
+Single Pool (sp) Kt/V<sub>urea</sub>(Tattersall): <span id="klm">ktve</span></br>
+
+Standard Kt/V: <span id="nop">standardized ktv</span> per week<br>
+
+SAn-std Kt/V: <span id="tuv">san_std</span> per week<br>
+
+
+  <h3 id="dialyzer_clearance">DIALYZER CLEARANCE</h3> 
+<p>
+  (1-exp(koa*(qb-qd)/qb*qd)))/(1/qb-1/qd*exp(koa*(qb-qd)/qb*qd)))<br>
+  KoA - Mass transfer coefficient - a constant that determines urea removal during dilayis.<br>
+  qd - Dialysate Flow<BR>
+  QB - Blood Flow</BR>
+  </p>
+  <p>
+  KoA <input  name="koa" value="700" size="4"> &nbsp; 
+qb &nbsp; <input  name="qb" value="400" size="4"> &nbsp; 
+    qd &nbsp; <input  name="qd" value="700" size="4"></p> 
+  <p>Dialyzer clearance (if calculated):&nbsp; <span id="k_report">dialyzer K</span></p>
+    
+  </form>
+<h3>References</h3>
+  
+  <hr>
+*Volume of distribution = 60% weight for men, 50% for women and 45% for elderly women)
+<hr>
+  
+  
+<p>The first article above addressed the concern that in a subgroup analysis of the HEMO study, 
+women had a lower death rate, but not men when dialyzed to a higher Kt/V. 
+(Also, when women were dialyzed at a lower Kt/V they had a higher mortality rate). The Kt/V formula in HEMO was normalized for volume (V). But, women
+and men have different volume of distribution and body surface area characteristics. The volume per unit of surface area 
+is lower for women than for men. In their paper, Daugirdas, Greene, Chertow and Depner rescaled the 
+<a href="https://www.advancedrenaleducation.com/Hemodialysis/KineticPrinciples/StdKtVDoseEquivalency/tabid/403/Default.aspx"> standard Kt/V</a> (different from the <a href="https://www.advancedrenaleducation.com/Hemodialysis/KineticPrinciples/ImpactoftKronKtV/tabid/310/Default.aspx">spKt/V or e Kt/V<a>) but correcting it for the ratio of Anthropometric Vol/BSA. The rescaled data suggests that to provide adequate dialysis dosing woman will need a higher standardized Kt/V than men, and thus a higher spKt/V. 
+<ol>
+<li>Daugirdas JT, Greene T, Chertow G and Depner TA. <a href="http://www.ncbi.nlm.nih.gov/pubmed/20595687">Clin J Am Soc Nephrol 5:1628-1636,2010</a><br>
+<li>Watson PE, Watson ID, Batt RD. <a href="http://www.ncbi.nlm.nih.gov/pubmed/6986753">Am J Clin Nutr 33:27-39, 1980</a><br>
+<li>DuBois D, DuBois EF. Arch Intern Medicine. 17:863-71, 1916<br>
+<li>Daugirdas JT. Simplified equations for monitoring Kt/V, PCRn, eKt/V, and ePCRn.<a href="http://www.ncbi.nlm.nih.gov/pubmed/8591121">Adv Ren Replace Ther. 1995 Oct;2(4):295-304.</a><br>
+<li>Leypoldt JK. <a href="http://www.ncbi.nlm.nih.gov/pubmed/19379417">Hemodial Int. 8:193-7, 2004</a><br>
+<li>Tattersall JE, DeTakats D, Chamney P, Greenwood RN, Farrington K: The post-hemodialysis rebound: Predicting and quantifying its effect on Kt/V.
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/8943495?"> Kidney Int 50:2094-2102, 1996</a><br>
+<li><a href="http://touchcalc.com">TOUCHCALC.com</a><br> 
+<li><a href="http://touchcalc.com/calculators/ktv_quick">Touchcalc Kt/V Formulas</a><br>
+<li><a href="http://touchcalc.com/calculators/dialyzer_clearance"><sup>&#8224;</sup>Calculating Dialyzer Clearance</a><br>
+ <li>The equation: (1-exp(koa*(qb-qd)/qb*qd)))/(1/qb-1/qd*exp(koa*(qb-qd)/qb*qd)))</li>
+<li><a href="https://zkidney.com/ktv_from_k">Estimate Kt/V from dialyzer clearance</a></li>
+<li><a href="https://zkidney.com/calculators/std_ktv">Corrected Standard Kt/V</a></li>
+<li><a href="https://zkidney.com/calculators/ktv_quick">Kt/V Quick</a></li>
+<li><a href="https://www.gambro.com/en/usa/Products/Hemodialysis/Dialyzers/Polyflux_H/?tab=other2Tab#tabList">Gambro Polyflux H Dialyzer Specifications</a></li>
+<li><a href="https://www.gambro.com/en/usa/Products/Hemodialysis/Dialyzers/Revaclear/?tab=other2Tab#tabList">Gambro Revaclear Dialyzer Specifications</a></li>
+<li><a href="https://www.advancedrenaleducation.com/Hemodialysis/tabid/176/Default.aspx">Fresenius Dialyzers</a></li>
+<li><a href="https://www.pitt.edu/~patzer/dialysis/dialyzers.htm">Hemoflow Dialyzers (Fresenius)</a></li>
+<li><a href="https://www.bbraunusa.com/images/bbraun_usa/RTD_TS01-rev308.pdf">Braun Dialyzer Specifications</a></li>
+
+<li><a href="https://www.dialmedsupply.com/rexeed/rexeed_S_R.html">Asahi Dialyzer Specifications</a></li>
+
+<li><a href="https://HDCN.com">HDCN - John Daugirdas's website (subscription and free</a></li>
+<li><a href="https://www.hdcn.com/7/706kiley.htm">From HDCN - Understanding mass transfer coefficients</a></li>
+<li><a href="https://Uptodate.com">UpToDate (Subscription)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kt/V">Wikipedia Definition - Kt/V</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standardized_Kt/V">Wikipedia Definition - Standardized Kt/V</a></li>
+
+
+</ol>
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center>
+</div>
+</body>
+</html>

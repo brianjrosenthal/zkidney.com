@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test Calculator | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/blank-3">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<style type="text/css">
+  .calc center {
+  	font-weight: bold;
+  }
+  .calc * {
+  	font-size: 20px;
+  }
+  div.calc {
+  	padding: 20px;
+  }
+</style>
+
+<script language="JavaScript">
+<!--
+var form
+form=document.getElementById('uag_form');
+function uag_update(form,uag,k,cl) {
+var na=form.na.value
+var k=form.k.value
+var cl=form.cl.value
+var uag=form.uag.value
+//alert('cl is ' + cl + ' and k is ' + k + ' and na is ' + na + ' and uag is ' + uag);
+na=eval(cl)+eval(uag)-eval(k)
+form.na.value=na
+}
+
+function uag_add(form,na,k,cl){
+var na=form.na.value
+var k=form.k.value
+var cl=form.cl.value
+
+
+uag=eval(na)+eval(k)-eval(cl)
+form.uag.value=uag
+ }
+
+
+
+//-->
+</script>
+<div class="calc">
+<center>Urine Anion Gap</center>
+
+<FORM id="uag_form">
+  <p>Input clean catch urine values</p>
+Urine Sodium (UNa) <INPUT size = 4 name=na value=56 onchange="uag_add(this.form,form.uag.value)"> mEq/L + <br>
+Urine Potassium (UK <INPUT size = 4 name=k value=34 onchange="uag_add(this.form,form.uag.value)"> mEq/L - <br>
+Urine Chloride <INPUT size = 4 name=cl value=123 onchange="uag_add(this.form,form.uag.value)">mEq/L = <br>
+Urine Anion Gap (UAG) <INPUT size = 6 name=uag onchange="uag_update(this.form)">
+<INPUT onclick=uag_add(this.form) name=button type=button value=uag>
+mEq/L<br>
+</FORM>
+</div>

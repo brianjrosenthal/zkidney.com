@@ -1,0 +1,649 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GFR in the Elderly (BIS) | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/bis">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23867751-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+
+
+
+   function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 45 || charCode > 57))
+            return false;
+
+         return true;
+      }
+    
+
+
+function radio_val(items,defaultVal)
+
+  {
+        var val;
+        for(var i = 0; i < items.length; i++) {
+                
+                if (items[i].checked) { return items[i].value;return defaultVal;}
+        }
+   }
+
+
+
+function calculateEPI(creatinine, creatinine_metric_p,female_sex_P,black_race_p,age,cystitis,stage_p) 
+{
+ 
+var form;
+form = document.getElementById('gfr_form');
+var cys=form.cystatin.value
+if ((cys <= 0.00003)||(cys >=20)) { cys = 0.00000;cysepi="";cysckd="";}
+ var creatinine = form.creatinine.value;
+  if ((creatinine <= 0.00003)||(creatinine >=3500)) { creatinine = 0.0000;mdr="";epi=""; cysepi="";}
+        var creatinine_metric_p = (radio_val(form.creatinine_metric_p,1) > 0); 
+        
+         cr = creatinine * (creatinine_metric_p ? 0.011312 :1 ); // MW creatinine 113.12);
+          
+        var age = form.age.value
+        
+        var female_sex_p = (radio_val(form.female_sex_p,1) > 0); // default male
+        var black_race_p = (radio_val(form.black_race_p,0) > 0); // default black
+       
+        var stage_p= radio_val(form.stage_p,1);
+
+        
+
+
+ var race=""   
+       if (black_race_p>0) 
+{   
+
+      race="African American"
+}
+else
+{
+race="Non African American"
+}
+
+ var gender=""   
+       if (female_sex_p>0) 
+{   
+
+      gender="female"
+}
+else
+{
+gender="male"
+}
+        
+        var gt_3months_p = document.getElementById('gt_3months_p').checked;
+       
+
+        var changed_p = false;
+        var error_p = false;
+
+        var bad_age_p = (age < 18 || age > 60);
+        var bad_age_message1
+              if (age < 18 || age > 60) {bad_age_message1="Valid only in persons between 18 and 70 years old.";}
+              else if (age >=18 && age <=60) {bad_age_message1="";}
+        var bad_age_message2
+              if ((age < 70) && (black_race_p>0))  {bad_age_message2="Valid only in persons 70 years and older. Not validated in African Americans.";}
+              else   if ((age < 70) && (black_race_p==0))  {bad_age_message2="Valid only in persons 70 years and older.";}
+              else if ((age >=70) && (black_race_p>0)) {bad_age_message2="Not validated in African Americans.";}
+              else if ((age >=70) && (black_race_p==0)) {bad_age_message2="Validated for this population.";}
+        
+        error_p = error_p || bad_age_p;
+        var multiplier_p = (radio_val(form.multiplier_p,1)>0); // default is  traceable
+        var mdr= 1*(multiplier_p ? 175 :186 );
+        mdr=mdr*Math.pow(cr,-1.154);
+        mdr=mdr*Math.pow(Math.max(18,age), -0.203);
+        mdr=mdr*(female_sex_p ? 0.742 : 1.0);
+        mdr=mdr*(black_race_p ? 1.212 : 1.0);
+       
+        var epitemp=0
+        varcysepitemp=0 
+        var biscys=cys;
+        var biscr=cr;
+        
+        
+        if (cys  <=0.8) {
+        cys=cys/.8
+        cysckd=Math.pow(cys,-.499)
+        cysckdepi=Math.pow(cys,-.375)
+        }
+        else if (cys > 0.8) {
+        cys=cys/.8
+        cysckd=Math.pow(cys,-1.328)
+        cysckdepi=Math.pow(cys,-.711)
+        }
+        
+       
+        
+
+        var age_factor993=Math.pow(0.993,age); //age factor for epi
+
+        var epiage_F=age_factor993*144  //constant * age factor for female - just need to multiply by scr variable and race factor
+        var epiage_M=age_factor993*141 //constant *age factor for male - just need to multiply by scr variable and race factor
+       
+
+        var age_factor996=Math.pow(0.996,age);//age factor for cystitis
+
+
+         var cysage=age_factor996*133 //constant * age factor - just need gender and cystatin variable factor
+        var cysage_F=cysage*.932 //just need cys variable
+        var cysage_M=cysage//just need cys variable
+
+       
+       
+       
+       var age_factor995=Math.pow(0.995,age); //cysepi age factor
+        var cysepiage_F=age_factor995*130 // female constant * cysepi age factor - just need scr and cys variables and race factor
+        var cysepiage_M=age_factor995*135 //male constant *cysepi age factor 
+       
+       
+       
+       var epicr=0
+       var cysepicr=0
+        
+        if ((cr  <=0.7)  &&  (female_sex_p>0)) //female
+        { 
+        cr=cr/.7;
+        epicr=Math.pow(cr,-0.329)
+        epi=epiage_F*epicr
+        cysepicr=Math.pow(cr,-0.248)
+        }
+        else if ((cr  > 0.7)   && (female_sex_p>0))  //female
+        {
+        cr=cr/.7;
+        epicr=Math.pow(cr, -1.209);
+        epi=epiage_F*epicr;
+        cysepicr=Math.pow(cr,-0.601)
+        }
+         else if ((cr  <= 0.9)   && ( female_sex_p==0))  //male 
+        {
+         cr=cr/.9;
+        epicr=Math.pow(cr, -.411);
+        epi=epiage_M*epicr;
+        cysepicr=Math.pow(cr,-.207);
+        }
+        else if ((cr  > 0.9 )  && (female_sex_p==0))  //male
+        {
+         cr=cr/.9;
+         epicr=Math.pow(cr,-1.209)
+         epi=epiage_M*epicr;
+         cysepicr=Math.pow(cr,-0.601)
+      
+        }
+        
+      
+     
+
+      // BIS1
+var bis1=3736;
+bis1=bis1*Math.pow(biscr,-0.87);
+bis1=bis1*Math.pow(age,-0.95);
+bis1=bis1*(female_sex_p ? .82:1.0);//
+
+   //BIS2: 
+var bis2=767 ;
+bis2=bis2*Math.pow(biscys,-0.61);
+bis2=bis2*Math.pow(biscr,-0.40);
+bis2=bis2*Math.pow(age,-0.57);
+
+bis2=bis2*(female_sex_p ? .87:1.0);//
+
+
+       
+   
+
+
+
+     if (female_sex_p>0) 
+      {
+      cysepi=cysepicr*cysepiage_F*cysckdepi
+      }
+      else if (female_sex_p==0) 
+      {
+      cysepi= cysepicr*cysepiage_M*cysckdepi
+      }
+
+
+       cysepi=cysepi*(black_race_p ?1.08:1)
+       cysckd=cysage*cysckd
+       cysckd=cysckd*(female_sex_p ? .932 : 1.0);
+       epi=epi*(black_race_p ? 1.159 : 1.0);
+       mdr=Math.round(mdr*1)/1
+       epi=Math.round(epi*1)/1
+       ckdcys=Math.round(cysckd*1)/1
+       cysepi=Math.round(cysepi*1)/1
+
+      bis1=Math.round(bis1*1)/1
+      bis2=Math.round(bis2*1)/1    
+
+       if ((cysepi<=1)||(cysepi>=150)) {cysepi="";}
+         if ((epi<=1)||(epi>=150)) {epi="";}
+  if ((ckdcys<=1)||(ckdcys>=150)) {ckdcys="";}
+  if ((mdr<=1)||(mdr>=150)) {mdr="";}
+   if ((bis1<=1)||(bis1>=150)) {bis1="";}
+  if ((bis2<=1)||(bis2>=150)) {bis2="";}
+       document.getElementById('epi_report').innerHTML = '<b>' + epi + '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender + '. '+bad_age_message1+'';
+       document.getElementById('mdrd_report').innerHTML = '<b>' + mdr + '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender + '. '+bad_age_message1+'';
+ document.getElementById('cystatin_report').innerHTML = '<b>' + ckdcys + '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender + '. '+bad_age_message1+'';
+ document.getElementById('cysepi_report').innerHTML = '<b>' + cysepi+ '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender + '. '+bad_age_message1+'';
+document.getElementById('bis1_report').innerHTML = '<b>' + bis1+ '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender + '. '+bad_age_message2+' (Serum creatinine= '+biscr+' mg/dL)';
+document.getElementById('bis2_report').innerHTML = '<b>' + bis2+ '</b> mL/min/1.73 m<sup>2</sup> in a  '+age+' year old ' +race+ ' ' +gender +  '. '+bad_age_message2+' (Serum cystatin C= '+biscys+' mg/L)';
+         
+        if (multiplier_p==0) {document.getElementById('idms_message').innerHTML ='<br><b>CKD-EPI FORMULA IS ONLY VALID WITH STANDARDIZED CREATININES</b><br>'} else if(multiplier_p>0) {document.getElementById('idms_message').innerHTML =''};
+        if (bad_age_p) {
+           document.getElementById('gfr_message').innerHTML = '<h2><p class="mdrd">This formula is valid only for adults over 18, but not valid for adults over 70. (Use the</b> <a class="mdrd" href="http://touchcalc.com/bis2.html"><b>BIS1 and BIS 2</b></a><b> formulae in persons over 70).<br>'+  
+ 'Use the</b><A class="mdrd" href="http://www.kidney.org/professionals/kdoqi/gfr_calculatorPed.cfm" target="_blank"><b> Pediatric Calculator</b></a><b> for persons under 18 years of age.</b></p></h2>'; 
+ 
+        }
+       else {
+            document.getElementById('gfr_message').innerHTML = '';
+       };
+ 
+
+       
+      var stage_gfr=""
+      if (stage_p==1) 
+      {
+       stage_gfr=mdr;
+      }
+      else if (stage_p==2) 
+      {
+      stage_gfr=epi;
+      }
+      else if (stage_p==3)
+     {
+     stage_gfr=cysckd;
+     }
+      else if (stage_p==4) 
+     {
+     stage_gfr=cysepi;
+     }
+ else if (stage_p==5)
+     {
+     stage_gfr=bis1;
+     }
+      else if (stage_p==6) 
+     {
+     stage_gfr=bis2;
+     }
+     
+
+        if (stage_gfr >= 90 && stage_gfr <=200) {stage="1";}
+        else if (stage_gfr < 90 && stage_gfr >= 60){stage="2";}
+        else if (stage_gfr < 60 && stage_gfr >= 30){stage="3";}
+        else if (stage_gfr < 30 && stage_gfr>= 15){stage="4";}
+        else if (stage_gfr < 15 && stage_gfr >=0.003) {stage="5";}
+        else if (stage_gfr <0.003|| stage_gfr > 200) {stage="";}
+        
+ 
+    if (gt_3months_p == true) {
+                        document.getElementById('stage_message').innerHTML = '<h3 class="mdrd"> The patient has stage '+stage+ ' CKD.</h3>'+ 
+'<a class="mdrd" href="http://www.kidney.org/professionals/kdoqi/cap/index.html" target="_blank" ><br>Refer to the NKF Action Plan</a>';
+		        }
+          else {
+                     document.getElementById('stage_message').innerHTML = '';
+                 }
+		       
+  }
+function toggleCheckbox(id1, id2) {
+   var elem1 = document.getElementById(id1);
+   var elem2 = document.getElementById(id2);
+   if (elem1.checked) {
+      elem2.checked = true;
+   } else {
+      elem1.checked = true;
+   }
+}
+
+var old_onload = window.onload;
+window.onload = function() {
+   document.getElementById('input_creatinine').focus();
+   document.onkeyup = function(e) {
+       
+       var e = e || window.event; 
+       var elem = e.originalTarget || event.srcElement.tagName;
+       if (e.keyCode == 82) { // 82 = R
+          toggleCheckbox('radio_race_afam', 'radio_race_other');
+       } else if (e.keyCode == 71) { // 71 = g
+         toggleCheckbox('radio_gender_male', 'radio_gender_female');
+       } else if (e.keyCode == 83) { // 83 = s
+         toggleCheckbox('radio_creatinine_mg', 'radio_creatinine_umol');
+       } else if (e.keyCode == 86) { // 86 = v
+          document.getElementById('input_creatinine').focus();
+       } else if (e.keyCode == 67) { // 67 = c
+          var elem2 = document.getElementById("gt_3months_p");
+          elem2.checked = !elem2.checked;
+       } else if (e.keyCode == 84) { // 84 = t
+         toggleCheckbox('radio_idms_yes', 'radio_idms_no');
+       } else if (e.keyCode == 65) { // 65 = a
+          document.getElementById('input_age').focus();
+       } 
+   };
+   
+   var fixNumber = function() {
+       var value = parseFloat(this.value);
+       if (isNaN(value)) {
+          this.value = '';
+       } else { 
+          this.value = value;
+       }
+   }
+   // make age fix itself if you click a letter in it.
+  var age = document.getElementById('_age');
+   //age.onkeyup = fixNumber;
+
+   // make input_creatinine fix itself if you click a letter in it.
+   var input_creatinine = document.getElementById('input_creatinine');
+   //input_creatinine.onkeyup = fixNumber;
+
+   if (old_onload) {
+      
+      old_onload();
+   }
+
+
+ //-->
+}
+</script>
+
+<style type="text/css" media="screen">
+  
+  <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:#bo232b;
+        }
+p ul li a div {
+
+        font-size:14px;
+        margin-left: auto;
+        margin-right: auto;
+        color:#bo232b;
+       
+}
+input {
+  font-size:14px;
+  border-color:#bo232b;
+background-color:white;
+margin:2px;
+color:#bo232b;
+}
+
+ 
+ 
+ 
+.mdrd {	
+	font-family: Arial, Verdana, Helvetica, sans-serif;	
+	background:#ffffff;
+	color:#bo232b;
+	padding:3px;
+	
+}
+
+p.mdrd {
+	font-size:14px;
+	color:#B0232B;
+	font-family: Arial, Verdana, Helvetica, sans-serif;	
+	
+}
+
+
+a.mdrd {
+	font-size:14px;
+	color:#B0232B;
+	text-decoration:none;
+	font-family: Arial, Verdana, Helvetica, sans-serif;	
+	
+}
+a.mdrd:hover {
+    color:#ffffff;
+    background-color:#c41216;
+    font-family: Arial, Verdana, Helvetica, sans-serif;	
+    
+}
+
+
+hr.mdrd {
+color:#980000;
+length:90%;
+}
+h2.mdrd {
+font-size:2em;
+font-family: Arial, Verdana, Helvetica, sans-serif;
+color:#980000;	
+
+}
+
+h3.mdrd {
+font-size:16px;
+color:#B0232B;
+font-family: Arial, Verdana, Helvetica, sans-serif;	
+
+}
+h4.mdrd {
+font-size:14px;
+color:#B0232B;
+font-family: Arial, Verdana, Helvetica, sans-serif;	
+
+}
+
+th.mdrd {
+color:#ffffff;text-align:center;
+background-color:#c41216;
+border:0;
+font-family: Arial, Verdana, Helvetica, sans-serif;	
+}
+
+td.mdrd {
+border:0;color:#b0232b;font-family: Arial, Verdana, Helvetica, sans-serif;	
+}
+
+
+.mdrd_info
+{
+
+margin:10px;
+
+border:1px solid #c41216;
+font-family:arial, san-serif, verdana, hevetica;
+
+
+}
+#mdrd_info {margin:4px;indent:4px;font-family:arial,helvetica,sans-serif,verdana;font-size:14px;color:#000066;font-weight:normal;}
+a{font-size:14px;color:#000066;font-weight:normal;text-decoration:none;}
+a:hover{text-decoration:underline;}
+.mdrd_info1 {font-size:16px;color:#000066;text-align:center;}
+</style>
+
+
+
+</head>
+<BODY onload="window.setInterval('calculateEPI()',250);">
+  <div class="mdrd">
+<form id=gfr_form>
+ 
+
+
+<table style="text-align:center;" class="mdrd">
+
+  <tr> 
+      <th colspan=2 class="mdrd"><h2>6 GFR Equations - including Estimating GFR in the Elderly (pre 2021) <br>
+ (With SI Units)</h2><p 
+style="font-decoration:italic;color:white;text-align:center;margin:4;">4 variable 
+MDRD Equation, CKD-EPI Equation, CKD-EPI Cystatin C Equation (2012) and CKD-EPI Cystatin C-Creatinine Equation (2012), BIS 1 and BIS 2 Equations  (with SI Units)<br>using standardized serum creatinine, age, race, gender and cystatin C</p>
+      <p><i> programmed by Stephen Z. Fadem, M.D., FACP, FASN  <br>and Brian Rosenthal</i></p>  </th></tr><table>
+<form id="gfr_form">
+<p class="mdrd"><label for="input_creatinine"><u>S</u>erum creatinine</label><br>
+    <input type="radio" id="radio_creatinine_mg" name="creatinine_metric_p" value="0" CHECKED>
+      <label for="radio_creatinine_mg">mg/dL</label>
+      <input type="radio" id="radio_creatinine_umol" name="creatinine_metric_p" value="1" >
+      <label for="radio_creatinine_umol">&mu;mol/L</label>
+
+<input style="color:b0232b;"  id="input_creatinine" name="creatinine" value="1.2" size="4"  onkeypress="return isNumberKey(event)">
+</p>
+
+<p class="mdrd"><label for="cystatin"><u>Cy</u>statin C (mg/L)</label>
+
+<input style="color:b0232b;"  id="cystatin" name="cystatin" value="1" size="4"  onkeypress="return isNumberKey(event)">
+</p>
+
+
+
+<br>
+<p class="mdrd">NOTE: CKD-EPI GFR is only valid with creatinine methods are traceable to IDMS</p>
+
+    <p class="mdrd"><label for="input_age"><u>A</u>ge</label><input id="age" style="color:b0232b;" name="age" value="80" size="4"  onkeypress="return isNumberKey(event)"> years</p>
+
+
+
+
+    <p class="mdrd"><u>R</u>ace <INPUT TYPE="radio" id="radio_race_afam" name="black_race_p" value="1" CHECKED><label for="radio_race_afam">African American</label>
+      <INPUT TYPE="radio" id="radio_race_other" name="black_race_p" value="0"><label for="radio_race_other">All other races*</label></p>
+
+    <p class="mdrd"><u>G</u>ender
+    
+      <INPUT TYPE="radio" id="radio_gender_male" NAME="female_sex_p" VALUE="0" CHECKED>
+      <label for="radio_gender_male">Male</label>
+      <INPUT TYPE="radio" id="radio_gender_female" NAME="female_sex_p" VALUE="1">
+        <label for="radio_gender_female">Female</label></p>
+
+    <p class="mdrd"><u>T</u>RACEABLE TO IDMS<a class="mdrd" style="font-size:14px;" href="http://nephron.com/idms">(What is this?)</a>
+
+      <INPUT TYPE="radio" id="radio_idms_no" NAME="multiplier_p" VALUE="0" >
+      <label for="radio_idms_no">No</label>
+      <INPUT TYPE="radio" id="radio_idms_yes" NAME="multiplier_p" VALUE="1" CHECKED>
+      <label for="radio_idms_yes">Yes</label></p>
+
+ 
+
+   <p class="mdrd"  style="font-size:16px;" >CKD-EPI</a> Value: <span class="mdrd" id="epi_report">epi</span></p>
+<p class="mdrd"  style="font-size:16px;" >CKD-EPI CYSTATIN </a> Value: <span id="cystatin_report">cystatin</span></p>
+<p class="mdrd"  style="font-size:16px;"> CKD-EPI-CYSTATIN-CREATININE</a> Value: <span id="cysepi_report">cysepi</span></p>
+   <p class="mdrd" style="font-size:16px;" >MDRD STUDY EQUATION: <span class="mdrd" id="mdrd_report">mdrd</span> </p>
+<p class="mdrd" style="font-size:16px;" >BIS1 GFR: <span class="mdrd" id="bis1_report">bis1</span> </p>
+<p class="mdrd" style="font-size:16px;" >BIS2 GFR: <span class="mdrd"id="bis2_report">bis2</span> </p>
+
+     <p class="mdrd">(Age, Race, Gender, Plasma creatinine,Serum cystatin C)</p>
+      
+	
+<p class="mdrd"><label for="gt_3months_p"><u>C</u>hronic kidney disease (GFR less than 60 or kidney damage for at least three months)</label>
+<input type="checkbox" id="gt_3months_p"> <br>
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="1">MDRD GFR<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="2" CHECKED>EPI GFR<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="3">CYSTATIN GFR<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="4">EPI CYSTATIN GFR<br>
+        <Input type="radio" id="stage_p" Name="stage_p" VALUE="5">BIS1 GFR<br>
+        <Input type="radio" id="stage_p" Name="stage_p" VALUE="6">BIS2 GFR<br>	
+	
+	
+	
+
+
+<span class="MDRD" id="idms_message"></span>
+<h2><span class="mdrd" id="stage_message"></span></h2><span id="gfr_message"></span>
+ 
+<p class="mdrd">*All ethnic groups other than African American<br>
+<a class="mdrd" target="_blank" href="http://nephron.com/ckd_epi_shortcuts">Shortcut: Type underlined letters to toggle between variables</a></p>
+
+
+
+ <div id="mdrd_support">
+
+<p class="mdrd" style="font-weight:bold;">ADDITIONAL INFORMATION: 
+  <a class="mdrd" href="https://renalworld.com">RENALWORLD</a><br> 
+<p class="mdrd">Renalworld has all the Touchcalc calculators, as well as easy assess to the latest journal articles and literature searches by renal disease.</p>
+<hr style="border-color:#b0232b;border-size:1px;">
+
+
+<div id="refs" class="mdrd" style="margin:10;text-align:left;">
+<h2 class="mdrd" >REFERENCES:</h2><br>
+<ul>
+<li><p class="mdrd">Andrew S. Levey, MD; Lesley A. Stevens, MD, MS; Christopher H. Schmid, PhD; Yaping (Lucy) Zhang, MS; Alejandro F. Castro III, MPH; Harold I. Feldman, MD, MSCE; John W. Kusek, PhD; Paul Eggers, PhD; Frederick Van Lente, PhD; Tom Greene, PhD; and Josef Coresh, MD, PhD, MHS, for the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). A New Equation to Estimate Glomerular Filtration Rate.
+<a class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/19414839?"> Ann Intern Med. 2009 May 5;150(9):604-12</a></p>
+<li><p class="mdrd">Expressing the Modification of Diet in Renal Disease Study Equation for Estimating Glomerular Filtration Rate with Standardized Serum Creatinine Values. <A class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/17332152">Clin. Chem, 2007 Apr;53(4):766-72. Epub 2007 Mar 1.</a></li>
+<li><p class="mdrd">A more accurate accurate method to estimate glomerular filtration rate from serum creatinine: a new prediction equation. 
+Modification of Diet in Renal Disease Study Group <a class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/10075613">Ann
+Intern Med 1999 Mar 16; 130 (6): 461-70.</A></p>
+<li><p class="mdrd">A.S. Levey, T. Greene, J.W. Kusek, G.L. Beck, MDRD Study Group.  A simplified equation to
+predict glomerular filtration rate from serum creatinine (abstract) <A class="mdrd" href="http://nephron.org/nephsites/nic/mdrdgfr">J Am Soc Nephrol 2000 Sep; 11:155A</a></p>
+<li><p class="mdrd">Levey AS, Coresh J, Greene T, Stevens LA, Zhang YL, Hendriksen S, Kusek JW, Van Lente F; Chronic Kidney Disease 
+Epidemiology Collaboration. Using standardized serum creatinine values in the modification of diet in renal disease study equation for estimating glomerular filtration rate.
+<a class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/16908915">Ann Intern Med. 2006 Aug 15;145(4):247-54.</a></p>
+<li><p class="mdrd">AACC - American Association of Clinical Chemistry<a class="mdrd" href="http://www.aacc.org/AACC/events/expert_access/2006/kidneyDisease/qanda.htm"> Q & A with W. Gregory Miller, PhD, DABCC, FACB</a></p>
+<li><p class="mdrd">G.L. Myers, W.G. Miller, J. Coresh, J. Fleming, N. Greenberg, T. Greene, T. Hostetter, A.S. Levey, M. Panteghini, M. Welch, and J.H. Eckfeldt. 
+Recommendations for improving serum creatinine measurement: 
+A report from the laboratory working group of the National Kidney Disease Education Program. 
+<a class="mdrd" href="http://www.ncbi.nlm.nih.gov:80/entrez/query.fcgi?cmd=Retrieve&db=Pubmed&list_uids=16332993&dopt=Abstract">Clinical Chemistry 2006 52: 5-18.</a></p>
+<li><p class="mdrd">Stevens LA, Coresh J, Feldman HI, Greene T, Lash JP, Nelson RG, Rahman M, Deysher AE, Zhang YL, Schmid CH, Levey AS. Evaluation of the modification of diet in renal disease study equation in a large diverse population <a class="mdrd" href="http://www.ncbi.nlm.nih.gov/sites/entrez?Db=pubmed&Cmd=ShowDetailView&TermToSearch=17855641&ordinalpos=1&itool=EntrezSystem2.PEntrez.Pubmed.Pubmed_ResultsPanel.Pubmed_RVDocSum">  J Am Soc Nephrol. 2007 Sep; 18(10):2749-57</a></p>
+<li><p class="mdrd">Madero M, Sarnak MJ, Stevens LA. Serum cystatin C as a marker of glomerular filtration rate<a class="mdrd" href="http://www.ncbi.nlm.nih.gov/sites/entrez?Db=pubmed&Cmd=ShowDetailView&TermToSearch=17053476&ordinalpos=1&itool=EntrezSystem2.PEntrez.Pubmed.Pubmed_ResultsPanel.Pubmed_RVDocSum"> Curr Opin Nephrol Hypertens. 2006 Nov;15(6):610-6</a></p>
+<li><p class="mdrd">Inker LA, Schmid CH, Tighiouart H, Eckfeldt JH, Feldman HI, Greene T, Kusek JW, Manzi J, Van Lente F, Zhang YL, Coresh J, Levey AS; CKD-EPI Investigators. Estimating glomerular filtration rate from serum creatinine and cystatin C.  <a class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/22762315">New Eng J Med 2012 Jul 5;367(1):20-9.</a></li>
+<li><p class="mdrd">Schaeffner ES, Ebert N, Delanaye P, Frei U, Gaedeke J, Jakob O, Kuhlmann MK, Schuchardt M, Tölle M, Ziebig R, van der Giet M, Martus P. Two novel equations to estimate kidney function in persons aged 70 years or older. <a class="mdrd" href="http://www.ncbi.nlm.nih.gov/pubmed/23027318">Ann Intern Med. 2012 Oct 2;157(7):471-81</a></li>
+<li><p class="mdrd"><a class="mdrd" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3791984/">Drenth-van Maanen AC, Jansen PA, Proost JH, Egberts TC, van Zuilen AD, van der Stap D, van Marum RJ. Renal function assessment in older adults. Br J Clin Pharmacol. 2013 Oct;76(4):616-23. doi: 10.1111/bcp.12199. PMID: 23802656; PMCID: PMC3791984.</a></p></li>
+
+<h3 class="mdrd">NKF K/DOQI:</h3><br>
+<li><p class="mdrd">The National Kidney Foundation K/DOQI Clinical Practice Guidelines for Nutrition in Renal Failure (C. Appendices - Adult guidelines) <a class="mdrd" href="http://www.kidney.org/professionals/doqi/doqi/nut_appx09a.html">Appendix IX. Estimation of Glomerular Filtration Rate</A>
+<li><p class="mdrd"><a class="mdrd" href="http://www.kidney.org/professionals/doqi/kdoqi/toc.htm">
+The National Kidney Foundation K/DOQI Clinical Practice Guidelines for Chronic Kidney Disease</A></p>
+<li><p class="mdrd"><a class="mdrd" href="http://www.kidney.org/professionals/doqi/kdoqi/Gif_File/kck_t12.gif">Table 12. Definition and Stages of Chronic Kidney disease</A></p></li>
+
+
+<ul class="mdrd">
+ <H3 class="mdrd">NKDEP:</h3><br>
+<li><p class="mdrd"><a class="mdrd" href="http://www.nkdep.nih.gov/professionals/gfr_calculators/index.htm">NKDEP: GFR Calculators - the new standards</a></p>
+<li><p class="mdrd"><a class="mdrd" href="http://www.nkdep.nih.gov/labprofessionals/index.htm">NKDEP: For laboratory professionals</a></p>
+<li><p class="mdrd"><a class="mdrd" href="http://nkdep.nih.gov/labprofessionals/Estimating_GFR.pdf">NKDEP - Greg Miller: Estimating GFR from Serum Creatinine: issues and Recommendations for Reporting</a></p>
+
+
+
+
+</ul>
+<hr style="border-color:#b0232b;border-size:1px;">
+<p class="mdrd" style="font-style:italic;">MDRD Calculator &copy; 2000-2024, <A class="mdrd" HREF="http://nephron.com/">Stephen Z. Fadem, M.D., FASN</A></p></i></p>
+
+
+
+
+<p class="mdrd" style="text-align:left;">DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. <br><br>
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+/div>
+</div>
+
+
+</body>
+</html>

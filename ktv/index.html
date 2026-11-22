@@ -1,0 +1,310 @@
+<!Doctype HTML>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KTV | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/ktv">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[ {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;} 
+  </style>
+<script language="Javascript">
+
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+//library end  
+var form
+function calculate(form,urr){
+form=document.getElementById('ktv');
+var bun0=form.bun0.value;
+var bun1=form.bun1.value;
+var spvktv=form.spvktv.value
+var spaktv=form.spaktv.value;
+var urr_calc=(bun0-bun1)*100/bun0
+var urr=form.urr.value;
+if(urr==null||urr==0){urr1="input urr or BUN values"};
+var v=form.v.value;
+var w=form.w.value;
+var uf=form.uf.value;
+var t=form.t.value;
+var minits=t*60;
+var urr=urr/100;
+urr1=-1*Math.log(1-urr);
+var r=bun1/bun0;
+var urr2=Math.log(r-t*0.008);
+var urr3=(4-3.5*r)*uf*.55/v;
+var urr4=(4-3.5*r)*uf/w;
+
+var tt=t*60+35;
+var tt=t*60/tt;
+
+urr5=-urr2-urr3
+urr4=-urr2-urr4
+var tattersall_ktv=tt*urr5;
+ektva = spaktv - 0.60*spaktv/t + 0.03; 
+ektvv = spvktv - 0.46*spvktv/t + 0.02;
+
+ 
+document.getElementById("urr_report").innerHTML='<b> '+round(urr_calc)+' % </b>';
+document.getElementById("ktv_report").innerHTML='<b> '+round(urr1)+' </b>';
+document.getElementById("ktv1_report").innerHTML='<b> '+round(urr5)+' </b>';
+document.getElementById("ktv2_report").innerHTML='<b> '+round(urr4)+' </b>';
+document.getElementById("ektvv_report").innerHTML='<b> '+round(ektvv) +' </b>';
+document.getElementById("ektva_report").innerHTML='<b> '+round(ektva) +' </b>';
+document.getElementById("tattersall_report").innerHTML='<b> '+round(tattersall_ktv) +' </b>';
+document.getElementById("time_report").innerHTML='<b> '+round(tt) +' </b>';
+document.getElementById("minits_report").innerHTML='<b> '+round(minits) +' </b>';
+}
+</script>
+<body onLoad="window.setInterval('calculate(form)',250);">
+  <h2 style="text-align:center;">Kt/V</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+<form id="ktv">
+ 
+<h1>Simple Kt/V from URR</h1>
+urr <input name=urr size=6 value=68>
+kt/v = -ln(1-URR) =  <span id=ktv_report>???</span><br><hr>
+<h1>Urea Reduction Ratio (URR)</h1>
+BUN<sub>0</sub><input name=bun0 size=6 value=100>mg/dL<br>
+BUN<sub>1</sub><input name=bun1 size=6 value=30>mg/dL<br>
+Calculated URR= <span id="urr_report"></span><br>
+<h1>spKt/V</h1>
+Weight loss (UF) =<input name=uf size=6 value=3>liters<br>
+T = time in hours=<input name=t size=6 value=4>hours (<span id=minits_report>???</span> minutes)<br>
+V=<a href="http://nephron.com/cgi-bin/kdoqi.cgi"> volume of distribution </a><input name=v size=6 value=42>liters<br> 
+W= Weight <input name=w size=6 value=70>kg<br><hr>
+
+Kt/V = ln (R - 0.008 x t) + (4 - 3.5 x R) x 0.55 UF/V = <span id=ktv1_report>???</span><br>
+Kt/V = ln (R - 0.008 x t) + (4 - 3.5 x R) x UF/W = <span id=ktv2_report>???</span><br>   <hr>
+<h1>equilibrated Kt/V (eKt/V) from single pool venous Kt/V</h1>
+spvKt/V: <input name=spvktv size=6 value=""> eKt/V from venous single pool Kt/V = spvKtv - 0.46*spvktv/t + 0.02 = <span id=ektvv_report>???</span><br>
+<h1>equilibrated Kt/V (eKt/V) from single pool arterial Kt/V</h1>
+spaKt/V: <input name=spaktv size=6 value=""> eKt/V from arterial single pool Kt/V = spaKtv - 0.60*spaktv/t + 0.03 = <span id=ektva_report>???</span><br>
+<br><a href="http://touchcalc.com/calculators/dialyzer_clearance/">Calculate Dialyzer Clearance</a>
+<h1>equilibrated Kt/V (eKt/V) (Tattersall)</h1>
+eKt/V=(t/t+35) x spKt/v=<span id=tattersall_report>???</span>; (t/t+35)=<span id=time_report>???</span><br>
+
+
+
+</form><br>
+<p>
+R=URR
+Weight loss=UF
+T = time in hours
+ KtV = In (R - 0.008 x t) + (4 - 3.5 x R) x 0.55 UF/V
+ eKTV (arterial) = spaKTV - (0.60)(spaKTV)/t + 0.03 
+ eKtV (venous) = spvKTV - (0.46) (spvKTV)/t + 0.02.
+</p>
+
+<hr>
+
+REFERENCES: Daugirdas JT. Simplified equations for monitoring Kt/V, PCRn, eKt/V, and ePCRn.<a href="http://www.ncbi.nlm.nih.gov/pubmed/8591121?">Adv Ren Replace Ther. 1995 Oct;2(4):295-304.</a><br><br>
+
+Tattersall JE, DeTakats D, Chamney P, Greenwood RN, Farrington K: The post-hemodialysis rebound: Predicting and quantifying its effect on Kt/V.<a href="http://www.ncbi.nlm.nih.gov/pubmed/8943495?"> Kidney Int 50:2094-2102, 1996</a><br><br>
+<a href="http://touchcalc.com">TOUCHCALC.com</a><br> 
+<dtml-var calc_footer>
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

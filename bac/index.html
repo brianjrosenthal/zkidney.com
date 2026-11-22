@@ -1,0 +1,499 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blood Alcohol Level | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/bac">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<HTML>
+<head>
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[type="text"] {font-size:15px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+
+
+<script language="Javascript">
+
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+ 
+  
+  
+/*
+function timedMsg()
+{
+var timeout=setTimeout("alert('Please enter proper value!')",15000)
+}
+*/
+
+
+<!--//
+        var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+        
+        for(var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+       
+var form
+function calculateBAC(form,wt,wt_metric_p,female_sex_p,oz_metric_p,t,
+oz1,percent1,number1,oz2,percent2,number2,oz3,percent3,number3,oz4,percent4,number4,oz5,percent5,number5) {
+form=document.getElementById('bac_form');
+        var wt = form.wt.value;
+                     
+
+        var wt_metric_p =(radio_val(form.wt_metric_p,1)>0);//default pounds
+        var female_sex_p = (radio_val(form.female_sex_p,1) > 0); // default male
+        var oz_metric_p = (radio_val(form.oz_metric_p,1) > 0); // default oz
+        var t=form.t.value;//time in minutes
+        var number1= form.number1.value;
+        var number2= form.number2.value;
+        var number3= form.number3.value; 
+        var number4= form.number4.value; 
+        var number5= form.number5.value; 
+        var oz1= form.oz1.value; 
+        var oz2= form.oz2.value;
+        var oz3= form.oz3.value;
+        var oz4= form.oz4.value;
+        var oz5= form.oz5.value; 
+        var percent1= form.percent1.value; 
+        var percent2= form.percent2.value;
+        var percent3= form.percent3.value;
+        var percent4= form.percent4.value; 
+        var percent5= form.percent5.value; 
+
+
+
+   
+
+oz1*=(oz_metric_p ? 1:29.6 ); //default to milliliters
+oz2*=(oz_metric_p ? 1:29.6 ); //default to milliliters
+oz3*=(oz_metric_p ? 1:29.6 ); //default to milliliters
+oz4*=(oz_metric_p ? 1:29.6 ); //default to milliliters
+oz5*=(oz_metric_p ? 1:29.6 ); //default to milliliters
+ 
+
+
+if (oz_metric_p > 0) {
+document.getElementById('mm1').innerHTML="cc";
+document.getElementById('mm2').innerHTML="cc";
+document.getElementById('mm3').innerHTML="cc";
+document.getElementById('mm4').innerHTML="cc";
+document.getElementById('mm5').innerHTML="cc";
+        }
+else {
+document.getElementById('mm1').innerHTML="oz";
+document.getElementById('mm2').innerHTML="oz";
+document.getElementById('mm3').innerHTML="oz";
+document.getElementById('mm4').innerHTML="oz";
+document.getElementById('mm5').innerHTML="oz";
+         }
+//form.conv.value=round2(conv); //tests accuracy of conversion
+oz1*=.789*number1*percent1/100;// Widmark density factor by concentration by number drinks
+oz2*=.789*number2*percent2/100;
+oz3*=.789*number3*percent3/100;
+oz4*=.789*number4*percent4/100;
+oz5*=.789*number5*percent5/100;
+oz=eval(oz1)+eval(oz2)+eval(oz3)+eval(oz4)+eval(oz5);
+
+if (number1>0) {
+document.getElementById("r2").style.display="inline"
+
+}
+else{
+document.getElementById("r2").style.display="none"
+}
+
+
+
+
+if (number2>0) {
+document.getElementById("r3").style.display="inline"
+
+}
+else{
+document.getElementById("r3").style.display="none"
+}
+
+
+if (number3>0) {
+document.getElementById("r4").style.display="inline"
+
+}
+else{
+document.getElementById("r4").style.display="none"
+}
+
+
+if (number4>0) {
+document.getElementById("r5").style.display="inline"
+
+}
+else{
+document.getElementById("r5").style.display="none"
+}
+
+
+
+grams=oz;
+form.grams.value=round(grams)
+      vd= wt*(wt_metric_p ? 454:1000)*(female_sex_p? 68:55)/1000; // kg, vol distribution
+      vd/=100
+form.vd.value=round(vd)
+bac=(grams/vd)/10
+bac-=(.015*t);     
+
+bac=round1(bac);
+document.getElementById('bac_value').innerHTML = '<b>'   +bac+  '</b>' ;
+
+
+       if (bac >= .1){bac_message="<h1>You are legally intoxicated and should not drive. Either have a friend drive you home or call a cab.</h1>";}
+        else if (bac < .1 && bac >=.08){bac_message="<h1>You are legally intoxicated and should not drive. Either have a friend drive you home or call a cab.</h1>";}
+       else if (bac < .08 && bac >= .05){bac_message="<h1>You are intoxicated, and although you have not reached the legal limit, the concentration in you blood stream may not have peaked.</h1> ";}
+        else if (bac < .049 && bac >= .0){bac_message="<h1>You are not legally intoxicated. However, if you plan to drive you should quit drinking now</h1>";}
+        else if (bac < 0){bac_message="<h1>You have no detectable alcohol in your bloodstream. You can be the designated driver if you do not drink tonight.</h1>";}
+        
+        
+ document.getElementById('bac_statement').innerHTML = '<b style="color:red;">'  +bac_message+ '</b>' ;
+
+
+}
+// -->
+</script>
+
+</head>
+<BODY onload="window.setInterval('calculateBAC()',250);">
+<h2 style="text-align:center;">Blood Alcohol Level</h2
+  <h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+
+
+<FORM id=bac_form>
+
+Weight:       
+          <input name="wt" value="90" size="3">
+          <input type="radio" name="wt_metric_p" value="1" CHECKED >pounds
+          <input type="radio" name="wt_metric_p" value="0" >kilograms<br>
+          <hr>
+Gender :
+          <input type="radio" name="female_sex_p" value="1" CHECKED >Male
+          <input type="radio" name="female_sex_p" value="0" >Female<br>
+          <hr>
+Measured in Ounces or Milliliters:
+ <input type="radio" name="oz_metric_p" value="1" >cc 
+          <input type="radio" name="oz_metric_p" value="0" CHECKED >oz<br>
+        
+<hr>
+
+1st round beverage information:<br>
+         Number of drinks: <input name="number1" value="0" size="4" >
+         Percent:<input name="percent1" value="0" size="4" >
+         Amount each drink:  
+          <input name="oz1" value="0" size="4" > <span id="mm1"></span><br>
+<div id="r2" style="display:none;">
+<hr>
+
+2nd round beverage information<br>
+
+          Number of drinks: <input name="number2" value="0" size="4" > 
+         Percent: <input name="percent2" value="0" size="4" > 
+Amount each drink:  
+          <input name="oz2" value="0" size="4" > <span id="mm2"></span><br>
+</div>
+<div id="r3" style="display:none;">
+<hr>
+3rd round (enough !!)<br>
+
+Number of drinks <input name="number3" value="0" size="4"> 
+         Percent <input name="percent3" value="0" size="4">
+Amount each drink:
+          <input name="oz3" value="0" size="4"> <span id="mm3"></span><br>
+
+</div>
+
+<div id="r4" style="display:none;">
+<hr>
+4 th round (better stop!!)<br>
+
+
+Number of drinks <input name="number4" value="0" size="4"> 
+         Percent<input name="percent4" value="0" size="4" >
+Amount each drink:   
+          <input name="oz4" value="0" size="4"> <span id="mm4"></span><br>
+</div>
+
+<div id="r5" style="display:none;">
+<hr>
+5th round (whew!!!)<br>
+
+Number of drinks <input name="number5" value="0" size="4" >
+         Percent<input name="percent5" value="0" size="4">
+Amount each drink:   
+          <input name="oz5" value="0" size="4"> <span id="mm5"></span><br>
+<hr>
+</div>
+Input time since last drink (hours) <input name="t" value="1" size="4" OnKeyUp="calculateBAC(this.form)"><br>
+        <hr>
+          
+          Blood Alcohol Concentration (Widmark):    <span id=bac_value>???</span><br>
+ Mass of alcohol consumed <input size=6 name=grams> / Volume of Distribution <input size=6 name=vd><BR>
+Interpretation:<br> <span id=bac_statement>???</span><br><input type=Reset value=RESET style="background-color:#cceecc;color:#000066;"><br>
+<center><H1 style="font-weight:bold;font-size:18;text-align:center;">DRIVE RESPONSIBLY!!</h1></center>
+
+</FORM>
+ 
+<br>
+<h2>Content of Beverages</h2>
+<select id=beverage size=10>
+<option value=12,4.5>Beer:Usual glass is 12 ounces 4.5%</option>
+<option value=12,3.1 >Light Beer:Usual glass is 12 ounces 3.1%</li>
+<option value=12,2.3>Low Alcohol Beer:Usual glass is 12 ounces 2.3%</li>
+<option value=5,12>Wine: Usual glass is 5  ounces. 12% by volume</li>
+<option value=1.5,43>Scotch:Usual shot is 1.5 ounces. 43%</li>
+<option value=12.2,4.5>Ales: Usual glass is 12.2 ounces. 4.5%  </li> 
+<option value=12,9.5>Porter: Usual glass is 12 ounces. -9.5% </li> 
+<option value=12,8>Stout: Usual glass is 12 ounces. 8 % </li>
+<option value=12,5.61>Malt Liquor: Usual glass is 12 ounces. 5.61%  </li> 
+<option value=5,25>Sake: Usual glass is 5  ounces.  25 % </li>
+<option value=4.1,14>Champagne: Usual glass is 4.1 ounces.  14%  </li> 
+<option value=4,20>Aromatized wines: Usual glass is 4 ounces.  20.0 % </li> 
+<option value=3,43>Brandies/Cognac: Usual glass is 3 ounces.  43.0 % </li> 
+<option value=1,75>Whiskies: Usual glass is 1 ounces. 75.0% </li>  
+<option value=1,40>Whiskies: Usual glass is 1 ounces. 40.0% </li>  
+<option value=1,50>Vodkas: Usual glass is 1 ounces. 50.0 %  </li>
+<option value=1.15,48.5>Gin Drinks: Usual glass is 1.15 ounces. 48.5% </li>  
+<option value=4,95>Rum: Usual glass is 4 ounces. 95.0 % </li> 
+<option value=1,50.5>Tequila: Usual glass is 1 ounces. 50.5% </li>
+</select>
+<h2>References</h2>
+<ul>
+<li><a href="http://www.clinchem.org/cgi/reprint/34/5/888.pdf">G. Simpson. Medicolegal Alcohol Determination:Widmark Revisited,
+ CLIN. CHEM. 34:888-889,1988. 
+</a></li>
+<li><a href="http://www.dui-california.com/blood-alcohol-level.htm"></a>DUI California</li>
+<li><a href="http://www.nhtsa.gov/people/injury/research/AlcoholHighway/5_dealing_w_problem.htm">Alcohol and Highway Safety: 2001</a></li>
+<li><a href="http://www.ndaa.org/pdf/toxicology_final.pdf">Alcohol Toxicology for Prosecutors</a></li>
+</ul>
+
+</div>
+<p>&copy; Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+<p &copy; 2008-24, Touchcalc, Inc. All rights reserved. No part of this application may be duplicated without written permission from the author.</p>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABW-Calculate the Frame | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/frame">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+<script language="Javascript">
+function round(num){
+return Math.round(num*100)/100
+}
+
+
+function calculate(form, wrist_centimeters, height_centimeters, wrist_inches, height_inches, wrist_metric_p, height_metric_p) {
+//declarations
+            var wrist_inches=0; 
+            var height_inches=0; 
+            var wrist_centimeters=0; 
+             var height_centimeters=0; 
+             var wrist_metric_p
+             var height_metric_p
+        height_centimeters=document.getElementById("height_centimeters").value;
+        height_inches=document.getElementById("height_inches").value;
+        wrist_centimeters=document.getElementById("wrist_centimeters").value;
+        wrist_inches=document.getElementById("wrist_inches").value;
+
+
+
+ 
+//converts height 
+
+ if (window.document.frame.height_metric_p[0].checked)   
+        {
+        
+        document.getElementById("height_inches").style.display="inline";
+        document.getElementById("height_centimeters").style.display="none";
+         
+        height_inches=height_inches*1;
+        height_centimeters=height_inches*2.54;
+            }  
+ 
+        else {
+              
+              document.getElementById("height_centimeters").style.display="inline";
+              
+              document.getElementById("height_inches").style.display="none";
+              
+ 
+              height_centimeters=height_centimeters*1;
+            }
+
+//converts wrist circumference
+
+ if (window.document.frame.wrist_metric_p[0].checked)   
+        {
+        
+        document.getElementById("wrist_inches").style.display="inline";
+        document.getElementById("wrist_centimeters").style.display="none";
+        
+        wrist_inches=wrist_inches*1;
+
+        wrist_centimeters=wrist_inches*2.54
+       
+                }
+        else {
+              
+              document.getElementById("wrist_centimeters").style.display="inline";
+              document.getElementById("wrist_inches").style.display="none";
+               
+              wrist_centimeters=wrist_centimeters*1;
+               }
+var ht = height_centimeters
+var wr = wrist_centimeters
+var frame =ht/wr
+frame=round(frame)
+
+    
+          
+            document.getElementById('frame_report').innerHTML = frame;
+
+     
+	  }
+        
+   
+    </script>
+
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:14px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:14px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+  </style>          
+</head>
+<body onload="window.setInterval('calculate()',1)";>
+<div>
+<FORM name=frame>
+<h1 style="text-align:center;">BODY FRAME CALCULATOR </h1>
+  <p style="font-style:italic;text-align:center;">by Stephen Z Fadem and Brian Rosenthal</p>
+<p style="font-weight:bold;">HEIGHT
+
+<input  type="radio"  name="height_metric_p" checked> inches
+<input  type="radio"  name="height_metric_p">centimeters
+</p>
+<p>inches (in)<input  id="height_inches" type="text" value="69" size="4">centimeters (cm)<input   id="height_centimeters" type="text" value="" size="5"></p>
+
+<p  style="font-weight:bold;text-align:left;">WRIST CIRCUMFERENCE<input  type="radio" name="wrist_metric_p" checked> in<input  type="radio" name="wrist_metric_p">cm
+
+<input  id="wrist_inches" type="text" value="8" size="4">
+<input   id="wrist_centimeters" type="text" value="18" size="5">
+</p>
+
+<p>FRAME SIZE  = Height (cm) / Wrist circumference (cm)<br>
+<div style="font-weight:bold;">FRAME SIZE =  <span id="frame_report">___</span></div><br>
+<input onClick=calculate() type=button value=go> <input type=reset value=reset>
+</p>
+
+
+
+<table style="max-width:400px;">
+<tr><th colspan=3 align="center">REFERENCE TABLE FOR FRAME SIZE</th></tr><td colspan=3 padding=4><td></tr>
+<tr><td >MALES</td>  <td>FRAME SIZE</td>     <td>FEMALES</td></tr>
+<tr><td > &gt;10.5</td>         <td>SMALL</td>  <td> >11.0</td></tr>
+<tr><td> 9.6-10.5</td>       <td>MEDIUM</td> <td>10.1-11.0</td></tr>
+<tr><td> &lt; 9.6</td>          <td>LARGE</td>  <td><10.1</td> </tr>
+<tr><td colspan=3>Grant JP:Handbook of Parenteral Nutrition, WB Saunders, Philadelphia, 1980</td></tr>
+</table>
+  <ol>
+  <li><a href="../abw/">Adjust body
+    weight by frame, height, and gender</a></li>
+  <li><a href="../abw-fn/">Look up body frame from NHANES2 tables</a></li>
+    <li><a href="../frame/">Calculate frame from height and wrist circumference</a></li>
+  </ol>
+
+  </FORM>
+ 
+ 
+<p>
+  Copyright &copy  2024 by Stephen Z. Fadem, M.D., FASN. All rights reserved</p>
+  <p>
+ DISCLAIMER:</p>
+<p>
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same.
+
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+
+  </div>
+  </body>
+</html>

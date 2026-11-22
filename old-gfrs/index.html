@@ -1,0 +1,865 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Original GFRS Smartphone | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/old-gfrs">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:#eee;
+margin:2px;
+}
+
+ 
+div #nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+color:white;
+background-color:595b60;
+font-size:10px;
+margin:0 auto;
+overflow:hidden;
+text-align:justify
+vertical-align:middle;
+}
+
+
+
+div #nav ul{
+
+
+list-style:none;
+text-align:justify;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:4em;
+z-index:1000;
+text-align:center;
+display:inline;
+margin:0 auto;
+  
+  top:0;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:black;
+  position:relative;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:gray;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:0px solid #00F; font-size:12px;}
+th{background:white;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:white;}
+tr:nth-child(even) {background:white;}   
+
+  
+</style>
+
+<script language=javascript>
+
+
+       
+
+
+
+
+
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+ 
+
+
+
+
+
+
+
+
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23867751-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+
+
+
+   function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 45 || charCode > 57))
+            return false;
+
+         return true;
+      }
+    
+
+
+function radio_val(items,defaultVal)
+
+  {
+        var val;
+        for(var i = 0; i < items.length; i++) {
+                
+                if (items[i].checked) { return items[i].value;return defaultVal;}
+        }
+   }
+
+
+var form;
+function calculateEPI(creatinine, creatinine_metric_p,female_sex_P,black_race_p,age,cystatin,stage_p, adjusted_p, feet, inches,height_metric_p, centimeters, weight_metric_p ) 
+{
+ 
+
+form = document.getElementById('gfr_form');
+var cys=form.cystatin.value
+Math.round(cystatin*100)/100;
+if ((cys <= 0.00003)||(cys >=20)) { cys = 0.00000;cysepi="";cysckd="";}
+ var creatinine = form.creatinine.value;
+creatinine-Math.round(creatinine*100)/100;
+  if ((creatinine <= 0.00003)||(creatinine >=3500)) { creatinine = 0.0000;mdr="";epi=""; cysepi="";}
+        var creatinine_metric_p = (radio_val(form.creatinine_metric_p,1) > 0); 
+        
+         cr = creatinine * (creatinine_metric_p ? 0.011312 :1 ); // MW creatinine 113.12);
+          
+        var age = form.age.value
+        
+        var female_sex_p = (radio_val(form.female_sex_p,1) > 0); // default male
+        var black_race_p = (radio_val(form.black_race_p,0) > 0); // default black
+       
+        var stage_p= radio_val(form.stage_p,1);
+
+        
+
+
+ var race=""   
+       if (black_race_p>0) 
+{   
+
+      race="African American"
+}
+else
+{
+race="Non African American"
+}
+
+ var gender=""   
+       if (female_sex_p>0) 
+{   
+
+      gender="female"
+}
+else
+{
+gender="male"
+}
+        
+        var gt_3months_p = document.getElementById('gt_3months_p').checked;
+        var adjusted_p = document.getElementById('adjusted_p').checked;
+var height_metric_p = document.getElementById('height_metric_p').checked;
+var weight_metric_p = document.getElementById('weight_metric_p').checked;
+      
+        var changed_p = false;
+        var error_p = false;
+
+        var bad_age_p = (age < 18 || age >= 70);
+        
+        error_p = error_p || bad_age_p;
+        var multiplier_p = (radio_val(form.multiplier_p,1)>0); // default is  traceable
+        var mdr= 1*(multiplier_p ? 175 :186 );
+        mdr=mdr*Math.pow(cr,-1.154);
+        mdr=mdr*Math.pow(Math.max(18,age), -0.203);
+        mdr=mdr*(female_sex_p ? 0.742 : 1.0);
+        mdr=mdr*(black_race_p ? 1.212 : 1.0);
+       
+        var epitemp=0
+        varcysepitemp=0 
+        
+
+
+
+
+
+
+        
+        
+        if (cys  <=0.8) {
+        cys=cys/.8
+        cysckd=Math.pow(cys,-.499)
+        cysckdepi=Math.pow(cys,-.375)
+        }
+        else if (cys > 0.8) {
+        cys=cys/.8
+        cysckd=Math.pow(cys,-1.328)
+        cysckdepi=Math.pow(cys,-.711)
+        }
+        
+       
+        
+
+        var age_factor993=Math.pow(0.993,age); //age factor for epi
+
+        var epiage_F=age_factor993*144  //constant * age factor for female - just need to multiply by scr variable and race factor
+        var epiage_M=age_factor993*141 //constant *age factor for male - just need to multiply by scr variable and race factor
+       
+
+        var age_factor996=Math.pow(0.996,age);//age factor for cystitis
+
+
+         var cysage=age_factor996*133 //constant * age factor - just need gender and serum cystatin  C variable factor
+        var cysage_F=cysage*.932 //just need cys variable
+        var cysage_M=cysage//just need cys variable
+
+       
+       
+       
+       var age_factor995=Math.pow(0.995,age); //cysepi age factor
+        var cysepiage_F=age_factor995*130 // female constant * cysepi age factor - just need scr and cys variables and race factor
+        var cysepiage_M=age_factor995*135 //male constant *cysepi age factor 
+       
+       
+       
+       var epicr=0
+       var cysepicr=0
+        
+        if ((cr  <=0.7)  &&  (female_sex_p>0)) //female
+        { 
+        cr=cr/.7;
+        epicr=Math.pow(cr,-0.329)
+        epi=epiage_F*epicr
+        cysepicr=Math.pow(cr,-0.248)
+        }
+        else if ((cr  > 0.7)   && (female_sex_p>0))  //female
+        {
+        cr=cr/.7;
+        epicr=Math.pow(cr, -1.209);
+        epi=epiage_F*epicr;
+        cysepicr=Math.pow(cr,-0.601)
+        }
+         else if ((cr  <= 0.9)   && ( female_sex_p==0))  //male 
+        {
+         cr=cr/.9;
+        epicr=Math.pow(cr, -.411);
+        epi=epiage_M*epicr;
+        cysepicr=Math.pow(cr,-.207);
+        }
+        else if ((cr  > 0.9 )  && (female_sex_p==0))  //male
+        {
+         cr=cr/.9;
+         epicr=Math.pow(cr,-1.209)
+         epi=epiage_M*epicr;
+         cysepicr=Math.pow(cr,-0.601)
+      
+        }
+        
+      
+
+       
+       
+       
+   
+
+
+
+     if (female_sex_p>0) 
+      {
+      cysepi=cysepicr*cysepiage_F*cysckdepi
+      }
+      else if (female_sex_p==0) 
+      {
+      cysepi= cysepicr*cysepiage_M*cysckdepi
+      }
+
+
+       cysepi=cysepi*(black_race_p ?1.08:1)
+       cysckd=cysage*cysckd
+       cysckd=cysckd*(female_sex_p ? .932 : 1.0);
+       epi=epi*(black_race_p ? 1.159 : 1.0);
+       mdr=Math.round(mdr*1)/1
+       epi=Math.round(epi*1)/1
+       ckdcys=Math.round(cysckd*1)/1
+       cysepi=Math.round(cysepi*1)/1
+       if ((cysepi<=1)||(cysepi>=150)) {cysepi="";}
+         if ((epi<=1)||(epi>=150)) {epi="";}
+  if ((ckdcys<=1)||(ckdcys>=150)) {ckdcys="";}
+  if ((mdr<=1)||(mdr>=150)) {mdr="";}
+       document.getElementById('epi_report').innerHTML = '<b>' + epi + '</b>';
+       document.getElementById('mdrd_report').innerHTML = '<b>' + mdr + '</b>';
+ document.getElementById('cystatin_report').innerHTML = '<b>' + ckdcys + '</b>';
+ document.getElementById('cysepi_report').innerHTML = '<b>' + cysepi+ ' </b>';
+document.getElementById('arg_report').innerHTML='in a '  +age+ ' year old ' +race+ ' ' +gender + '';
+document.getElementById('arg1_report').innerHTML='in a '  +age+ ' year old ' +race+ ' ' +gender + '';
+         
+        if (multiplier_p==0) {document.getElementById('idms_message').innerHTML ='<br>THE CKD-EPI  EQUATIONS ARE ONLY VALID WITH CREATININE ASSAYS THAT ARE TRACEABLE TO IDMS AND SERUM CYSTATIN C ASSAYS THAT ARE TRACEABLE TO IFCC (INTERNATIONAL FEDERATION OF CLINICAL CHEMISTRY)METHODS<br>'} else if(multiplier_p>0) {document.getElementById('idms_message').innerHTML =''};
+        if (bad_age_p) {
+           document.getElementById('gfr_message').innerHTML = '<p >This formula is valid only for adults over 18. Use the CKD-epi equations in persons over 70.<br>'+  
+ 'Use the NKF<A  href="http://www.kidney.org/professionals/kdoqi/gfr_calculatorPed.cfm" target="_blank"> Pediatric Calculator</a> for persons under 18 years of age.</p>'; 
+ 
+        }
+       else {
+            document.getElementById('gfr_message').innerHTML = '';
+       };
+
+ 
+
+       
+      var stage_gfr=""
+      if (stage_p==1) 
+      {
+       stage_gfr=mdr;
+      }
+      else if (stage_p==2) 
+      {
+      stage_gfr=epi;
+      }
+      else if (stage_p==3)
+     {
+     stage_gfr=cysckd;
+     }
+      else if (stage_p==4) 
+     {
+     stage_gfr=cysepi;
+     }
+     
+
+        if (stage_gfr >= 90 && stage_gfr <=200) {stage="1";}
+        else if (stage_gfr < 90 && stage_gfr >= 60){stage="2";}
+        else if (stage_gfr < 60 && stage_gfr >= 45){stage="3a";}
+        else if (stage_gfr < 45 && stage_gfr >= 30){stage="3b";}
+        else if (stage_gfr < 30 && stage_gfr>= 15){stage="4";}
+        else if (stage_gfr < 15 && stage_gfr >=0.003) {stage="5";}
+        else if (stage_gfr <0.003|| stage_gfr > 200) {stage="";}
+        
+ 
+    if (gt_3months_p == true) {
+                        document.getElementById('stage_message').innerHTML = '<h3 > The patient has stage '+stage+ ' CKD.</h3>'+ 
+'<a href="http://www.kdigo.org/clinical_practice_guidelines/ckd.php"><br>KDIGO</a> 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease';
+		        }
+          else {
+                     document.getElementById('stage_message').innerHTML = '';
+                 }
+
+//---------
+
+           
+            var inches = 0;
+            var feet = 0;
+            var weight= 0;
+           
+            feet=document.getElementById("feet").value;
+            inches=document.getElementById("inches").value;
+          
+            centimeters=document.getElementById("centimeters").value;
+            weight=document.getElementById("weight").value;
+            
+       //  if (IsNumeric(feet)) {
+                 feet=parseInt(feet);
+       //  }
+      //   if (IsNumeric(inches)) {
+                inches=parseInt(inches);
+//}
+
+            centimeters=parseInt(centimeters);
+            weight=parseInt(weight);
+            
+
+
+//inches and pounds are checked and defaults and equal 1
+
+
+//converts inches to centimeters
+
+if (adjusted_p == true)
+{
+document.getElementById("bsa_adjust").style.display="inline";
+}
+else 
+{document.getElementById("bsa_adjust").style.display="none";
+}
+
+
+
+        if (height_metric_p > 0)   
+        {
+        feet=feet*12;
+        document.getElementById("feet").style.display="inline";
+        inches=inches;document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+
+        feet=feet+inches;
+        centimeters=feet*2.54;
+                }
+        else                 {
+              centimeters=centimeters*1;
+              document.getElementById("centimeters").style.display="inline";
+              document.getElementById("feet").style.display="none";
+              document.getElementById("inches").style.display="none";
+            }
+        
+//converts pounds to kilograms          
+        if (weight_metric_p > 0) 
+        {
+        weight=weight*.45;
+        }
+        else 
+       {
+       weight=weight*1;
+       }
+        
+         
+      
+       
+// make sure height and weight are valid
+            var range_height= Array(0,250);
+            var range_weight= Array(0,250);
+ 
+
+  
+	 		
+            var cm = centimeters;//height
+            var wt = weight;
+          
+            //BSA = (W 0.425 x H 0.725) x 0.007184
+
+            var bsa=.007184 * Math.pow(wt,0.425)
+                  bsa=bsa*Math.pow(cm,0.725) 
+         if (isNaN(bsa)) {
+         bsa = '';
+       } else { 
+          bsa = bsa;
+       }
+
+
+var agfr=epi*bsa  
+agfr=agfr/1.73
+agfr=Math.round(agfr*1)/1
+  if (isNaN(agfr)) {
+         agfr = '';
+         agfr=agfr.toString()
+       }
+else  if ((agfr<=0)||(agfr>=180)) {agfr="";
+agfr=agfr.toString()}
+        else {agfr=agfr}
+
+
+var bgfr=cysckd*bsa 
+bgfr=bgfr/1.73
+bgfr=Math.round(bgfr*1)/1
+ if (isNaN(bgfr)) {
+         bgfr =" ";
+       } 
+else  if ((bgfr<=1)||(bgfr>=180)) {bgfr="";}
+else  { 
+          bgfr = bgfr;
+       }
+
+var cgfr=cysepi*bsa 
+cgfr=cgfr/1.73
+
+cgfr=Math.round(cgfr*1)/1
+ if (isNaN(cgfr)) {
+         cgfr ="";
+       } 
+else  if ((cgfr<=0)||(cgfr>=180)) {cgfr="";}
+       else { 
+          cgfr = cgfr;
+       }
+
+
+var dgfr=mdr*bsa 
+dgfr=dgfr/1.73
+
+dgfr=Math.round(dgfr*1)/1
+if (isNaN(dgfr)) {
+         dgfr = '';
+}
+else  if ((dgfr<=1)||(dgfr>=180)) {dgfr="";}
+else {dgfr=dgfr}
+   
+
+
+bsa=Math.round(bsa*100)/100
+
+
+         
+           document.getElementById("output").innerHTML = +bsa+  " m<sup>2</sup>"
+           document.getElementById("output1").innerHTML =+agfr+ " "
+document.getElementById("output2").innerHTML =+bgfr+ " "
+document.getElementById("output3").innerHTML =+cgfr+ " "
+document.getElementById("output4").innerHTML =+dgfr+ " "
+            
+
+
+
+
+
+
+		       
+  }
+function toggleCheckbox(id1, id2) {
+   var elem1 = document.getElementById(id1);
+   var elem2 = document.getElementById(id2);
+   if (elem1.checked) {
+      elem2.checked = true;
+   } else {
+      elem1.checked = true;
+   }
+}
+
+var old_onload = window.onload;
+window.onload = function() {
+   document.getElementById('input_creatinine').focus();
+   document.onkeyup = function(e) {
+       
+       var e = e || window.event; 
+       var elem = e.originalTarget || event.srcElement.tagName;
+       if (e.keyCode == 82) { // 82 = R
+          toggleCheckbox('radio_race_afam', 'radio_race_other');
+       } else if (e.keyCode == 71) { // 71 = g
+         toggleCheckbox('radio_gender_male', 'radio_gender_female');
+       } else if (e.keyCode == 83) { // 83 = s
+         toggleCheckbox('radio_creatinine_mg', 'radio_creatinine_umol');
+       } else if (e.keyCode == 86) { // 86 = v
+          document.getElementById('input_creatinine').focus();
+       } else if (e.keyCode == 67) { // 67 = c
+          var elem2 = document.getElementById("gt_3months_p");
+          elem2.checked = !elem2.checked;
+       } else if (e.keyCode == 84) { // 84 = t
+         toggleCheckbox('radio_idms_yes', 'radio_idms_no');
+       } else if (e.keyCode == 65) { // 65 = a
+          document.getElementById('input_age').focus();
+       } 
+   };
+   
+   var fixNumber = function() {
+       var value = parseFloat(this.value);
+       if (isNaN(value)) {
+          this.value = '';
+       } else { 
+          this.value = value;
+       }
+   }
+   // make age fix itself if you click a letter in it.
+  var age = document.getElementById('_age');
+   //age.onkeyup = fixNumber;
+
+   // make input_creatinine fix itself if you click a letter in it.
+   var input_creatinine = document.getElementById('input_creatinine');
+   //input_creatinine.onkeyup = fixNumber;
+
+   if (old_onload) {
+      
+      old_onload();
+   }
+
+
+
+        
+       
+
+
+ //-->
+}
+</script>
+
+
+
+
+</head>
+<BODY onload="window.setInterval('calculateEPI()',250);">
+<fieldset id="fieldset_style">
+<center><div id="nav" style="text:align:center;">
+<ul>
+<li><a href="../pred-sp/">HOME</a></li>
+<li><a href="../epi-sp/">EPI</a></li>
+
+
+
+<li><a href="../old-gfrs/">OLD</a></li>
+</ul>
+  </div></center><br>
+
+
+<form id=gfr_form>
+  
+  <p><a style="text-align:center;" href="https://renalworld.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57></a></p>
+  
+
+
+
+
+
+<h3 style="text-align:center;">ORIGINAL GFRS</h3>
+<h4 style="text-align:center;">Stephen Z. Fadem and Brian Rosenthal</h4>
+
+<table>
+
+ <td valign=bottom style="font-size:11px;text-align:center;">CKD-EPI</td>
+<td valign=bottom style="font-size:11px;text-align:center;">CKD-EPI CYSTATIN C (2012)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">CKD-EPI CYSTATIN C-CREATININE (2012)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">MDRD STUDY</td></tr>
+<tr>
+<td valign=bottom style="font-size:13px;text-align:center;font-weight:bold;"><span id="epi_report" ></span></td>
+<td valign=bottom style="font-size:13px;text-align:center;font-weight:bold;"><span id="cysepi_report"></span></td>
+<td valign=bottom style="font-size:13px;text-align:center;font-weight:bold;"><span id="cystatin_report" ></span></td>
+<td valign=bottom style="font-size:13px;text-align:center;font-weight:bold;"><span id="mdrd_report"></span></td>
+
+</tr>
+<tr>
+<td valign=bottom style="font-size:11px;text-align:left;" colspan=4>
+ml/min <span id="arg_report"></span>. 
+(All values expressed in ml/min/1.73 m<sup>2</sup>)
+</td>
+    
+</tr>
+</table>
+<table>
+ 
+<tr>
+<td valign=bottom style="font-size:11px;text-align:center;">Serum Cr</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Serum Cys C<br> (mg/L)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Age (yrs)</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Race</td>
+<td valign=bottom style="font-size:11px;text-align:center;">Gender</td>
+
+</tr>
+<tr>
+
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  id="input_creatinine" name="creatinine" value="" size="3"  onkeypress="return isNumberKey(event)"><br>
+ <input type="radio" id="radio_creatinine_mg" name="creatinine_metric_p" value="0" CHECKED> mg/dL<br>
+ <input type="radio" id="radio_creatinine_umol" name="creatinine_metric_p" value="1" >&mu;mol/L
+</td>
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  id="cystatin" name="cystatin" value="" size="4"  onkeypress="return isNumberKey(event)"></td>
+<td valign=top style="font-size:11px;text-align:center;"><input style="color:b0232b;"  name="age" value="" size="2"  onkeypress="return isNumberKey(event)"></td>
+<td valign=top style="font-size:11px;text-align:center;"><INPUT TYPE="radio" id="radio_race_afam" name="black_race_p" value="1" CHECKED>AA<br>
+      <INPUT TYPE="radio" id="radio_race_other" name="black_race_p" value="0">O*</td>
+<td valign=top style="font-size:11px;text-align:center;"> <INPUT TYPE="radio" id="radio_gender_male" NAME="female_sex_p" VALUE="0" CHECKED>M<br>
+      <INPUT TYPE="radio" id="radio_gender_female" NAME="female_sex_p" VALUE="1">F</td>
+<tr>
+  </table>
+
+<p>
+	
+Chronic kidney disease (GFR less than 60 or kidney damage for at least 3 months)
+<input type="checkbox" id="gt_3months_p"> <br>
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="1">MDRD STUDY EQ<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="2" CHECKED>CKD-EPI CREATININE EQ (2009)<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="3">CKD-EPI CYSTATIN C (2012)<BR>	
+	<Input type="radio" id="stage_p" Name="stage_p" VALUE="4">CKD-EPI CYSTATIN C-CREATININE	(2012)<br><br>
+TRACEABLE TO IDMS <span style="font-size:11;">?</span></a>
+    
+      <INPUT TYPE="radio" id="radio_idms_no" NAME="multiplier_p" VALUE="0" >N
+      <INPUT TYPE="radio" id="radio_idms_yes" NAME="multiplier_p" VALUE="1" CHECKED> Y</p>
+ <p>
+
+<span  id="idms_message"></span><br>
+<span  id="stage_message"></span><span id="gfr_message"></span><br>
+ 
+*O=All ethnic groups other than African American. Cr=creatinine. Cys=cystatin. Eq=Equation. <br>
+ <div id="mdrd_support" style=font-size:11px;>
+<input type="checkbox" name="adjusted_p" id="adjusted_p">Remove Body Surface Area Adjustment to Express GFR in ml/min
+   <span id="bsa_adjust" style="display:none;"></p>
+</span.
+
+
+<p>Height <input type="radio" id="height_metric_p" name="height_metric_p" value="0">feet - inches<input  id="feet" type="text" value="" size="3"><input  id="inches" type="text" value="" size="4"><input  type="radio" id="height_metric_p" name="height_metric_p" value="1">centimeters</td><td colspan=2  style=font-size:11px;><input   id="centimeters" type="text" value="" size="5"><p>
+<p>Weight  
+
+       
+       <input  type="radio" id="weight_metric_p" name="weight_metric_p" value="0"> pounds 
+        <input    type="radio" id="weight_metric_p" name="weight_metric_p" value="1"> kilograms <input  id="weight" type="text" value="" size="5">
+  </p>
+
+
+BSA (m<sup>2</sup>)  = (W<sup>0.425</sup> x H<sup> 0.725</sup>) x 0.007184<br>
+Unadjusted CKD-EPI eGFR (ml/min) = eGFR (ml/min/1.73 m<sup>2</sup>) x BSA (m<sup>2</sup>) / 1.73<br>
+BSA =  <span id="output" style="font-weight:bold;"> </span><br>
+  </p>
+<p> UNADJUSTED GFR</p>
+<table><tr>
+<td style="font-size:11px;text-align:center;valign:top;">CKD-EPI CR EQ (2009)</td>
+<td style="font-size:11px;text-align:center;valign:top;">CKD-EPI CYS C EQUATION (2012)</td>
+<td style="font-size:11px;text-align:center;valign:top;">CKD-EPI CYS C-CR EQ (2012)</td>
+<td style="font-size:11px;text-align:center;valign:top;">MDRD STUDY EQ</td>
+</tr>
+<tr>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output1">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output2">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output3">____</span></td>
+<td style="font-weight:bold;font-size:11px;text-align:center;valign:top;"><span id="output4">____</span></td>
+  </tr></table>
+
+<p>ml/min <span id="arg1_report"></span></p> 
+
+      </div>
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.<br>
+<a href="https://zkidney.com/calc">
+                                  <img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width="57"> <br>TOUCHCALC</a></p>
+</div>
+
+</form>
+
+</fieldset>
+</body>
+</html>

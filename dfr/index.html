@@ -1,0 +1,268 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialysis Fluid Removal | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/dfr">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+<dtml-var iphone_style>
+
+
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=1" />
+
+
+<script language="Javascript">
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+//library end  
+
+function radio_val(items,defaultVal)
+
+  {
+        var val;
+        for(var i = 0; i < items.length; i++) {
+                
+                if (items[i].checked) { return items[i].value;return defaultVal;}
+        }
+   }
+
+
+function calculate_wt(kg,hour,min,wr,cc_p,wt_form)
+{
+        var form;
+        form = document.getElementById('wt_form');
+            var cc_p = (radio_val(form.cc_p,1) > 0)
+           var output;
+            var output1;
+            
+            var liter;
+            var cc = form.cc.value;
+            var kg= form.kg.value;
+            var hour=form.hour.value;
+            var wr=form.wr.value;
+            var percentage
+            var pr3
+            var pr4
+            var pr5
+            
+
+
+            cc=document.getElementById("cc").value;
+            kg=document.getElementById("kg").value;
+            hour=document.getElementById("hour").value;
+            wr=document.getElementById("wr").value;
+
+
+
+pr3=.03*kg;
+pr3="3% removed = "+Math.round(pr3*100)/100+"L<br>"
+pr4=.04*kg;
+pr4="4% removed = "+Math.round(pr4*100)/100+"L<br>"
+
+pr5=.05*kg;
+pr5="5% removed = "+Math.round(pr5*100)/100+"L<br>"
+percentremoval=pr3+pr4+pr5
+           
+if (cc_p==1) {
+output=cc*kg;
+output1=output*hour;
+var output2="cc/hour: "+Math.round(output*1)/1+ " cc";
+liter=output1/1000;
+liter="Total Liters: "+Math.round(liter*100)/100 + " L";
+var twr1=""
+percentage = ""
+}
+else if (cc_p<1) {
+var twr=wr;
+twr=twr*1000;
+twr=twr/hour;
+twr=twr/kg;
+twr=Math.round(twr*100)/100;
+var twr1="TARGET CC REMOVAL: "+twr+" cc/kg/hr.";
+
+percentage=wr/kg;
+percentage=wr*100/kg;
+percentage=Math.round(percentage*100)/100;
+percentage="Percent weight gain: "+ percentage +"%. 3% or less is recommended."
+liter="";
+output2="";
+ 
+
+}
+
+document.getElementById("output-report").innerHTML = output2;
+document.getElementById("output1-report").innerHTML = liter;
+document.getElementById("output3-report").innerHTML = twr1;
+document.getElementById("output5-report").innerHTML = percentage;
+document.getElementById("output6-report").innerHTML = percentremoval;
+
+
+
+
+
+  
+var twrcaution=""
+
+
+if ((twr >= 10) || (cc >=10)){
+twrcaution="Mortality began to increase when more than 10cc/kg/hour is removed.";
+}
+else if ((twr < 10) && (cc <10))
+
+{
+twrcaution="";
+}
+
+
+
+ document.getElementById("output4-report").innerHTML= twrcaution;
+             
+		       }
+        
+            
+        
+
+    </script>
+
+<BODY onload="window.setInterval('calculate_wt(wt_form)',250);">
+<fieldset id="fieldset_style">
+<dtml-var iphone_header missing>
+
+<H1 style="color:black;font-size:16px;text-align:center;">HOW MUCH FLUID TO REMOVE<br>WITH DIALYSIS TREATMENTS</h1>
+<form id="wt_form">
+
+<p style="font-size:15px;"> <INPUT style="font-size:15px;" TYPE="radio" name="cc_p" value="0" CHECKED>
+INPUT TARGET WEIGHT REMOVAL IN KG<input style="font-size:15px" TYPE="text" name="wr" id="wr" size=4 value=""></p> OR
+
+ <p style="font-size:15px;"><INPUT style="font-size:15px;" TYPE="radio" name="cc_p" value="1" >DESIRED REMOVAL IN CC/kg/hr (0-13)
+<input style="font-size:15px" name="cc" id="cc" size=4 value=""></p>
+
+
+
+<p style="font-size:15px;">DRY WEIGHT in KG<input style="font-size:15px" TYPE="text" name="kg" id="kg" size=6 value=70></p>
+<p style="font-size:15px;">TREATMENT HOURS<input style="font-size:15px" TYPE="text" name="hour" id="hour" size=6 value=4></p>
+<p style="font-size:15px;"><span style="font-size:15px;" id="output6-report">xxx</span></p>
+
+<p style="font-size:15px;"><span style="font-size:15px;" id="output-report">xxx</span></p>
+<p style="font-size:15px;"><span style="font-size:15px;" id="output1-report">xxx</span></p>
+<p style="font-size:15px;"><span style="font-size:15px;" id="output3-report">xxx</span></p>
+<p style="font-size:15px;"><span style="font-size:15px;" id="output5-report">xxx</span></p>
+<p style="font-size:15px;"><span style="font-size:15px;" id="output4-report">xxx</span></p>
+<img src="http://touchcalc.com/images/i_green.jpg" width=20 border=0> It has been shown that the maximum amount of fluid removal during dialysis should be less than 13 cc/kg/hr to avoid risk, but that even at 10cc/kg/hr heart failure symptoms start to develop. Removing more than this is associated with increased mortality.
+Therefore, dry weight should be accurately assessed and monitored frequently. Patients should be counseled on salt intake, and the bath sodium
+should not be greater than 138 mEq/L. Patients should be advised to gain less than 2 kg between treatments. An alternative to fluid removal greater than 13/cc/kg/hr is to extend treatment time or to bring the patient back the following day for an additional treatment.<br>
+
+<UL>RESOURCES
+<li><a href="http://www.nephron.org/nephsites/lundin/lundin_dryweight.html">Peter Lundin's Classic Article on Dry weight</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/20927040">
+Flythe JE, Kimmel SE, Brunelli  SM.Rapid fluid removal during dialysis is associated with cardiovascular morbidity and mortality.Kidney Int. 2011 Jan;79(2):250-7.</a></li>
+<li><a href="http://blogs.davita.com/allen/index.php/2014/07/30/fluidwise/"> Allen's Blog - Allen Nissenson. Patient-Focused Quality Pyramid: FluidWise Edition, July 30, 2014</a> </li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/19573006">Lindley EJ. Reducing sodium intake in hemodialysis patients. Semin Dial. 2009 May-Jun;22(3):260-3.</a></li>
+<li><a href="http://www.kdigo.org/meetings_events/pdf/CVD%20in%20CKD/Microsoft%20PowerPoint%20-%20ChazotKDIGOLondon1010final.pdf">KDIGO - Controversies Conference - Cardiovascular Disease in CKD: What is it and What can we do about it? 29-31 October, 2010. London, England</a></li>
+<li><a href="https://www.novapublishers.com/catalog/product_info.php?products_id=38677">Glassock, R. The Pre-eminent Role for Control of Extra-cellular Volume in Dialysis Therapy. In Issues in Dialysis, pp 138-148. Fadem, SZ ed, Nova Science Publishers, New York, 2013.</a></li>
+</ul>
+</FORM>
+ 

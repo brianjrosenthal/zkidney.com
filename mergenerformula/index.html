@@ -1,0 +1,96 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mergener Formula | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/mergenerformula">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+  <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+  margin:4;
+        } 
+   
+   </Style>
+
+
+<script language=JavaScript>
+
+var form
+function mergener(form,w,q,d) {
+
+form = document.getElementById('mergener_form');
+var w  =form.w.value
+var q  =form.q.value
+var d  =form.d.value
+
+ 
+ 
+w=w*0.00209
+w=w-22.3
+q=q*2.78
+d=d*15.5
+var m=w+q+d
+m=m*.9
+
+var h=m/60
+document.getElementById('minutes_report').innerHTML=Math.round(m);
+document.getElementById('hour_report').innerHTML=Math.round(h*10)/10;
+
+}
+</script>
+<dtml-var styles>
+</head>
+
+<body onLoad="window.setInterval('mergener()',250)";>
+
+<form id="mergener_form">
+  <div>
+    <h3 style="text-align:center;">MERGENER FORMULA</h3>
+    <H4 style="text-align:center;">by Stephen Z. Fadem, M.D., FASN</h4><br>
+    
+    <H3 STYLE="TEXT-ALIGN:CENTER;">FORMULA><BR>
+0.9 X [-22.3+(0.00209*w)+(2.78*q)+(15.5*d)]</h3>
+
+w = NUMBER OF WORDS (w) <input type=text name=w value=6000 size=6  ><br>
+q = NUMBER OF QUESTIONS (q) <input type=text name=q value=10 size=4 ><br>
+d = DEGREE OF DIFFICULTY (d) <input type=text name=d value=3 size=3  ><br>
+<hr>
+NUMBER OF MINUTES = <span id=minutes_report></span><br>
+NUMBER OF HOURS = <span id=hour_report></span><br>
+
+<table valign=top border=0 width="200px">
+<tr><td>Very Easy</td><td>1</td></tr>
+<tr><td>Somewhat Easy</td><td>2</td></tr>
+<tr><td>Moderate</td><td>3</td></tr><tr>
+<td>Difficult</td><td>4</td></tr>
+<tr><td>Very Difficult</td><td>5</td></tr>
+</table>
+
+USEFUL RESOURCES FOR ONLINE LEARNING:<br>
+<p>Mergener, M.A. (1991). A preliminary study to determine<br>
+the amount of continuing education credit to award for home study<br>
+programs, American Journal of Pharmaceutical Education, 55:263-266.</p>
+<p>FDA's Center for Drug Evaluation and Research (CDER) Manual of Policies<br> 
+and Procedures Office of Traning and Communications MAPP 4550.5</p> 
+<p><a href="https://www.fda.gov/downloads/AboutFDA/CentersOffices/OfficeofMedicalProductsandTobacco/CDER/ManualofPoliciesProcedures/UCM263362.pdf">FDA-CDER-ManualofPoliciesProcedures-UCM263362.pdf</a></p>
+<p><a href="http://eduscapes.com/tap/topic69.htm">Bloom's Taxonomy - http://eduscapes.com/tap/topic69.htm</a></p>
+<p><a href="http://www.accme.org/"> Accreditation Council for Continuing Medical Education (ACCME�) - http://www.accme.org/</a></p>
+<p><a href="http://www.nursecredentialing.org/"> American Nurses Credentialing Center (ANCC) - http://www.nursecredentialing.org/</a></p>
+<p><a href="https://www.annanurse.org/download/reference/education/ceabGuidelines.pdf">American Nephrology Nurses Association - CEU calculation</a></li>
+<p><a href="http://www.adlnet.gov/Technologies/scorm/SCORMSDocuments/SCORM%20Resources/Resources.aspx">SCORM� from Advanced Distributed Learning (ADL)</a></p>
+<p>*excludes tables and charts</p>
+  </div>
+</form>
+</body>
+</html>

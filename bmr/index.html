@@ -1,0 +1,357 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMR -Basal Metabolic Rate | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/bmr">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+  <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+
+<Script language="Javascript">
+
+
+
+function addCommas(nStr) { 
+ 
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+function radio_val(items,defaultVal) {
+        var val;
+        // alert(items.value);
+        for(var i = 0; i < items.length; i++) {
+                // alert([i,items.length,items[i],items[i].checked,items[i].value]);
+                if (items[i].checked) return items[i].value;        }
+        return defaultVal;
+    }
+ 
+
+  var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+  
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+
+}
+var form=document.getElementById('bmr'); 
+function calculateBMR(form,wt,weight_metric_p,feet,inches,height_metric_p,gender_sex_p,age,activity) {
+ 
+ 
+                    var wt=document.getElementById("wt").value;
+                   var age=document.getElementById("age").value;
+                  var feet=document.getElementById("feet").value;
+             
+            var inches=document.getElementById("inches").value;
+            var centimeters=document.getElementById("centimeters").value;
+           
+             inches = parseInt(inches);
+            feet = parseInt(feet);
+            wt= parseInt(wt);
+            centimeters=parseInt(centimeters);
+            var ht=0
+
+
+      var height_metric_p 
+       
+
+       if (window.document.bmr.height_metric_p[0].checked) 
+        {
+     
+        document.getElementById("feet").style.display="inline";
+       document.getElementById("inches").style.display="inline";
+       document.getElementById("centimeters").style.display="none";
+        feet=feet*12
+        ht=feet+inches
+        ht=ht*2.54
+    
+        
+                }
+        else {
+              
+             document.getElementById("centimeters").style.display="inline";
+           document.getElementById("feet").style.display="none";
+          document.getElementById("inches").style.display="none";
+            ht=centimeters*1;
+            }
+         var gender_sex_p
+        gender_sex_p = (radio_val(bmr.gender_sex_p,0) > 0); // default male
+  
+        var weight_metric_p = (radio_val(bmr.weight_metric_p,0) > 0); // default kg
+        var activity = bmr.activity.value  
+ 
+
+
+
+
+
+
+          wt = wt * (weight_metric_p ? 1 :.45); // converts weight to pounds
+        
+      
+        
+      
+       var mf=gender_sex_p
+
+ //Harris-Benedict
+
+var hb=0
+var hbwt=wt
+var hbht=ht
+var hbage=age
+
+if (mf>0) {
+ hb=66.4730
+hbwt*=13.751;
+hbht*=5.0033;  
+hbage*=6.7750;
+
+}
+else { 
+var hb=655.0955
+hbwt*=9.5634; 
+hbht*=1.8496; 
+hbage*= 4.6756;
+
+}
+
+//Mufflin
+var mwt=wt
+ var mht=ht
+var mage=age
+
+var m=0
+
+if (mf>0) {
+ m=5
+mwt*=10;
+mht*=6.25;  
+mage*=5;
+
+
+}
+else { 
+var m=161
+mwt*=10; 
+mht*=6.25; 
+mage*= 5;
+
+}
+
+
+hb_bmr=eval(hbwt)+eval(hbht)-eval(hbage)+hb;
+hb_bmrx=round(hb_bmr) 
+m_bmr=eval(mwt)+eval(mht)-eval(mage)+m;
+m_bmrx=round(m_bmr)
+
+document.getElementById('hb_bmr_report').innerHTML=addCommas(hb_bmrx) ;
+document.getElementById('m_bmr_report').innerHTML=addCommas(m_bmrx) ;
+
+
+ 
+ 
+
+
+
+hb_calories_needed=hb_bmr*activity
+hb_calories_needed=round(hb_calories_needed)
+
+m_calories_needed=m_bmr*activity
+var calories_min=m_calories_needed/1440
+
+m_calories_needed=round(m_calories_needed)
+
+calories_min=round2(calories_min)
+
+
+ document.getElementById('hb_calories_report').innerHTML=addCommas(hb_calories_needed);
+document.getElementById('m_calories_report').innerHTML=addCommas(m_calories_needed);
+document.getElementById('calories_min_report').innerHTML=calories_min;
+
+ 
+};
+
+</SCRIPT>
+
+</head>
+ <fieldset id="fieldset_style">
+
+<body onload="window.setInterval('calculateBMR()',250);">
+
+<h2 style="text-align:center;">BMR Calculator</h2>
+  <h4 style="text-align:center;text-decoration:italic;">Basal Metabolic Rate</h4>
+<p style="text-align:center;">by Stephen Z. Fadem and Brian Rosenthal</p>
+
+<FORM id="bmr" name="bmr">
+
+
+
+<h3>WEIGHT</h3>
+<input id="wt" type="text" size=4 value=70 ><br>
+ <input type="radio" name="weight_metric_p"  CHECKED >
+      kg
+      <input type="radio" name="weight_metric_p" value="0" >
+      pounds
+<h3>HEIGHT</h3>
+<p><input id="feet" type="text" size=3 value=5> 
+<input id="inches"  type="text" size=3 value=9> 
+<input id="centimeters" type="text"  size=4 value=175>
+ <INPUT TYPE="radio" name="height_metric_p" value="1" CHECKED> centimeters
+        <INPUT TYPE="radio" name="height_metric_p" value="0"> feet+inches</p>
+<h3>GENDER</h3>
+<p><INPUT TYPE="radio" name="gender_sex_p" value=1 >
+      Male 
+      <INPUT TYPE="radio" name="gender_sex_p" value=0 CHECKED >
+        Female</p>
+<h3>AGE</h3>
+       <p> <input id="age" type="text" size=6 value=70 ></p>
+
+
+  </p>
+HARRIS-BENEDICT BMR:  <span id="hb_bmr_report">___</span><br>
+  MUFFLIN BMR: <span id="m_bmr_report">___</span></br>
+  <H3>ACTIVITY INDEX</H3></p>
+<table>
+<tr><th>Factor</th><th>Activity</th><th>Description</th</tr>
+<tr><td>1.2</td><td> Sedentary</td><td>Little or no exercise - desk job</th></tr>
+<tr><td>1.375</td><td>Light </td><td>light exercise or sports up to 3 times/week</td</tr>
+<tr><td>1.55</td><td> Moderate</td><td>Moderate sports 3 - 5 times/week</td</tr>
+ <tr><td>1.725</td><td> High</td><td>Hard  exercise six to 7 times/week</td</tr>    
+<tr><td>1.9</td><td> Extreme</td><td>Hard exercise, heavy athletics, daily physical labor</td</tr>
+</table><br>
+<select name=activity onChange="calculateBMR(this.form)"><br>
+<option value="1.2">Sedentary
+<option value="1.375">Light
+<option value="1.55">Moderate
+<option value="1.725">High
+<option value="1.9">Extreme
+</select>
+<p>HARRIS-BENEDICT BMR = Calorie Needs <span id=hb_calories_report>___</span>.<br>
+MUFFLIN EQUATION FOR BMR = Calorie Needs <span id=m_calories_report>___</span>.<br>
+CALORIES PER MINUTES=Total daily calories divided by minutes/day,<br> (based on activity) is <span id="calories_min_report">__</span>.<br></p>
+
+</FORM>
+  
+  </body>
+  </html>

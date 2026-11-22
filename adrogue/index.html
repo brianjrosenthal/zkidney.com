@@ -1,0 +1,313 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyponatremia (Adrogue Formula) | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/adrogue">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+      
+        background-color:white;
+        color:595b60;
+        margin:5px;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+} 
+  
+input {
+background-color:white;
+margin:2px;
+}
+  
+.select {
+background-color:white;
+  
+
+} 
+  
+  
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+  
+  var form;
+function calculate(form,infusate_sodium, infusate_potassium,observed_na,target_sodium_change,number_hours,weight,factor,ref_sodium){
+form=document.getElementById('adrogue');
+var weight=form.weight.value
+var target_sodium_change=form.target_sodium_change.value
+var number_hours=form.number_hours.value
+var ref_sodium=form.ref_sodium.value
+
+
+
+
+
+var infusate_sodium=form.infusate_sodium.value
+var infusate_potassium=form.infusate_potassium.value
+var observed_na=form.observed_na.value
+var factor=document.getElementById('factor').value
+var tbw=weight*factor
+var sodium_change=eval(infusate_sodium)+eval(infusate_potassium)
+sodium_change=sodium_change-eval(observed_na);
+var tbwone=eval(tbw)+1;
+var temp=observed_na/eval(ref_sodium)
+temp=temp-1
+var fw=temp*tbw  //fw=free water deficit
+
+sodium_change=sodium_change/eval(tbwone);
+
+var vol_to_infuse=target_sodium_change*1000/sodium_change;
+var infusion_rate=eval(vol_to_infuse)/eval(number_hours);
+var rate_hr=eval(target_sodium_change)/eval(number_hours)
+document.getElementById('tbw_report').innerHTML=round(tbw);
+
+document.getElementById('sodium_change_report').innerHTML=round(sodium_change);
+document.getElementById('rate_hr_report').innerHTML='  '+round(rate_hr);
+document.getElementById('vol_to_infuse_report').innerHTML=Math.round(vol_to_infuse);
+document.getElementById('infusion_rate_report').innerHTML=Math.round(infusion_rate);
+document.getElementById('fw_report').innerHTML='  '+round2(fw);
+
+
+if (fw > 0) { 
+document.getElementById('fw_report_message').innerHTML=' - The free water deficit is generally positive in hypernatremia and negative in hyponatremia'; 
+}
+else  {
+document.getElementById('fw_report_message').innerHTML='  - The free water deficit is generally negative in hyponatremia and positive in hypernatremia';
+}
+if (rate_hr >1) {
+document.getElementById('rate_hr_message').innerHTML='  -   Are you sure you want to correct acute hyponatremia this rapidly?'; 
+}
+else  {
+document.getElementById('rate_hr_message').innerHTML='   -  When managing acute hyponatremia, monitor the serum sodium and urine output frequently';
+}
+
+};
+  </script>
+  </head>
+
+ <feldset class="fieldset">
+   
+<body onLoad="window.setInterval('calculate()',250);">
+
+
+<h2 style="text-align:center;">HYPONATREMIA<BR>ADROGUE MADIAS FORMULA</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+<form id="adrogue">
+<hr>
+<H2 style="color:red;text-align:center;">CAUTION!! AVOID OVER CORRECTION</H2>
+<hr>
+
+1. Change in Serum Na = (infusate Na - serum Na)/(tbw+1)<br>
+
+2. Change in serum Na = (((Infusate Na + infusate K) - (serum Na) ))/(tbw+1)<br>
+
+Water Deficit (liters) = TBW X ((serum Na/Reference Na)-1)<br>
+
+<hr>
+
+<DIV class="th" style="margin:15;">NOTE: Use of this formula stipulates the physician is highly familiar with the medical literature with respect to the management of hyponatremia. Patients with severe acute symptomatic hyponatremia must be managed in the intensive care unit.  Electrolytes need to be checked frequently, and fluids adjusted
+as needed. Do not exceed guidelines for correction. The patient may require DDAVP to avoid overshooting. Intake and output need to be watched closely. The urine output may increase dramatically during correction, leading to over correction Over correction may result in osmotic demyelination, and although this may not be initially apparent, can be a very serious complication. Consult a nephrologist early. 
+Nephrologists must monitor electrolytes and fluid output very closely.<br><br>POST OP: Avoid hypotonic fluids after surgery. Whenever using intravenous solutions post operatively, check serum electrolytes at least daily.
+<a href="http://cjasn.asnjournals.org/cgi/content/abstract/2/6/1110"><br><br>Formulas may overcorrect the serum sodium</a> so one must
+use clinical judgment and monitor the serum sodium, intake and output very closely during the critical period.</DIV>
+<hr>
+TARGET SODIUM CHANGE <input type=text size=4 name=target_sodium_change value="3">mmol/L<br>
+NUMBER OF HOURS <input type=text size=4 name=number_hours value="3">hours<br>
+TARGET RATE PER HOUR <span id=rate_hr_report></span><span id=rate_hr_message></span><br>
+INFUSATE SODIUM <select name=infusate_sodium size=1 div class="select"> 
+<option value="0">5% dextrose in water</option>
+<option value="34">0.2% saline in 5% dextrose in water</option>
+<option value="77">0.45% saline in water</option>
+<option value="130">Ringer's lactate solution</option>
+<option value="154">0.9% normal saline</option>
+<option value="513" Selected>3% saline</option>
+<option value="855">5% saline</option>
+<option value="0">No IV</option>
+  </select>mmol/L
+  </div><br>
+INFUSATE POTASSIUM <input type=text size=4 name=infusate_potassium value="0"> mmol/L<br>
+OBSERVED SODIUM <input type=text size=4 name=observed_na value="112"> mmol/L<br>
+PERCENT WATER<select name="factor" id="factor" size=1 div class="select"> 
+<option value=".6">CHILDREN (.6)</option>
+<option value=".6">NONELDERLY MALE (.6)</option>
+<option value=".5" SELECTED>NONELDERLY FEMALE  (.5)</option>
+<option value=".5">ELDERLY MALE (.5)</option>
+<option value=".45">ELDERLY FEMALE (.45)</option>
+</select>
+  </div>percent<br>
+PATIENT'S WEIGHT <input type=text size=4 name=weight value="46"> kg<br>
+TOTAL BODY WATER (TBW) <span id="tbw_report">???</span> kg<br>
+
+SODIUM CHANGE <span id=sodium_change_report>???</span> mmol/L<br>
+VOLUME TO INFUSE <span id=vol_to_infuse_report>???</span> ml<br>
+INFUSION RATE <span id=infusion_rate_report>???</span> ml/hour<br>
+REFERENCE SODIUM FOR CALCULATING FREE WATER DEFICIT<input type=text size=6 name=ref_sodium value="0">mmol/L<br>
+FREE WATER DEFICIT <span id=fw_report>???</span> liters    <span id=fw_report_message></span><br>
+
+
+
+REFERENCES:
+<ul>
+<li>Adrogue, H.J and Madias, N.E. <em>Hyponatremia</em><a href="https://content.nejm.org/cgi/content/short/342/21/1581"> N Eng J Med 342:1581-1589, May 25, 2000</a>
+<li>Adrogue, H.J and Madias, N.E. <em>Hypernatremia</em><a href="https://content.nejm.org/cgi/content/short/342/20/1493"> N Eng J Med 342:1493-1499, May 18, 2000</a>
+<li>Sterns, R.H., Riggs, J.E and Schochet, S.S.<em> Osmotic demyelination syndrome following correction of hyponatremia</em><a href="https://content.nejm.org/cgi/content/abstract/314/24/1535"> N Eng J Med 314:1535-1542, June 12, 1986</a>
+ </ul>
+
+</form>
+
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urine Anion Gap | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/uag">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<template data-zk="before">
+<h2>URINE ANION GAP</h2>
+<h5><span>by Brian Rosenthal and Stephen Fadem</span></h5>
+</template>
+<template data-zk="after">
+<p>The urine anion gap measures positive and negative ions. Since urine ammonia is not measured, it is the gap anion. Healthy kidneys can excrete ammonia and trap it as ammonium to rid the body of excess acid (H+). In renal tubular acidosis or in any condition where ammonia is not secreted and trapped, the gap will be less.&nbsp;</p>
+
+<p>The UAG is not valid if the urine sodium is &lt; 20 mEq/L or in cases of volume depletion, low chloride excretion.</p>
+
+<p>References</p>
+
+<p>Hilton,JG, et al. The urine anion gap: the critical clue to resolve a diagnostic dilemma in a patient with ketoacidosis</p>
+
+<p>Diabetes Care, 7:486-490,1984.</p>
+
+<p>DISCLAIMER: All calculations must be checked for accuracy and confirmed before clinical use. &nbsp;These applications are for illustrative and educational purposes only. &nbsp;A formula cannot replace the clinical judgment of a physician.&nbsp;</p>
+
+<p>Neither Interoperable software nor its associated authors or other entities can warranty the accuracy of this information for clinical management, nor shall be liable for any adverse consequences resulting from the use of this application.</p>
+
+<p>Copyright &nbsp;&copy; 2024 by Stephen Z. Fadem, MD. All rights reserved.</p>
+</template>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+<style type="text/css">
+
+
+                .a16bold {font-size:16;font-weight:bold;}
+                a.a16bold,ul.a16bold {font-size:16;font-weight:bold;}
+		.MainIndex {
+			font-family: Arial, Helvetica, Sans-Serif;
+			font-size: 10px;
+			text-decoration: none;
+			margin-top: 1px;
+			margin-bottom:1px;
+                        color:#636363;
+                            }
+                a.MainIndex {text-decoration:none;}
+                a.MainIndex:hover {text-decoration:underline;}
+
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:#000066;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:#000066;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:#000066;text-decoration:none;}
+                ul,li,ol {text-align:left;color:#000066;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+                
+.td 
+                 { 
+                  
+                 
+                  background-color:#C0C0C0;
+                  color: #000066;
+                  margin: 6px;
+                  spacing:6px;
+                  padding:12px;
+
+                  }
+.td_caption 
+                 { 
+                  
+                  background-color:#000000;
+                  color:white;
+                  text-weight:bold
+                  font-size:16
+                  margin: 6px;
+                  spacing:6px;
+                  padding:10px;
+
+                  }
+
+
+.template_green {
+            text_align:left;
+            width:500;
+            padding:5px;
+            background-color:white;
+            color:#0000ea;
+            margin: 0px;
+            border:2px solid blue;
+            padding:10px;
+            
+              
+               }
+
+
+.template_white {
+            text_align:left;
+            width:500;
+            padding:10px;
+            background-color:white;
+            color:#0000ea;
+            margin: 0px;
+            border:2px solid blue;
+             
+            
+              
+               }
+
+.template {
+            text_align:left;
+            width:500;
+            
+            background-colorwhite;
+            color:#0000ea;
+            margin: 10px;
+            border:2px solid blue;
+            padding:10px;
+            
+              
+               }
+.alt_template {
+            text_align:left;
+            width:500;
+            padding:5px;
+            background-color:white;
+            color:#0000ea;
+            margin: 0px;
+            border:2px solid blue;
+            padding:4px;
+            
+           
+
+
+}
+
+.th
+            {
+            
+            color:#0000ea;
+            display:block
+            }
+h1.th
+           {
+           font-size:22px;
+          text-align:center;
+           color:#0000ea;
+          
+           }
+
+#side-a
+        {
+	float: left;
+	width: 100px;
+        }
+
+#side-b 
+       { 
+	margin: 0;
+	float: left;
+	width: 200px;
+	height: 1% 
+       }
+
+</style>
+
+<script language="JavaScript">
+<!--
+var form
+form=document.getElementById('uag_form');
+function uag_update(form,uag,k,cl) {
+var na=form.na.value
+var k=form.k.value
+var cl=form.cl.value
+var uag=form.uag.value
+//alert('cl is ' + cl + ' and k is ' + k + ' and na is ' + na + ' and uag is ' + uag);
+na=eval(cl)+eval(uag)-eval(k)
+form.na.value=na
+}
+
+function uag_add(form,na,k,cl){
+var na=form.na.value
+var k=form.k.value
+var cl=form.cl.value
+
+
+uag=eval(na)+eval(k)-eval(cl)
+form.uag.value=uag
+ }
+
+
+
+//-->
+</script>
+<BODY onload="window.setInterval('do_form()',250);">
+
+<h2 style="text-align:center;"></h2>
+<center>
+  <dtml-var title_header></center>
+
+<FORM id="uag_form">
+  <p>Input clean catch urine values</p>
+Urine Sodium (UNa) <INPUT size = 4 name=na value=56 onchange="uag_add(this.form,form.uag.value)"> mEq/L + <br>
+Urine Potassium (UK <INPUT size = 4 name=k value=34 onchange="uag_add(this.form,form.uag.value)"> mEq/L - <br>
+Urine Chloride <INPUT size = 4 name=cl value=123 onchange="uag_add(this.form,form.uag.value)">mEq/L = <br>
+Urine Anion Gap (UAG) <INPUT size = 6 name=uag onchange="uag_update(this.form)">
+<INPUT onclick=uag_add(this.form) name=button type=button value=uag>
+mEq/L<br>
+</FORM>

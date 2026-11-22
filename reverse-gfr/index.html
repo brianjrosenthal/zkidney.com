@@ -1,0 +1,171 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reverse GFR | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/reverse-gfr">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+</style>
+
+<script language=javascript>
+
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+function calculate_cr(form,age,female_sex_p,black_race_p,gfr,cr_form)
+{
+        var form;
+        form = document.getElementById('cr_form');
+
+         var gfr = form.gfr.value;
+         var age = form.age.value;
+        var female_sex_p = (radio_val(form.female_sex_p,0) > 0); // default male
+        var black_race_p = (radio_val(form.black_race_p,0) > 0); // default black
+        
+       var b=(black_race_p ? Math.log(1.212):0.0); 
+       var f= (female_sex_p ?  Math.log(.742):0.0);
+      var constant=eval(b)+eval(f);
+     // alert('constant     '+constant+'   race   '+b+'    gender     '+f)
+       var idms=Math.log(175)+constant-0.203*Math.log(age)-Math.log(gfr);
+       idms=Math.exp(idms/1.154)
+       document.getElementById('idms_report').innerHTML=Math.round(idms*100)/100;
+       var temp= Math.log(186)+constant;
+       temp=temp-0.203*Math.log(age)-Math.log(gfr);
+  
+       cr_calculated=Math.exp(temp/1.154);
+       var si_std=cr_calculated/0.0113;
+       var si_idms=idms/0.0113;
+      document.getElementById('si_idms_report').innerHTML=Math.round(si_idms*100)/100;
+       document.getElementById('si_std_report').innerHTML=Math.round(si_std*100)/100;
+       document.getElementById('cr_report').innerHTML =  Math.round(cr_calculated*100)/100  ;     
+};
+ 
+ //-->
+</script>
+<dtml-var styles>
+</head>
+<BODY onload="window.setInterval('calculate_cr(cr_form)',250);">
+<<h2 style="text-align:center;">Reverse GFR</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+
+<form id="cr_form">
+
+<p>
+GFR&nbsp;<input  name="gfr" value="60" size="4"> ml/1.73m<sup>2</sup><br>
+
+Age&nbsp; <input  name="age" value="30" size="4">years<br>
+
+  Race <br>
+    
+ <INPUT TYPE="radio" name="black_race_p" value="1" CHECKED onCheck="calculate_cr( )">African American
+
+      <INPUT TYPE="radio" name="black_race_p" value="0" onCheck="calculate_cr( )">Other<br>
+   Gender
+
+    <INPUT TYPE="radio" NAME="female_sex_p" VALUE="1" CHECKED onCheck="calculate_cr( )">Female&nbsp;
+
+     <INPUT TYPE="radio" NAME="female_sex_p" VALUE="0" onCheck="calculate_cr( )"> Male</p
+<p>
+Creatinine value (standard):<span id="cr_report">???</span><br>
+
+ Creatinine value(idms):<span id="idms_report">???</span><br>
+
+   Creatinine value (si - standard):<span id="si_std_report">???</span><br>  
+ 
+  Creatinine value (si - idms):<span id="si_idms_report">???</span> <br>  
+
+<a href="../cg/">Use the Cockcroft Gault Equation to Calculate the Creatinine Clearance</a>
+ 
+</form>
+ 
+
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

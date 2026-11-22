@@ -1,0 +1,310 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculate Protein Intake (Mitch Formula) | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/mitch">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:595b60;
+  margin:4px;
+  padding:4px;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[ {font-size:14px;
+background-color:white;
+  spacing:10px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+<script language=javascript>
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+
+
+
+
+   
+
+    function page_init() {
+        window.setInterval('do_form()',250);
+    }
+    function radio_val(items,defaultVal) {
+        var val;
+        // alert(items.value);
+        for(var i = 0; i < items.length; i++) {
+                // alert([i,items.length,items[i],items[i].checked,items[i].value]);
+                if (items[i].checked) return items[i].value;
+        }
+        return defaultVal;
+    }
+    /**
+     * The equation for protein intake is:
+     * protein_intake = (weight_kg*0.031+UUN)*6.25)
+     */
+    window.CalculatePROTEIN = function(weight,weight_metric,UUN) {
+        var weight_kg = weight;
+        if (weight_metric == 'pounds') {
+            weight_kg *= 0.45359237;
+        }
+        if (weight_kg <= .0001) weight_kg = .0001;
+        var protein_intake = (weight_kg*0.031+UUN)*6.25;
+                 Math.round(weight_kg*0.031*100)/100;
+        var UN=(weight_kg*0.031+UUN);
+        weight_kg = Math.round(weight_kg*100) / 100 ;
+        var protein_intake_kg=protein_intake/weight_kg;
+        protein_intake_kg=Math.round(protein_intake_kg*100)/100;
+
+   return "(UUN + (" + weight_kg + " kg * 0.031)) * 6.25 or U, which is " + UUN+ " * 6.25 =  " 
+        + Math.round(protein_intake*10) / 10+" grams/day.<br>Protein intake/weight= "+protein_intake_kg+ " gm/kg.<br>" ;
+ 
+      
+    }
+
+    window.do_form = function () {
+            var form = document.getElementById('protein');
+            var weight = form.weight.value;
+            var weight_metric;
+            if (form.weight_metric[1].checked) {
+                weight_metric = 'kilograms';
+            }
+            else {
+                weight_metric = 'pounds';
+            }
+            var UUN = parseFloat(form.UUN.value);
+
+            document.getElementById('calculated_protein').innerHTML 
+                    = window.CalculatePROTEIN(weight, weight_metric, UUN);
+              
+                      
+    }
+
+</script>
+</head>
+<BODY BGCOLOR="#FFFFFF" onload="page_init();">
+<h1 style="text-align:center;">PROTEIN INTAKE CALCULATOR</h1>
+<h2 style="text-align:center;">by William Mitch, M.D., FASN and Stephen Z. Fadem, M.D., FASN</h2>
+
+
+<hr>
+ 
+
+ 
+<form id="protein" >
+
+          Input weight <input name="weight" value="70" size="4">
+          <input type="radio" name="weight_metric" value="0" >pounds
+          <input type="radio" name="weight_metric" value="1" CHECKED >kilograms<br>
+        
+          Input 24 hour Urine Urea Nitrogen
+          <input  name="UUN" value="5" size="4"> grams<br>
+       
+          <p >The urea nitrogen appearance, U, equals the urine urea nitrogen + the non urea nitrogen (weight in kg X 0.031 g nitrogen/kg/day).</P>
+          <p >Calculated Protein Intake is urine nitrogen excreted in grams/day + (weight in kilograms X 0.031 g nitrogen/kg/day) multiplied by 6.25. A 70 kg person with a UUN of 5 grams would have an estimated protein intake of 44.8 grams. Feel free to add your own values.</p> 
+          <p ><Calculated Protein Inake is <span style="font-size:16;" id="calculated_protein">???</span>.</p>
+          <hr>
+</form>
+ 
+
+ 
+   <p>REFERENCES:
+<ul>
+   <li  >Masud T, Manatunga A, Cotsonis G, Mitch WE., The precision of estimating protein intake of patients with chronic renal failure<a class="main2" href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=12371976&dopt=Abstract"> Kidney Int. 2002 Nov;62(5):1750-6</a></li>
+   <li >Maroni BJ, Steinman TI, Mitch WE., A method for estimating nitrogen intake of patients with chronic renal failure.
+<a   href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=3981873&dopt=Abstract"> Kidney Int. 1985 Jan;27(1):58-65.</a></li>
+
+<li  >Dietary Protein Restriction in the Management of Chronic Kidney Disease <a class="main2" href="http://www.touchbriefings.com/pdf/3021/khosla.pdf">Touch Briefings (PDF)</a></li>
+
+</ul>
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>

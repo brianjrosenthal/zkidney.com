@@ -1,0 +1,203 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>converter-test | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/converter-test-sample">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<Head>
+
+<script language="javascript"> 
+createTable();
+
+function createTable() {
+    var table = document.createElement("table");  //makes a table element for the page
+
+    table += "<tr class='firstRow'><th>Coumpound</th><th>Symbol</th><th>Atomic Weight</th><th>mEq/L</th><th>mg/dL</th><th>SI</th></tr>";  //adds the first row that contains the sections for the table
+
+    for (var i = 0; i < chemcalc.length; i++)  //loops through the array 
+    {
+        //add info from the array into this
+        table += "<tr><td>" + chemCalc[i].title + "</td></tr>";
+    }
+
+    document.body.append(table);
+    report table;
+} 
+ 
+ 
+
+
+ //Table array
+  Var chemcalc=[
+    {
+      Compound: 'Sodium'
+      Symbol: 'Na'
+      Atomic wt: '23'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: '{Potassium'
+      Symbol: 'Na'
+      Atomic wt: '39'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Chloride'
+      Symbol: 'Cl'
+      Atomic wt: '35.5'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Bicarbonate'
+      Symbol: 'HCO<sub3</sub>'
+      Atomic wt: '61'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Calcium'
+      Symbol: 'Ca'
+      Atomic wt: '40'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Phosphorus'
+      Symbol: 'P'
+      Atomic wt: '31'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Iron'
+      Symbol: 'Fe'
+      Atomic wt: '56'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Magnesium'
+      Symbol: 'Na'
+      Atomic wt: '24'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Na Chloride'
+      Symbol: 'Na'
+      Atomic wt: '+23+35.5'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Na bicarbonate'
+      Symbol: 'NaHCO<sub>3</sub>'
+      Atomic wt: '+61+23'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Blood Urea Nitrogen'
+      Symbol: 'BUN'
+      Atomic wt: '28'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Urea'
+      Symbol: 'U'
+      Atomic wt: '60'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll">/span>
+    },
+    {
+      Compound: 'Creatinine'
+      Symbol: 'cr'
+      Atomic wt: '88.4'
+      Valence: ' '
+      meQ/l:<span id=""></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="umoll"></span>
+    },
+    {
+      Compound: 'Glucose'
+      Symbol: 'Glu'
+      Atomic wt: '180'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Total Protein'
+      Symbol: 'TP'
+      Atomic wt: ' '
+      Valence: ' '
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="gl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Albumin'
+      Symbol: 'Alb'
+      Atomic wt: '68'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="gl"></span>
+    },
+    {
+      Compound: 'cholesterol'
+      Symbol: 'C<sub>27</sub>H<sub>46</sub>O'
+      Atomic wt: '386.64'
+      Valence: ''
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    
+   //end table array   
+   ]
+  </script>
+  <body  <BODY onload="window.setInterval('createTable()',250);">
+
+  
+  <span id="table"</span>
+  
+  </body>
+</html>
+  

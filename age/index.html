@@ -1,0 +1,440 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Age in Minutes | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/age">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+<script language="Javascript">
+
+
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+//library end  
+
+
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+
+
+function round(num) {
+return Math.round(num)
+}
+
+function round2(num) {
+return Math.round(num*100)/100
+}
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+var form
+function birthdays(form,month,day,year,planets) {
+form=document.getElementById('bdays');
+var today = new Date()
+var getYear=form.year.value
+var y=getYear
+
+var getMonth=form.month.value
+var m=getMonth
+var planets=form.planets.value
+ 
+
+var getDate=form.date.value
+var d=getDate
+var birthdate=m+"/"+d+"/"+y 
+birthdate = new Date(birthdate);
+
+
+
+var msPerDay = 24 * 60 * 60 * 1000 ;
+var daysLeft = (today.getTime()-birthdate.getTime()) / msPerDay;
+var for_ms = daysLeft*msPerDay
+var monthsLeft=daysLeft/30.41666;
+var yearsLeft=daysLeft/365.2425;
+var hoursLeft=24*daysLeft;
+var minutesLeft=60*hoursLeft;
+var secondsLeft=60*minutesLeft;
+daysLeft = Math.ceil(daysLeft);
+var conception=(birthdate.getTime()-(266*msPerDay));
+var y1=today.getFullYear()
+var y2=today.getFullYear()+1
+
+var birthdate1=m+"/"+d+"/"+y1
+var birthdate2=m+"/"+d+"/"+y2
+var nextbirthdate
+
+birthdate1=new Date(birthdate1)
+birthdate2=new Date(birthdate2)
+nextbirthdate=(birthdate1.getTime()-today.getTime())/msPerDay
+if (nextbirthdate<0) {
+nextbirthdate=(birthdate2.getTime()-today.getTime())/msPerDay
+                                      }
+
+
+conception=new Date(conception);
+
+for_ms=round(for_ms)
+hoursLeft=round(hoursLeft)
+minutesLeft=round(minutesLeft)
+secondsLeft=round(secondsLeft)
+yearsLeft=round(yearsLeft)
+monthsLeft=round(monthsLeft)
+var planet_revs=yearsLeft/planets
+
+planet_revs=round2(planet_revs)
+document.getElementById('birthdate_report').innerHTML = getTheDay(birthdate)+',  ' +getTheMonth(birthdate) +' ' +birthdate.getDate()+', '+birthdate.getFullYear()+'.';  
+
+
+document.getElementById('today').innerHTML = today;
+document.getElementById('for_ms').innerHTML= addCommas(for_ms);
+document.getElementById('daysLeft').innerHTML = addCommas(daysLeft);
+document.getElementById('conception_report').innerHTML =  getTheDay(conception)+',  ' +getTheMonth(conception) +' ' +conception.getDate()+', '+conception.getFullYear()+'';  
+
+
+document.getElementById('hoursLeft').innerHTML = addCommas(hoursLeft);
+document.getElementById('minutesLeft').innerHTML = addCommas(minutesLeft);
+document.getElementById('secondsLeft').innerHTML = addCommas(secondsLeft); 
+document.getElementById('yearsLeft').innerHTML = addCommas(yearsLeft);
+document.getElementById('monthsLeft').innerHTML = addCommas(monthsLeft);
+document.getElementById('daystobirthday').innerHTML = round(nextbirthdate);
+document.getElementById('planet_report').innerHTML = addCommas(planet_revs);
+document.getElementById('planet_years').innerHTML = round2(planets);
+
+}
+
+</SCRIPT>
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[type="text"] {font-size:15px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+
+  </head>
+<body onLoad="window.setInterval('birthdays()', 250)";>
+<h2 style="text-align:center;"><dtml-var title></h2>
+
+
+<FORM id="bdays">
+
+<h2 style="text-align:center;">Age in Minutes</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+
+ 
+Today is <span id=today>today's date</span><br>
+Enter your birthdate:<br>
+
+
+
+<hr>
+<select name=month  onchange=birthdays(this.form)> 
+<option value=1>Jan</option>
+<option value=2>Feb</option>
+ <option value=3>Mar</option>
+<option value=4>Apr</option>
+<option value=5>May</option>
+<option value=6>Jun</option>
+<option value=7>Jul</option>
+<option value=8>Aug</option>
+<option value=9>Sep</option>
+<option value=10>Oct</option>
+<option value=11>Nov</option>
+<option value=12>Dec</option>
+</select>
+<select name=date  onChange=birthdays(this.form)><br>
+<option value=1>1</option>
+<option value=2>2</option>
+ <option value=3>3</option>
+<option value=4>4</option>
+<option value=5>5</option>
+<option value=6>6</option>
+<option value=7>7</option>
+<option value=8>8</option>
+<option value=9>9</option>
+<option value=10>10</option>
+<option value=11>11</option>
+<option value=12>12</option>
+<option value=13>13</option>
+<option value=14>14</option>
+ <option value=15>15</option>
+<option value=16>16</option>
+<option value=17>17</option>
+<option value=18>18</option>
+<option value=19>19</option>
+<option value=20>20</option>
+<option value=21>21</option>
+<option value=22>22</option>
+<option value=23>23</option>
+<option value=24>24</option>
+<option value=25>25</option>
+<option value=26>26</option>
+<option value=27>27</option>
+<option value=28>28</option>
+<option value=29>29</option>
+<option value=30>30</option>
+<option value=31>31</option>
+
+
+
+
+</select>
+Year (four digits) <input name=year size=5 value=1978 onKeyup=birthdays(this.form)><br><br>
+
+ 
+
+
+You were born on <span id=birthdate_report>your birthday is</span><br>
+<dtml-comment><input onclick=birthdays(this.form) type=button value=go></dtml-comment>
+<ol>
+ <li>Milliseconds since birth:  <span id=for_ms>milliseconds</span>.</li>
+ 
+<li>Seconds since birth:  <span id=secondsLeft>seconds</span> .</li>
+<li>Minutes since birth:  <span id=minutesLeft>minutes</span>.</li>
+ 
+<li>Hours since birth:  <span id=hoursLeft>hours</span>.</li>
+
+ <li>Days since birth:  <span id=daysLeft>days</span> .</li>
+ <li>Months since birth:  <span id=monthsLeft>months</span>.</li>
+ 
+<li>Years since birth:  <span id=yearsLeft>years</span> .</li>
+ <li>Days until your next birthday:  <span id=daystobirthday>days</span> .</li>
+<li>Estimated date of conception (assumes term delivery): <span id=conception_report>day, mm/dd/yyyy</span>. </li>
+  
+</ol>
+On the planet <select name=planets onChange=birthdays(this.form)> 
+<option value=".240826">Mercury</option>//87.97 days = .240826
+<option value=".6151529">Venus</option>//224.58 days =.6151529
+<option value="1">Earth</option>
+<option value="1.88089">Mars</option>//686.981 days = 1.88089
+<option value="11.862">Jupiter</option>
+<option value="29.456">Saturn</option>
+<option value="84.07">Uranus</option>
+<option value="164.81">Neptune</option>
+<option value="247.7">Pluto (Dwarf)</option>
+</select>
+you are <span id=planet_report> ?</span> years old.<br>(based on taking <span id=planet_years>planet's years</span> of our years to circle the sun).
+</FORM>
+
+
+
+<p> &copy; 2008-24, Stephen Z. Fadem, MD, FASN. All rights reserved. No part of this application may be duplicated without written permission from the author.</p>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>
+
+

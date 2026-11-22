@@ -1,0 +1,607 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Malnutrition Inflammation Index SP | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/mis-sp">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:#eee;
+margin:2px;
+}
+
+ 
+div #nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+color:white;
+background-color:595b60;
+font-size:10px;
+margin:0 auto;
+overflow:hidden;
+text-align:justify
+vertical-align:middle;
+}
+
+
+
+div #nav ul{
+
+
+list-style:none;
+text-align:justify;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:4em;
+z-index:1000;
+text-align:center;
+display:inline;
+margin:0 auto;
+  
+  top:0;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:black;
+  position:relative;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:gray;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:0px solid #00F; font-size:12px;}
+th{background:white;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:white;}
+tr:nth-child(even) {background:white;}   
+</style>
+
+<script language=javascript>
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+  function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+ <!--
+
+   function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 45 || charCode > 57))
+            return false;
+
+         return true;
+      }
+    
+
+ 
+
+var form
+function calculate_mis(form){
+form = document.getElementById('mis');
+var x=0;
+var alb=form.alb.value;
+var tibc=0;
+var transferrin=0;
+var fe_value=form.fe_value.value;
+var height_p=radio_val(form.height_p,0);
+var height=form.height.value;
+var weight=form.weight.value
+var bmi_value=form.bmi_value.value
+var bmi=0
+var criteria_1_p= radio_val(form.criteria_1_p,0);
+var criteria_2_p= radio_val(form.criteria_2_p,0);
+var criteria_3_p= radio_val(form.criteria_3_p,0);
+var criteria_4_p= radio_val(form.criteria_4_p,0);
+var criteria_5_p= radio_val(form.criteria_5_p,0);
+var criteria_6_p= radio_val(form.criteria_6_p,0);
+var criteria_7_p= radio_val(form.criteria_7_p,0);
+var fe_p=radio_val(form.fe_p,0);
+
+
+
+
+
+
+var p1=0;
+var p2=0;
+var p3=0;
+var p4=0;
+var p5=0;
+var p6=0;
+var p7=0;
+var p8=0;
+var p9=0;
+var p10=0;
+
+if (height_p==0){
+height=height*2.54;
+height=height/100;
+}
+else if (height_p==1){
+height=height/100;
+}
+
+if (criteria_1_p==0){
+p1=0;
+}
+else if (criteria_1_p==1){
+p1=1
+}
+else if (criteria_1_p==2){
+p1=2
+}
+else if (criteria_1_p==3){
+p1=3
+}
+
+if (criteria_2_p==0){
+p2=0;
+}
+else if (criteria_2_p==1){
+p2=1;
+}
+else if (criteria_2_p==2){
+p2=2;
+}
+else if (criteria_2_p==3){
+p2=3;
+}
+
+
+if (criteria_3_p==0){
+p3=0;
+}
+else if (criteria_3_p==1){
+p3=1;
+}
+else if (criteria_3_p==2){
+p3=2;
+}
+else if (criteria_3_p==3){
+p3=3;
+}
+
+if (criteria_4_p==0){
+p4=0;
+}
+else if (criteria_4_p==1){
+p4=1;
+}
+else if (criteria_4_p==2){
+p4=2;
+}
+else if (criteria_4_p==3){
+p4=3;
+}
+
+if (criteria_5_p==0){
+p5=0;
+}
+else if (criteria_5_p==1){
+p5=1;
+}
+else if (criteria_5_p==2){
+p5=2;
+}
+else if (criteria_5_p==3){
+p5=3;
+}
+
+if (criteria_6_p==0){
+p6=0;
+}
+else if (criteria_6_p==1){
+p6=1;
+}
+else if (criteria_6_p==2){
+p6=2;
+}
+else if (criteria_6_p==3){
+p6=3;
+}
+
+if (criteria_7_p==0){
+p7=0;
+}
+else if (criteria_7_p==1){
+p7=1;
+}
+else if (criteria_7_p==2){
+p7=2
+}
+else if (criteria_7_p==3){
+p7=3
+}
+var bmi=0
+var xbmi=height*height;
+xbmi=weight/xbmi;
+bmi=xbmi;
+
+if (bmi_value > 0.1){
+bmi=bmi_value;
+}
+
+if (bmi >=20){
+p8=0;
+document.getElementById("8radio0").checked=true;
+document.getElementById("8radio1").checked=false;
+document.getElementById("8radio2").checked=false;
+document.getElementById("8radio3").checked=false;
+
+}
+else if (bmi>=18 && bmi <20) {
+p8=1;
+document.getElementById("8radio0").checked=false;
+document.getElementById("8radio1").checked=true;
+document.getElementById("8radio2").checked=false;
+document.getElementById("8radio3").checked=false;
+}
+else if (bmi >=16.0 && bmi <18)  {
+p8=2;
+document.getElementById("8radio0").checked=false;
+document.getElementById("8radio1").checked=false;
+document.getElementById("8radio2").checked=true;
+document.getElementById("8radio3").checked=false;
+}
+else if (bmi < 16.0) {
+p8=3;
+document.getElementById("8radio0").checked=false;
+document.getElementById("8radio1").checked=false;
+document.getElementById("8radio2").checked=false;
+document.getElementById("8radio3").checked=true;
+}
+else if  (isNan(bmi) ){
+bmi="___";
+}
+
+
+if (alb >=4){
+p9=0;
+document.getElementById("9radio0").checked=true;
+document.getElementById("9radio1").checked=false;
+document.getElementById("9radio2").checked=false;
+document.getElementById("9radio3").checked=false;
+
+}
+else if (alb>=3.5 && alb <4) {
+p9=1;
+document.getElementById("9radio0").checked=false;
+document.getElementById("9radio1").checked=true;
+document.getElementById("9radio2").checked=false;
+document.getElementById("9radio3").checked=false;
+}
+else if (alb >=3.0 && alb <3.5)  {
+p9=2;
+document.getElementById("9radio0").checked=false;
+document.getElementById("9radio1").checked=false;
+document.getElementById("9radio2").checked=true;
+document.getElementById("9radio3").checked=false;
+}
+else if (alb < 3.0) {
+p9=3;
+document.getElementById("9radio0").checked=false;
+document.getElementById("9radio1").checked=false;
+document.getElementById("9radio2").checked=false;
+document.getElementById("9radio3").checked=true;
+}
+
+if (fe_p==0) {
+tibc=fe_value;
+}
+else {
+transferrin=fe_value;
+}
+
+if (tibc >=250 || transferrin >=200){
+p10=0;
+document.getElementById("10radio0").checked=true;
+document.getElementById("10radio1").checked=false;
+document.getElementById("10radio2").checked=false;
+document.getElementById("10radio3").checked=false;
+}
+else if ((transferrin <200 && transferrin >= 170) || (tibc < 250 && tibc >=200)) {
+p10=1;
+document.getElementById("10radio0").checked=false;
+document.getElementById("10radio1").checked=true;
+document.getElementById("10radio2").checked=false;
+document.getElementById("10radio3").checked=false;
+}
+else if ((transferrin <170 && transferrin >= 150) || (tibc < 200 && tibc >=150)) {
+p10=2;
+document.getElementById("10radio0").checked=false;
+document.getElementById("10radio1").checked=false;
+document.getElementById("10radio2").checked=true;
+document.getElementById("10radio3").checked=false;
+}
+else if (transferrin <150 || tibc < 150){
+p10=3;
+document.getElementById("10radio0").checked=false;
+document.getElementById("10radio1").checked=false;
+document.getElementById("10radio2").checked=false;
+document.getElementById("10radio3").checked=true;
+}
+var x1=eval(p1)+eval(p2)+eval(p3)+eval(p4);
+var x2=eval(p5)+eval(p6)+eval(p7)+eval(p8);
+var x3=eval(p9)+eval(p10);
+var x=eval(x1)+eval(x2)+eval(x3);
+
+var y;
+if (x < 2.4) {
+y="MIS is within two standard deviations of the mean";
+}
+else if (x >= 2.4 && x < 10.2) {
+y="MIS is within one standard deviation of the mean";
+}
+else if (x >= 10.2 && x < 14.1) {
+y="MIS is within two standard deviations of the mean";
+}
+else if (x >= 14.1 && x <= 18) {
+y="MIS is within three standard deviations of the mean";
+}
+else if (x > 18) {
+y="MIS is over four standard deviations from the mean";
+}
+
+document.getElementById('report').innerHTML=x
+document.getElementById('bmi_report').innerHTML=Math.round(bmi*10)/10;
+document.getElementById('weight_report').innerHTML=Math.round(weight*10)/10;
+document.getElementById('height_report').innerHTML=Math.round(height*10)/10;
+document.getElementById('comment_report').innerHTML="<b>"+y+"</b>";
+document.getElementById('comment1_report').innerHTML="<b>"+ y +"</b>";
+document.getElementById('mis_report').innerHTML=x;
+
+
+}
+</script>
+
+</head>
+
+<body onLoad="window.setInterval('calculate_mis()',250)";>
+<fieldset id="fieldset_style">
+
+<center><div id="nav" style="text:align:center;">
+<ul>
+<li><a href="../pred-sp/">HOME</a></li>
+<li><a href="../epi-sp/">EPI</a></li>
+<li><a href="../cci-sp/">CCI</a></li>
+<li><a href="../krn-sp/">KRN</a></li>
+<li><a href="../mis-sp/">MIS</a></li>
+<li><a href="../sq-sp/">SQ</a></li>
+</ul>
+  </div></center><br>
+  <p>
+<a style="text-align:center;" href="https://renalworld.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57></a></p>
+  
+  <h3 style="text-align:center;">Malnutrition Inflammation Score</h3>
+
+<form id="mis">
+<table border=0>
+<tr>
+
+MIS SCORE is <span id="report">xxx</span>. <span id="comment1_report">xxxxx</span>.
+</td>
+</tr>
+<tr>
+<td colspan=5 border=1>(A) Patient's related medical history:<BR>1. Change in end dialysis dry weight (overall change in past 3-6 months):</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_1_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_1_p value=1></td><td border=1>2 <input type=radio name=criteria_1_p value=2></td><td border=1>3 <input type=radio name=criteria_1_p value=3></td></tr>
+<tr><td border=1 valign="top">No decrease in dry<br> weight or weight<br> loss &lt; 0.5 kg</td><td border=1 valign="top">Minor weight loss<br> (&ge; 0.5 kg but &lt; 1 kg)</td><td border=1 valign="top">Weight loss more<br> than 1 kg<br> but &lt; 5&#37;</td><td border=1 valign="top">weight loss &gt;<br> 5&#37;</td></tr>
+<td colspan=5 border=1>2. Dietary Intake:</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_2_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_2_p value=1></td><td border=1>2 <input type=radio name=criteria_2_p value=2></td><td border=1>3 <input type=radio name=criteria_2_p value=3></td></tr>
+<tr><td border=1 valign="top">Good appetite and<br>and no deterioration of<br> the dietary intake<br>pattern
+</td><td border=1 valign="top">Somewhat sub-optimal<br>solid diet intake</td><td border=1 valign="top">Moderate overall<br>decrease to full<br>liquid diet</td><td border=1 valign="top">Hypo-caloric liquid<br>to starvation</td></tr>
+</tr>
+<tr>
+<td colspan=5 border=1>3. Gastrointestinal (GI) symptoms:</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_3_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_3_p value=1></td><td border=1>2 <input type=radio name=criteria_3_p value=2></td><td border=1>3 <input type=radio name=criteria_3_p value=3></td></tr>
+<tr><td border=1 valign="top">No symptoms with<br>good appetite 
+</td><td border=1 valign="top">Mild symptoms, poor<br>appetite or nauseated<br>occasionally</td><td border=1 valign="top">Occasional vomiting<br>or moderate GI<br>symptoms</td><td border=1 valign="top">Frequent diarrhea<br>or vomiting or<br>severe anorexia</td></tr>
+<tr>
+<td colspan=5 border=1>4. Functional capacity (nutritionally related functional impairment)::</td>
+</tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_4_p value=0 CHECKED></td><td border=1>1 <input type=radio name=criteria_4_p value=1></td><td border=1>2 <input type=radio name=criteria_4_p value=2></td><td border=1>3 <input type=radio name=criteria_4_p value=3></td></tr>
+<tr><td border=1 valign="top">Normal to improved<br>functional capacity,<br>feeling fine</td><td border=1 valign="top">Occasional difficulty<br>with baseline ambulation, <br>or feeling tired frequently</td><td border=1 valign="top">Difficulty with<br>otherwise independent<br>activities (e.g. going<br>  to bathroom)</td><td border=1>Bed/chair-ridden, <br>or little to no<br> physical activity</td></tr>
+<td colspan=5 border=1 valign="top">5. Co-morbidity, including number of years on dialysis:
+</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_5_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_5_p value=1></td><td border=1>2 <input type=radio name=criteria_5_p value=2></td><td border=1>3 <input type=radio name=criteria_5_p value=3></td></tr>
+<tr><td border=1 valign="top">On dialysis &lt; 1 year<br>and healthy otherwise
+</td><td border=1 valign="top">Dialyzed for 1-4 years,<br>or mild co-morbidity<br>(excluding <a href="#mcc">MCC*</a>)
+</td><td border=1 valign="top">Dialyzed &gt; 4<br>  years, or moderate<br>co-morbidity<br>(including one <a href="#mcc">MCC*</a>)
+</td><td border=1 valign="top">Any severe, multiple<br>co-morbidity<br>(2 or more <a href="#mcc">MCC*</a>)</td></tr>
+<td colspan=5 border=1 valign="top">(B) Physical Exam (according to SGA Crieteria):<br>
+6. Decreased fat stores or loss of subcutaneous fat (below eyes, triceps, biceps, chest):
+</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type=radio name=criteria_6_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_6_p value=1></td><td border=1>2 <input type=radio name=criteria_6_p value=2></td><td border=1>3 <input type=radio name=criteria_6_p value=3></td></tr>
+<tr><td border=1 valign="top">Normal (no change)</td><td border=1>Mild</td><td border=1>Moderate</td><td border=1>Severe</td></tr>
+<td colspan=5 border=1>7. Signs of muscle wasting (temple, clavicle, scapula, ribs, quadriceps, knee, interosseous):
+</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border= 1>0 <input type=radio name=criteria_7_p value=0 checked></td><td border=1>1 <input type=radio name=criteria_7_p value=1></td><td border=1>2 <input type=radio name=criteria_7_p value=2</td><td border=1>3 <input type=radio name=criteria_7_p value=3></td></tr>
+<tr><td border=1 valign="top">Normal (no change)</td><td border=1 valign="top">Mild</td><td border=1 valign="top">Moderate</td><td border=1 valign="top">Severe</td></tr>
+<td colspan=5 border=1>(C) Body Mass Index:<br>
+8.Body mass index:Input BMI (if known) <input type="text" name="bmi_value" size="5" value="22">  or leave blank and calculate below<br> BMI = Wt(kg)<input name="weight" size="4" value=""> / Ht<sup>2</sup>(m). <br>Inches: <input type="radio" name="height_p" value="0" checked> Centimeters: <input type="radio" name="height_p" value="1"> <input size="4" name="height" value=""><br>
+WEIGHT=<span id="weight_report">wt</span> kg.  HEIGHT=<span id="height_report">ht</span> m.  BMI=<span id="bmi_report">bmi</span> kg/m<sup>2</sup>.
+</td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type="radio" id="8radio0"> </td><td border=1>1 <input type="radio" id="8radio1"></td><td border=1>2 <input type="radio" id="8radio2"></td><td border=1>3 <input type="radio" id="8radio3"> </td></tr>
+<tr><td border=1 valign="top">BMI &ge; 20 kg/m<sup>2</sup></td><td border=1 valign="top">BMI 18 &#45; 19.99 kg/m<sup>2</sup></td><td border=1 valign="top">BMI 16  &#45; 17.99 kg/m<sup>2</sup>
+
+
+</td><td border=1 valign="top">BMI &lt; 16 kg/m<sup>2</sup></td></tr>
+<td colspan=5 border=1>(D) Laboratory Parameters:<br>
+9. Serum albumin <input type="text" size="4" name="alb" value="4"><br>
+
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1>0 <input type="radio" id="9radio0"></td><td border=1>1 <input type="radio" id="9radio1"></td><td border=1>2 <input type="radio" id="9radio2"></td><td border=1>3 <input type="radio" id="9radio3"> </td></tr>
+<tr><td border=1 valign="top">Albumin &ge; 4.0 g/dL
+</td><td border=1 valign="top">Albumin 3.5  &#45; 3.9 g/dL
+</td><td border=1 valign="top">Albumin 3.0  &#45; 3.4 g/dL 
+</td><td border=1 valign="top">Albumin &lt; 3.0 g/dL</td></tr>
+<td colspan=5 border=1>10. Serum TIBC (Total Iron Binding Capacity)<input type="radio" name="fe_p" value=0 checked>  OR serum transferrin <input type="radio" name="fe_p" value=1>.<br> Input value<input size="5" name="fe_value" value="280"></td>
+</tr>
+<tr>
+<td rowspan=2 border=1></td>
+<td border=1 >0 <input type="radio" id="10radio0"></td><td border=1>1 <input type="radio" id="10radio1"></td><td border=1>2 <input type="radio" id="10radio2"></td><td border=1>3 <input type="radio" id="10radio3"></td></tr>
+<tr><td border=1 valign="top">TIBC &ge; 250 mg/dL<br>
+Transferrin &gt; 200 mg/dL
+</td><td border=1 valign="top">TIBC 200 &#45;249 mg/dL<br>
+Transferrin 170 &#45;200 mg/dL
+</td><td border=1 valign="top">TIBC 150 &#45;199 mg/dL<br>
+Transferrin 150 &#45;169 mg/dL
+
+</td><td border=1 valign="top">TIBC &lt; 150 mg/dL<br>
+Transferrin  &lt; 150 mg/dL
+</td></tr>
+<tr><td colspan=5 border=1 >MIS SCORE: <span id="mis_report">mis</span><br>
+<span id="comment_report"></span>
+</td></tr>
+<tr><td colspan=5 border=1><hr><a name="mcc"></a>*MCC (Major Comorbid Conditions): include CHF class III or IV, full blown AIDS<br>
+severe CAD, moderate to severe COPD, major neurologic sequelae,<br>and metastatic malignancies or s/p recent chemotherapy. </td></tr>
+<tr><td colspan=5 border=1>NOTES: n = 346 patients x = 6.3 SD = 3.9   25th%=4   50th% (median) = 5.5   75th% = 8</td></tr>
+<tr><td colspan=5 border=1>REFERENCE: Kalantar-Zadeh K, Kopple JD, Humphreys MH, Block G.<br> 
+Comparing outcome predictability of markers of malnutrition-inflammation<br> 
+complex sydrome in hemodialysis patients. <a href="http://www.ncbi.nlm.nih.gov/pubmed/15069177">Nephrol Dial Transplant (2004) 19:1507-1519</a>
+<dtml-comment>2.4-10.2 1 sd
+10.2 - 14.1 2 sd 
+14.1 - 18</dtml-comment>
+</td></tr>
+</table>
+
+
+
+
+</form>
+<p style="font-size:10;text-align:justify;width:100%;"> 
+DISCLAIMER:<br>
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. <BR>
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+<center><a style="text-align:center;" href="https://renalworld.com/calc"><img style="text-align:center;" src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57 style="font-family:sans-serif;font-size:10;text-align:center;">TOUCHCALC</a></center>
+  </div>
+</body>
+</html>

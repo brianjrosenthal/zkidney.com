@@ -1,0 +1,300 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABW - Adjusted Body Weight | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/hamwi">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;font-size:14px;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style>          
+<script language="Javascript">
+ 
+//library - begin
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+ function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+//library end  
+
+
+function height_hamwi(ht1) {
+   ht1=ht1-5
+   if (ht1<0)
+    {
+    ht1=0
+    return ht1 
+    }
+    else 
+       {
+    return ht1
+       }
+    }
+
+function calculate(form,height_metric_p,weight_metric_p,gender_sex_p,feet,frame_value, inches, centimeters)
+
+{
+       var gender_sex_p = (radio_val(form.gender_sex_p,0) > 0); // default male
+       var weight_metric_p = (radio_val(form.weight_metric_p,0) > 0); // default pounds
+       var height_metric_p = (radio_val(form.height_metric_p,0) > 0); //default feet and inches
+       var fv = form.frame_value.value // default Medium 
+
+ 
+
+ 
+ if (height_metric_p>0)  
+         
+                {
+              cm=form.centimeters.value
+              document.getElementById("cm_span").style.display="inline";
+              document.getElementById("ft_span").style.display="none";
+              document.getElementById("in_span").style.display="none";
+              document.getElementById("centimeters").style.display="inline";
+              document.getElementById("feet").style.display="none";
+              document.getElementById("inches").style.display="none";
+                }
+           else     {
+        feet=form.feet.value
+        inches=form.inches.value
+         
+        feet= feet*12
+        inches=eval(feet)+eval(inches)
+        
+        cm=inches*2.54
+        document.getElementById("feet").style.display="inline";
+        document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+        document.getElementById("cm_span").style.display="none";
+        document.getElementById("ft_span").style.display="inline";
+        document.getElementById("in_span").style.display="inline";
+          }
+
+
+mf=gender_sex_p
+
+ht=cm
+
+ht=ht/2.54  //converts cm to inches
+ht1=parseInt(ht/12)//integer
+ht=ht/12  //converts to feet
+var ht2= ht-ht1
+
+ht2=ht2*12
+
+//alert ('ht in inches'+ht +'integer '+ht1+' remainder'+ht2)
+
+if (mf>0) {
+ht1=height_hamwi(ht1)
+weight=5*(ht1 + ht2)
+weight=weight+100
+//alert ('female'+weight+'ht1 first five' +ht1+'ht2  remainder'+ht2)
+                 }
+else { 
+ht1=height_hamwi(ht1)
+
+weight=6*(ht1+ht2)
+weight=weight+106
+
+}
+
+
+weight=weight*fv
+        
+
+wmp=weight_metric_p
+
+if (wmp>0) {
+weight =weight*.45//pounds
+
+//alert (weight+ 'should be pounds')
+        }
+else {
+weight=weight //pounds
+//alert (weight+'should be kilograms')
+                    }
+document.getElementById('weight_report').innerHTML=round2(weight)   ;
+}
+ 
+</script>
+</head>
+
+<body onload="window.setInterval('calculate()',250)";>
+
+<h1 style="text-align:center;">Adjusted Body Weight</h1>
+  <h3 style="text-align:center;">HAMWI FORMULA</h3>
+<p style="text-align:center;font-decoration:italic;">programmed by Stephen Z. Fadem, M.D., FACP, FASN</p>
+
+<form id=bodyweight name=bodyweight>
+
+
+  <p>WEIGHT: <span style="font-weight:bold;" id="weight_report">???</span>&nbsp;pounds
+<input type="radio" name="weight_metric_p" value=0 checked onClick=calculate(this.form)>&nbsp;kilograms<input type="radio" name="weight_metric_p" onClick=calculate(this.form) value=1></p>
+
+<p>GENDER:&nbsp;Male&nbsp;<input type="radio" name="gender_sex_p" onClick=calculate(this.form) value=0 checked>&nbsp; Female<input type="radio" name="gender_sex_p" onClick=calculate(this.form) value=1></p>
+
+<p>METRIC:&nbsp;
+<input id=feet size=2 value=5 onKeyUp=calculate(this.form)><span id=ft_span>&nbsp;ft</span><input id=inches size=3 value=9 onKeyUp=calculate(this.form)>&nbsp;
+<span id=in_span>&nbsp;in</span><input id=centimeters size=4 onKeyUp=calculate(this.form) value=175>&nbsp;<span id=cm_span>&nbsp;cm</span></p>
+
+<p>Inches<input type="radio" name="height_metric_p" onClick=calculate(this.form) value=0 checked>&nbsp;Centimeters&nbsp;<input type="radio" name="height_metric_p" onClick=calculate(this.form) value=1>
+</p>
+
+<p>FRAME <select name=frame_value onChange=calculate(this.form)>
+      <option value=".9">LIGHT</option>
+      <option value="1" SELECTED>MEDIUM</option>
+      <option value="1.1">LARGE</option>
+      </select>
+
+
+<p>ADJUSTED BW = ACTUAL DRY WEIGHT +((STANDARD BW - EDEMA FREE BW) *25)</p>
+ <p> This value is calculated from frame size, height, and gender based on Standard body weights in NHANES 2 data. Refer to <a href="../abw-fn/">Frames & Nhanes</a> </p>
+<p>Reference: Frisancho AR. New standards of weight and body composition by frame size and height for assessment of nutritional status of adults and the elderly. Am J Clin Nutr. 1984 Oct;40(4):808-19.</p>
+<ol>
+  <li><a href="../abw/">Adjust body
+    weight by frame, height, and gender</a></li>
+  <li><a href="../abw-fn/">Look up body frame from NHANES2 tables</a></li>
+    <li><a href="../frame/">Calculate frame from height and wrist circumference</a></li>
+  </ol>
+
+  </FORM>
+ 
+ 
+<p>
+  Copyright &copy  2024 by Stephen Z. Fadem, M.D., FASN. All rights reserved</p>
+  <p>
+ DISCLAIMER:</p>
+<p>
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same.
+
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+
+  </div>
+  </body>
+</html>

@@ -1,0 +1,415 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>converter-test | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/converter-test">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+ 
+<html>
+<head>
+  <script language="javascript">
+
+   createTable();
+
+function createTable() {
+    var table = document.createElement("table");  //makes a table element for the page
+
+    table += "<tr class='firstRow'><th>Title</th><th>Author</th><th>Read?</th></tr>";  //adds the first row that contains the sections for the table
+
+    for (var i = 0; i < bchemcalc.length; i++)  //loops through the array 
+    {
+        //add info from the array into this
+        table += "<tr><td>" + chemcalc[i].title + "</td><td>";
+    }
+
+    document.body.append(table);
+} 
+ 
+ 
+ 
+ //Table array
+  Var chemcalc=[
+    {
+      Compound: 'Sodium'
+      Symbol: 'Na'
+      Atomic wt: '23'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: '{Potassium'
+      Symbol: 'Na'
+      Atomic wt: '39'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Chloride'
+      Symbol: 'Cl'
+      Atomic wt: '35.5'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Bicarbonate'
+      Symbol: 'HCO<sub3</sub>'
+      Atomic wt: '61'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Calcium'
+      Symbol: 'Ca'
+      Atomic wt: '40'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Phosphorus'
+      Symbol: 'P'
+      Atomic wt: '31'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Iron'
+      Symbol: 'Fe'
+      Atomic wt: '56'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Magnesium'
+      Symbol: 'Na'
+      Atomic wt: '24'
+      Valence: '2'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Na Chloride'
+      Symbol: 'Na'
+      Atomic wt: '+23+35.5'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Na bicarbonate'
+      Symbol: 'NaHCO<sub>3</sub>'
+      Atomic wt: '+61+23'
+      Valence: '1'
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Blood Urea Nitrogen'
+      Symbol: 'BUN'
+      Atomic wt: '28'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Urea'
+      Symbol: 'U'
+      Atomic wt: '60'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"><span>
+    },
+    {
+      Compound: 'Creatinine'
+      Symbol: 'cr'
+      Atomic wt: '88.4'
+      Valence: ' '
+      meQ/l:<span id=""></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="umoll"></span>
+    },
+    {
+      Compound: 'Glucose'
+      Symbol: 'Glu'
+      Atomic wt: '180'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Total Protein'
+      Symbol: 'TP'
+      Atomic wt: ' '
+      Valence: ' '
+      meQ/l:<span id="meql"></span>
+      mg/dl:<span id="gl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    {
+      Compound: 'Albumin'
+      Symbol: 'Alb'
+      Atomic wt: '68'
+      Valence: ' '
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="gl"></span>
+    },
+    {
+      Compound: 'cholesterol'
+      Symbol: 'C<sub>27</sub>H<sub>46</sub>O'
+      Atomic wt: '386.64'
+      Valence: ''
+      meQ/l:<span id=" "></span>
+      mg/dl:<span id="mgdl"></span>
+      SI:<span id="mmoll"></span>
+    },
+    
+   //end table array   
+   ]
+
+    
+  var atomic=Number(atomic)   
+  var mgdl=Number(mgdl)
+  var sivalue=Number(sivalue)
+  var mmoll=Number(mmoll)
+  var val=number(val)
+    
+    function siCalc(mgdl,atomic)
+      {
+      sivalue=mgdl*atomic;
+      return sivalue
+      
+      }
+      
+      function meqCalc (mmoll,val)
+      {
+       
+      meql = mmoll / val
+        return meql
+      }
+      
+      function mgCalc (mmoll,atomic)
+      {
+       
+      mgdl = mmoll/atomic
+      return mgdl
+      }
+    
+
+    
+ function calculateSI() {
+  var form
+ 
+
+    mgdl=document.getElementById('mgdlval').value;
+
+    atomic=document.getElementById('atomicval').value;
+    mmoll=document.getElementById('mmollval').value;
+    val=document.getElementById('valval').value;
+    
+   var sivalueresult=siCalc(mgdl,atomic)
+   var meqlresult=meqCalc(mmoll,val)
+   var mgdlresult=mgCalc(mmoll,atomic)
+      
+ 
+document.getElementById('mg_report').innerHTML=''+mgdlresult+'';
+       document.getElementById('si_report').innerHTML=''+sivalueresult+'';
+     document.getElementById('meq_report').innerHTML=''+meqlresult+'';
+
+  }
+      
+
+    </script>
+  </head>
+    <BODY onload="window.setInterval('calculateSI()',1000);">
+    <form>
+
+        mg <input id="mgdlval" size="5" value="  " type="text" ><br>
+        si <input id="mmollval" value="  " size="5" type="text" ><br>
+        atomic <input id="atomicval" value="  "  size="5" type="text" ><br>
+        val <input id="valval" value+ "" size="5" type="text"><br>
+       
+   
+     conversion to mg from si=<span id="mg_report"></span><br>
+      
+     conversion to si from mg=<span id="si_report"></span><br>
+     conversion from mmol to mEq/L=<span id="meq_report"></span>
+<br>
+<table border="1" padding="0" spacing="3"> 
+  <tr class='firstRow'>
+    <th>Coumpound</th><th>Symbol</th><th>Atomic Weight</th><th>valence</th><th>mEq/L</th><th>mg/dL</th><th>SI</th></tr>
+      
+      <tr>
+        <td>Sodium</td>
+        <td> Na</td>
+        <td>23</td>
+        <td>1</td><td>
+      <span id='meq_report'></span></td><td>
+      <span id="mgdl"></span></td>
+      <td><span id="mmoll"></span></td>
+  </tr>
+   
+      <tr><td>Potassium</td><td>
+      'K'</td><td>
+       39</td><td>
+       1</td><td>
+     <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+
+       <tr><td>Chloride</td><td>
+       Cl</td><td>
+       35.5</td>/td><td>
+    1</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+    
+       <tr><td> Bicarbonate</td>
+         <td>HCO<sub3</sub></td><td>
+       61</td><td>
+      1</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+    
+      <tr><td>Calcium</td><td>
+       Ca</td><td>
+      40</td><td>
+       2</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+     <span id="mmoll"></span></td></tr>
+    
+       <tr><td> Phosphorus</td><td>
+       P</td><td>
+       31</td><td>
+       2</td><td>
+      <span id="meql"></span></td><td>
+     <span id="mgdl"></span></td><td>
+     <span id="mmoll"></span></td></tr>
+   
+       <tr><td>Iron</td><td>
+       Fe</td><td>
+       56</td><td>
+         2</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+     <span id="mmoll"></span></td></tr>
+    
+       <tr><td> Magnesium</td><td>
+       Mag</td>
+       <td>24</td><td>
+       2</td><td>
+     <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+  <span id="mmoll"></span></td></tr>
+    
+       <tr><td>Na Chloride</td><td>
+      Na</td><td>
+       +23+35.5</td><td>
+       1</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+   
+       <tr><td>Na bicarbonate</td><td>
+       NaHCO<sub>3</sub></td><td>
+       +61+23</td><td>
+       1</td><td>
+      <span id="meql"></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+    
+      <tr><td> Blood Urea Nitrogen</td><td>
+      BUN</td><td>
+       28</td><td>
+       ' '</td><td>
+      <span id=" "></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="mmoll"></span></td></tr>
+   
+      <tr><td>Urea</td><td>
+       U</td><td>
+    60</td><td>
+      ' '</td><td>
+      <span id=" "></span></td><td>
+      <span id="mgdl"></span></td>
+        <td><span id="mmoll"></span></td></tr>
+    
+ <tr><td>Creatinine</td><td>
+      cr</td><td>
+       88.4</td><td>
+       ' '</td><td>
+     <span id=""></span></td><td>
+      <span id="mgdl"></span></td><td>
+<span id="umoll"></span></td></tr>
+    
+      <tr><td> Glucose</td><td>
+       Glu</td><td>
+       180</td><td>
+       ' '</td><td>
+      <span id=" "></span></td><td>
+      <span id="mgdl"></span></td><td>
+<span id="mmoll"></span></td></tr>
+    
+<tr><td> Total Protein</td><td>
+       TP</td><td>
+       ' '</td><td>
+       ' '</td><td>
+      <span id="meql"></span></td><td>
+      <span id="gl"></span></td><td>
+  <span id="mmoll"></span></td></tr>
+   
+      <tr><td>Albumin</td><td>
+       Alb</td><td>
+       68</td><td>
+      ' '</td><td>
+      <span id=" "></span></td><td>
+      <span id="mgdl"></span></td><td>
+      <span id="gl"></span></td><tr>
+   
+      <tr><td>cholesterol</td><td>
+      C<sub>27</sub>H<sub>46</sub>O</td><td>
+      '386.64'</td><td>
+       ''</td><td>
+      <span id=" "></span></td><td>
+      <span id="mgdl"></span></td><td>
+<span id="mmoll"></span></td>
+  </tr>
+</table>
+    
+      
+      
+      
+      </form>
+      </body>
+    </html>
+
+

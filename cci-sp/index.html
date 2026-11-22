@@ -1,0 +1,439 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charlson Comorbidity Index SP | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/cci-sp">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:white;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:#eee;
+margin:2px;
+}
+
+ 
+div #nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+color:white;
+background-color:595b60;
+font-size:10px;
+margin:0 auto;
+overflow:hidden;
+text-align:justify
+vertical-align:middle;
+}
+
+
+
+div #nav ul{
+
+
+list-style:none;
+text-align:justify;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:4em;
+z-index:1000;
+text-align:center;
+display:inline;
+margin:0 auto;
+  
+  top:0;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:black;
+  position:relative;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:gray;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:0px solid #00F; font-size:12px;}
+th{background:white;width:auto; text-align:center; padding:5px 0;border:0px white;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:white;}
+tr:nth-child(even) {background:white;}   
+</style>
+
+<script language=javascript>
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+  function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+
+
+
+var form="cci_form";
+
+form=document.getElementById('cci_form');
+function do_cci(form)  {
+var age=document.getElementById('age').value;
+var alb=document.getElementById('alb').value;
+var lla=document.getElementById('lla').value;
+var s=0;
+var points=0;
+with(document.form_cci) {
+
+
+for (var i=0;i<cci1.length;i++) {
+if(cci1[i].checked)  {
+s=eval(s)+eval(cci1[i].value);
+
+points=s                
+ }
+else  { (points==0)
+}
+ }
+
+}
+
+
+if (points < 2) {
+invalid_data_message="Data not available if CCI less than 2.";
+     }
+else if (points >=2) {
+invalid_data_message="";
+     }
+var cci=points;
+var age1=age;
+var alb1=alb
+if (age <=40){
+age=0;
+}
+else if (age > 40) {
+age=eval(age-40);
+age=eval(age/10);
+age=parseInt(age)
+}
+points +=age;
+
+var lla1=lla
+lla=eval(3.5/lla);
+if (alb < 3.5) {
+low_alb_message="When lower limits of albumin (LLA) for lab are &lt; 3.5 g/dL enter LLA (if not 3.5)";
+alb=alb1*lla;
+}
+else if (alb >=3.5) {
+low_alb_message="";
+alb=alb1*1;
+}
+document.getElementById('invalid_data_report').innerHTML=""+invalid_data_message+""
+document.getElementById('low_alb_report').innerHTML=""+low_alb_message+"";
+document.getElementById('conversion_report').innerHTML="<b>  " +round(lla)+ ". <br>Alb<sub style='font-size:10px;'>corrected</sub>: " +round2(alb)+ " mg/dL</b><br>";
+ 
+
+
+
+var ALBM;
+var MISCULIN;
+var CCIM;
+if (alb >=3.5) {
+          ALBM=["86","76","5.9","7.1"]; 
+               }
+
+else if (alb < 3.5) {  
+         ALBM = ["50","17","14.7","11.4"]; 
+             }
+
+//low alb
+if ((points <=1)&&(alb < 3.5)) {
+        MISCULIN=["invalid","invalid"," "," "];
+        }		
+else if ((points <=3.0) && (alb < 3.5)){
+        MISCULIN=["91","87","10","11"];
+        }
+
+else if ((points <=5) && (alb <3.5)) { 
+        MISCULIN = ["73","61","9","12"]; 
+        }
+
+else if ((points <=7) && (alb <3.5)){ 
+        MISCULIN = ["69","49","7","8"]; }
+
+		else if (alb <3.5) { 
+		MISCULIN=["52","30","9","10"]; 
+		}
+		
+//high alb
+		
+if ((points <=1) && (alb >=3.5)) { 
+        MISCULIN = ["invalid","invalid"," "," "] 
+        }
+
+else if ((points <=3) && (alb >=3.5 )) { 
+        MISCULIN = ["93","89","3","5"]; 
+        }
+
+else if ((points <=5) && (alb >=3.5 )) { 
+        MISCULIN = ["89","75","4",",6"]; 
+        }
+
+else if ((points <=7)&& (alb >=3.5 )) { 
+        MISCULIN = ["84","67","4","5"]; 
+        }
+
+else if (alb >=3.5) { 
+		
+		MISCULIN =["75","52","5","6"];
+		 
+		}
+var invalid_data_message="";
+if (points <= 1) {
+invalid_data_message="Data not available if CCI less than2.";
+     }
+else if (points >1) {
+invalid_data_message="";
+     }
+
+//CCI
+
+		if (points <=3) { 
+		CCIM = ["98","95","3.1","5.3"]; 
+		}
+
+		else if ((points <=5)&&(points > 3)) { 
+		CCIM = ["89","80","8.8","10.4"]; 
+		}
+
+		else if ((points >5)&&(points <=7)) { 
+		CCIM = ["79","55","9.6","11.4"]; 
+		}
+
+		else if (points >7) { 
+		CCIM =["64","35","10.8","10.8"]; 
+		} 
+		
+		
+
+	document.getElementById('points_report').innerHTML=" "+cci+".   Factored for Age (" +age1+ "): " +points+ "<br>";
+        document.getElementById('cci1_report').innerHTML=""+CCIM[0]+" � "+ CCIM[2]+" "; 
+        document.getElementById('cci2_report').innerHTML=""+CCIM[1]+" � "+ CCIM[3]+" ";
+        document.getElementById('alb1_report').innerHTML=""+ALBM[0]+" � "+ ALBM[2]+" ";           
+        document.getElementById('alb2_report').innerHTML=""+ALBM[1]+" � "+ ALBM[3]+" "; 
+        document.getElementById('misculin1_report').innerHTML=""+MISCULIN[0]+" � "+ MISCULIN[2]+" "; 
+        document.getElementById('misculin2_report').innerHTML=""+MISCULIN[1]+" � "+ MISCULIN[3]+" "; 
+		
+
+
+}
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+</head>
+
+<body onload="window.setInterval('do_cci(form)', 250 );">
+
+<fieldset id="fieldset_style">
+<center><div id="nav" style="text:align:center;">
+<ul>
+<li><a href="../pred-sp/">HOME</a></li>
+<li><a href="../epi-sp/">EPI</a></li>
+<li><a href="../cci-sp/">CCI</a></li>
+<li><a href="../krn-sp/">KRN</a></li>
+<li><a href="../mis-sp/">MIS</a></li>
+<li><a href="../sq-sp/">SQ</a></li>
+</ul>
+  </div></center><br>
+  <p>
+<a style="text-align:center;" href="https://renalworld.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57></a></p>
+  
+  <h3 style="text-align:center;">Charlson Comorbidity Index</h3>
+<h4 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h4>
+
+<p style="text-align:center;color:gray;margin 0 0 10 0;font-style:italic;font-family:times, serif;">download for smartphone</a></p>
+
+<form id="cci_form" form name="form_cci">
+
+
+<p>
+<b>Age<input type="text" name="age" size="2" id="age" value="">yrs.  Serum Albumin<input type="text" name="alb" id="alb" size="2" value="">g/dL <br>
+LLA* <input type="text" name="lla"  id="lla" size="2" value="3.5">g/dL. Conversion factor: <span id="conversion_report"> conversion_factor</span><br>
+
+CCI<span id="points_report"> ____</span> 
+
+</b>
+</p>
+<table>
+
+
+<tr>
+<th>SURVIVAL</th><th>1 YEAR</th><th>2 YEAR</th>
+</tr>
+<tr>
+<td>Survival (CCI)</a></td><td><span id=cci1_report> __</span></td><td><span id=cci2_report> __ </span></td>
+</tr>
+<tr>
+
+<td>Survival (Alb)</a></td><td><span id=alb1_report>__</span></td><td><span id=alb2_report> __</span></td>
+</tr>
+<tr>
+
+<td>Survival (Alb & CCI)</a></td><td><span id=misculin1_report> __</span></td><td><span id=misculin2_report> __</span></td> 
+</tr>
+
+</table>
+<HR style="width:100%;">
+<P><span id=low_alb_report>___</span><br>
+<span id="invalid_data_report"></span></P>
+<HR style="width:100%;">
+<p>One Point</p>
+<ul style="list-style:none";>
+<li><input type="checkbox" name="cci1" id="MI" value=1>Myocardial infarction (history, not ECG changes only)</li>
+<li><input type="checkbox" name="cci1" id="CHF" value=1>Congestive heart failure</li>
+<li><input type="checkbox" name="cci1" id="PVD" value=1> Peripheral disease (includes aortic aneurysm >= 6 cm</li>
+<li><input type="checkbox" name="cci1" id="CVA" value=1>Cerebrovascular disease: CVA with mild or no residua or TIA</li>
+<li><input type="checkbox" name="cci1" id="dementia" value=1> Dementia</li> 
+<li><input type="checkbox" name="cci1" id="COPD" value=1> Chronic pulmonary disease </li>
+<li><input type="checkbox" name="cci1" id="CTD" value=1> Connective tissue disease</li>
+<li><input type="checkbox" name="cci1" id="PUD" value=1> Peptic ulcer disease</li>
+<li><input type="checkbox" name="cci1" id="CLD_mild" value=1> Mild liver disease (without portal hypertension, inlcudes chronic hepatitis) </li>
+<li><input type="checkbox" name="cci1" id="DM_mild" value=1>Diabetes without end-organ damage (excludes diet-controlled alone) </li>
+</ul>
+<p>Two Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="cci1" id="hemiplegia" value=2 >Hemiplegia</li>
+<li><input type="checkbox" name="cci1" id="CKD" value=2> Moderate or severe renal disease</li>
+<li><input type="checkbox" name="cci1" id="DM_severe" value=2> Diabetes with end-organ damage (retinopathy, neuropathy,nephropathy, or brittle diabetes) </li>
+<li><input type="checkbox" name="cci1" id="tumor" value=2> Tumor without metastasis (exclude if > 5 yr from diagnosis)</li>
+<li><input type="checkbox" name="cci1" id="leukemia" value=2> Leukemia(acute or chronic)</li>
+<li><input type="checkbox" name="cci1" id="lymphoma" value=2> Lymphoma</li>
+</ul>
+<p>Three Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="cci1" id="CLD_severe" value=3>Moderate or severe liver disease</li>
+</ul>
+<p>Six Points</p>
+<ul style="list-style:none;">
+<li><input type="checkbox" name="cci1" id="mets" value=6>Metastatic solid tumor</li>
+<li><input type="checkbox" name="cci1" id="AIDS" value=6 >AIDS (not just HIV positive)</li>
+</ul>
+
+<p><a href="http://touchcalc.com/predictors/cci_resources/"><img src="http://touchcalc.com/images/i_hand.gif" width=30 border=0></a>
+</p>
+
+
+<hr>
+ 
+<p>*<a id="albumininfo" name="albumininfo"></a>Nephrologists will need to enter the lower limit of albumin (LLA) if it is less than 3.5 g/dL. 
+This program will autoadjust the patient&#146;s serum albumin level for the normal range for the serum albumin assay based upon the LLA entered above. The program will multiply the level by a default correction factor of 3.5/LLA. If different, please correct in the box provided:  <br>
+</p> 
+
+ 
+</form>
+ 
+<p style="font-size:10;text-align:justify;width:100%;"> 
+DISCLAIMER:<br>
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. <BR>
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+<center><a style="text-align:center;" href="https://renalworld.com/calc"><img style="text-align:center;" src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57 style="font-family:sans-serif;font-size:10;text-align:center;">TOUCHCALC</a></center>
+  </div>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!Doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly PD Clearance &amp; KT/V | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/pd-formulas">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+  margin:5px;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input {font-size:14px;
+background-color:white;
+margin:2px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+  </style>
+ 
+<Script language="Javascript">
+
+         
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+
+ var form;
+        form = document.getElementById('ktv_form');
+function pd_ktv(form,weight,height,age,gender_sex_p,height_metric_p,feet,inches,centimeters,urine_day_vol,urine_urea_nitrogen,dialysate_day_vol,dialysate_urea_nitrogen,bun,si_metric_p,cwp_p)    {
+         
+         var gender_sex_p = (radio_val(form.gender_sex_p,0) > 0); // default male;         
+         var mf=gender_sex_p;
+         var age=form.age.value;
+         var inches=0
+         var feet=0
+         var centimeters=0
+         var uv=form.urine_day_vol.value
+         var uun=form.urine_urea_nitrogen.value
+         var dv=form.dialysate_day_vol.value
+         var dun=form.dialysate_urea_nitrogen.value
+         var bun=form.bun.value
+         var mgsi="mg/dL"
+         var si_metric_p=(radio_val(form.si_metric_p,1) > 0); //default mg
+         
+         var cwp_p = document.getElementById('cwp_p').checked;
+         
+         if (cwp_p == true) {
+                        bun=bun*107/100;}
+          else {
+                     bun=bun*1;
+         }
+		       
+         
+        
+         
+        inches = form.inches.value;
+         feet = form.feet.value;
+         var centimeters=form.centimeters.value;
+         var height_metric_p = (radio_val(form.height_metric_p,0) > 0); //default feet and inches
+         var height=0;
+
+ if (si_metric_p > 0)
+             {
+            var bun1=bun;
+            mgsi='mg/dL';
+             }
+else 
+            {
+           var bun1=bun;
+           var  uun=uun/2.8; 
+            var bun=bun/2.8;
+            var dun=dun/2.8
+            mgsi='mmol/L';
+            }
+               
+
+
+
+
+ if (height_metric_p > 0)  
+         
+                {
+        inches = form.inches.value;
+        feet = form.feet.value;
+        feet= eval(feet*12);
+        inches=eval(feet)+eval(inches);
+        centimeters=inches*2.54;
+        height=centimeters;
+                 
+        document.getElementById("feet").style.display="inline";
+        document.getElementById("inches").style.display="inline";
+        document.getElementById("centimeters").style.display="none";
+      
+        document.getElementById("cms_span").style.display="none";
+        
+        document.getElementById("ft_span").style.display="inline";
+        document.getElementById("in_span").style.display="inline";
+                } else
+                {
+        centimeters=form.centimeters.value;
+        centimeters=centimeters*1;
+        document.getElementById("centimeters").style.display="inline";
+        document.getElementById("feet").style.display="none";
+        document.getElementById("inches").style.display="none";
+        document.getElementById("cms_span").style.display="inline";
+        
+        document.getElementById("ft_span").style.display="none";
+        document.getElementById("in_span").style.display="none";
+        height=centimeters;
+        
+                }
+          
+         var weight = form.weight.value;
+        
+         var watson1m=2.447;
+         watson1m=watson1m-0.09156*age;
+         var watson2m=0.1074*height;
+         var watson3m=0.3362*weight;
+         var watsonm=watson1m+watson2m+watson3m;
+         var watson1f=-2.097;
+         var watson2f=0.1069*height;
+         var watson3f=0.2466*weight;
+         var watsonf=watson1f+watson2f+watson3f
+         if (mf>0) { 
+           watson=watsonm
+                           } else 
+                           {
+           watson=watsonf
+                           }
+         var dubois1=Math.pow(weight,0.425)
+         var dubois2=Math.pow(height,0.725)
+         var dubois=dubois1*dubois2
+        dubois=dubois*0.007184;
+        var humem1=0.194786*height;
+        var humem2=0.296785*weight;
+        var humem3=14.012934;
+        var humem=eval(humem1+humem2-humem3);
+        var humef1=0.34454*height;
+        var humef2=0.183809*weight;
+        var humef3=35.270121;
+        var humef=eval(humef1+humef2-humef3);
+ if (mf>0) { 
+           hume=humem
+                           } else 
+                           {
+           hume=humef
+                           }
+          
+          if (uv <= 100) {
+         uv=0;
+         }
+
+         
+         var rkf=uun/bun
+         rkf =rkf*uv;
+         rkf=rkf/1440
+         var rkf_raw=rkf
+         var corr=1.73/dubois;
+         rkf=rkf*corr;
+          
+          
+        dun=eval(dun/bun); //dialysate/blood ratio
+       
+         
+          var cld=eval(dv*dun);
+          
+          cld=eval(cld*7); //converts to l/week
+          var cld_uncorr=cld;
+          cld=cld*corr;
+
+       
+          
+          var rkf1=rkf*10.080;//converts resid fx to min per week, then to liters
+         var pd_ktv=eval(cld)+eval(rkf1);
+       var pd_ktvwatson=pd_ktv/watson;
+       var pd_ktvhume=pd_ktv/hume;
+       
+       document.getElementById('meters_report').innerHTML=Math.round(height)/100;
+       document.getElementById('uv_liters_report').innerHTML=Math.round(uv)/1000
+       document.getElementById('rkf_raw_report').innerHTML=Math.round(rkf_raw*10)/10;
+       document.getElementById('rkf_report').innerHTML=Math.round(rkf*10)/10;
+       document.getElementById('dialysate_clearanceUncorr_report').innerHTML=Math.round(cld_uncorr*100)/100;
+       document.getElementById('dialysate_clearanceCorr_report').innerHTML=Math.round(cld*100)/100;
+       document.getElementById('bun_report').innerHTML=''+Math.round(bun1*1)/1+mgsi+'';
+       document.getElementById('pd_ktvwatson_report').innerHTML=Math.round(pd_ktvwatson*100)/100
+       document.getElementById('pd_ktvhume_report').innerHTML=Math.round(pd_ktvhume*100)/100
+       document.getElementById('watson_report').innerHTML=Math.round(watson*100)/100
+       document.getElementById('hume_report').innerHTML=Math.round(hume*100)/100
+       document.getElementById('dubois_report').innerHTML=Math.round(dubois*100)/100
+        document.getElementById('mgsi1').innerHTML=mgsi
+        document.getElementById('mgsi2').innerHTML=mgsi
+        document.getElementById('mgsi3').innerHTML=mgsi
+      
+        
+
+     
+
+};
+ 
+
+
+
+ //-->
+</script>
+
+
+</head>
+<BODY onload="window.setInterval('pd_ktv(ktv_form)',600);">
+
+<form id="ktv_form">
+
+
+
+<h2 style="text-align:center;">PD Clearance Formula</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+<p>
+
+
+<h3>THE PATIENT</h3>
+Male <INPUT TYPE="radio" NAME="gender_sex_p" VALUE=1 CHECKED>
+Female  <INPUT TYPE="radio" NAME="gender_sex_p" VALUE=0><br>
+Feet inches  <input type="radio" name="height_metric_p"  value=1 >
+Centimeters  <input type="radio" name="height_metric_p"  value=0 checked><br> 
+<a href="http://nephron.com/cgi-bin/kdoqi.cgi" target="_BLANK">Check anthropometric equations</a><br>
+<input id=feet size=4 value=5><span id="ft_span">feet</span> <input id=inches size=6 value=9><span id="in_span"> inches</span><br>
+<input id=centimeters size=6 value=175><span id="cms_span">cms</span><br>Height in meters: <span id="meters_report">xxx</span> M<br>
+
+
+Weight in kg <input name="weight" value="70" size="4"><br>
+Age in years <input name="age" value="30" size="4"><br>
+
+
+
+<br> 
+
+</p>
+<h3>RESIDUAL KIDNEY UREA CLEARANCE</H3>
+V<sub>24 hr urine</sub>: <input name="urine_day_vol" type="text" value="800" size="4"> cc. V<sub>urine</sub> = <span id="uv_liters_report">xxx</span> liters<br>
+mg/dL<INPUT TYPE="radio" NAME="si_metric_p" VALUE=1 >
+mmol/L  <INPUT TYPE="radio" NAME="si_metric_p" VALUE=0 CHECKED ><br>
+U<sub>urine urea nitrogen</sub>: <input name="urine_urea_nitrogen" type="text" value="700" size="4"><span id="mgsi1">____</span><br>
+P<sub>plasma urea nitrogen</sub>: <input name="bun" type="text" value="63" size="4"> <span id="mgsi2">____</span><br>
+<p>Measured in whole plasma (Europe)<input type="checkbox" id="cwp_p"></p>
+RKC (uncorrected) : <span id="rkf_raw_report">???</span>cc/min<br>
+RKC (Residual Kidney Urea Clearance): <span id="rkf_report">???</span> cc/min/1.73m<sup>2</sup><br>
+<h3>DIALYSATE CLEARANCE</H3>
+V<sub>dialysate</sub>: <input name="dialysate_day_vol" type="text" value="12" size="4"> Liters/24 hr<br>
+U<sub>dialysate urea</sub>: <input name="dialysate_urea_nitrogen" type="text" value="49" size="6"><span id="mgsi3">____</span> <br>
+P<sub>urea</sub>: <span id="bun_report">___</span><br>
+C<sub>dialysate uncorrected</sub>: <span id="dialysate_clearanceUncorr_report">???</span> L/week<br>
+C<sub>dialysate</sub>: <span id="dialysate_clearanceCorr_report">???</span> L/week/1.72m<sup>2</sup><br>
+<h3>WEEKLY KT/V</h3>
+
+kt/V<sub>Watson</sub>: <span id="pd_ktvwatson_report">___</span></br>
+kt/V<sub>Hume</sub>: <span id="pd_ktvhume_report">___</span></br>
+TBW<sub>Watson</sub>: <span id="watson_report">???</span> (anthropometric volume) <br>
+TBW<sub>Hume</sub>: <span id="hume_report">???</span>(anthropometric volume)<br>
+BSA<sub>Dubois</sub>: <span id="dubois_report">???</span> (Body Surface Area)<br>
+<h3>FORMULA</h3>
+<ul>
+<li>Plasma Urea in USA is measured in Plasma Water. In Europe in Whole Plasma - correction factor = 1.07</li>
+ <li>RKC=V<sub></sub>*U<sub> urea</sub>/P<sub>urea</sub></li>
+<li>RKC<sub>cc/min</sub>=RKC/1440
+<li>RKC<sub>corrected</sub>=RKC*1.73/BSA;</li>
+<li>RKC<sub>L/min</sub>=RKC/1000</li>
+<li>RKC<sub>L/wk</sub>=RKC<sub>min/cc</sub>*10080</li>
+<li>C<sub>dialysate</sub>=D<sub>urea</sub>*V<sub>dialysate</sub>/P<sub>urea</sub>)*1.73/BSA</li>
+
+<li>Kt/V<sub>wk</sub>=(RKC+C<sub>dialysate</sub>)/V<sub>anthropometric</sub><br>
+<li>Alternatively Kt/V<sub>week</sub>=[(RKC<sub>uncorrected</sub>+C<sub>dialysate - uncorrected</sub>)/V]*1.73/BSA
+<ul>
+<li>10080=minutes/week =24 hours*7 days*60 min</li>
+<li>1440=minutes/24 hours
+<li>C=Clearance
+<li>P=Urea<sub>plasma urea nitrogen</sub>
+<li>RKC = residual kidney function
+<li>D=dialysate
+<li>V = volume
+<li>U = urine<br>
+</ul>   
+</ul>   
+ 
+
+<h3>REFERENCES</h3>
+<ol>
+<li><a href="http://www.kidney.org/professionals/KDOQI/guideline_upHD_PD_VA/index.htm">K DOQI 2006 Updates</a></li>
+<li>Watson PE, Watson ID, Batt RD. Total body water volumes for adult males and females estimated from simple anthropometric measurements <a href="http://www.ajcn.org/content/33/1/27.abstract">Am J Clin Nutr 33:27-39, 1980</a></li>
+<li>Hume R and Weyers E. Relationship between total body water and surface area in normal and obese subjects <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC476961/?tool=pubmed">Clin Path 24(3):234-238, 1971</a></li>
+<li>DuBois D, DuBois EF.Clinical Calorimetry: Tenth Paper A formula to estimate the approximate surface area if the height and weight are known. <a href="http://archinte.ama-assn.org/cgi/content/summary/XVII/6_2/863">Arch Intern Medicine. 17:863-71, 1916</a></li>
+<li><a href="http://touchcalc.com">TOUCHCALC.com</a><br> 
+
+</ol>
+</td></tr>
+<tr>
+<td>
+
+
+</td>
+
+
+
+</form>
+
+
+<p>&copy; 2024 Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

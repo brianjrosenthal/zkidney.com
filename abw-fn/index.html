@@ -1,0 +1,173 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABW - Frames &amp; NHANES | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/abw-fn">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+  
+  <style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:14px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:14px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+  
+
+  </style> 
+
+<script language="JavaScript">
+   var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+ function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+
+function abw(form,actual,standard,kg_p) {
+var kg_p = (radio_val(form.kg_p,0) > 0);
+
+var act=form.actual.value
+var std=form.standard.value
+var kg = (kg_p ? .45 : 1.0)
+
+
+act=act*kg
+std=std*kg 
+var act_lb=act
+var std_lb=std
+
+var adj =eval(std)-eval(act)
+//alert('adjusted'+ adj+' std '+std+    'act' +act)
+adj=.25*adj
+adj=eval(act)+eval(adj)
+var adj_lb=adj/kg
+
+adj=adj/kg
+adj=round(adj)
+
+
+if (kg_p >0){
+act_lb*=2.2
+std_lb*=2.2
+adj_lb=adj_lb*1
+}
+else {
+std_lb=std_lb*2.2
+act_lb=act_lb*2.2
+act_lb=round(act_lb)
+std_lb=round(std_lb)
+adj=round(adj)
+adj_lb=adj_lb*2.2
+}
+adj_lb=round(adj_lb)
+act_lb=round(act_lb)
+std_lb=round(std_lb)
+
+
+//alert (act_lb+ ''+std_lb+''+adj_lb)
+var percent=act/std
+
+percent=100*percent
+percent=round(percent)
+document.getElementById('adj_report').innerHTML=adj
+document.getElementById('percent_report').innerHTML=percent
+document.getElementById('act_lb_report').innerHTML=act_lb
+document.getElementById('std_lb_report').innerHTML=std_lb
+document.getElementById('adj_lb_report').innerHTML=adj_lb
+ 
+}
+</script>
+
+
+</head>
+
+<center><h1 style="text-align:center;"> FRAMES AND NHANES</h1>
+
+<p style="text-align:center;">by Stephen Z. Fadem, M.D., FACP, FASN</p>
+<div style="padding:5px;margin:5px;spacing:5px;display:block;text-align:left;max-width:600px;";>
+<FORM>
+Kilograms<input type=radio name=kg_p value=0 onCheck="abw(this.form)" CHECKED>
+Pounds<input type=radio name=kg_p value=1 onCheck="abw(this.form)"><br>
+Actual Dry Weight<input type=text name=actual size=6 value=80 onKeyUp="abw(this.form)">
+Standard Weight (NHANES2)<input type=text name=standard size=6 value=68 onKeyUp="abw(this.form)"><br>
+Adjusted Weight = abw +(abw - sbw)*25 = <span id=adj_report>???</span><br>
+<hr>
+POUNDS: actual body weight:<span id=act_lb_report>???</span> 
+standard body weight:<span id=std_lb_report>???</span> 
+adjusted body weight:<span id=adj_lb_report>???</span>
+<hr>
+Percent standard body weight = abw*100/sbw = <span id=percent_report>???</span></br>
+<p>(Use adjusted edema-free body weight for dialysis patients who are less than 95% or greater than 115% of standard body weight from table below. Ref <a href="http://www.kidney.org/professionals/kdoqi/guidelines_updates/nut_a12.html">NKF K/DOQI</a>)</p>
+<hr>
+abbreviations: standard body weight=sbw; actual body weight=abw
+<input onClick=abw(this.form) type=button value=go><br>
+<a href="http://szf.com/touchcalc/calculators/height_wrist" target="_BLANK">CALCULATE FRAME SIZE</a><br></br>
+<h2>STANDARD BODY WEIGHT - FEMALES</h2>
+
+<img  src="../assets/img/1e9c3c_27dca6ee5bd946e598e2dbef828acc78_mv2.jpg"><br></br>
+<h2>STANDARD BODY WEIGHT - MALES</h2>
+
+<img style="float.right;margin:20px:" src="../assets/img/1e9c3c_8c303a68cfcc4bb1ae62d098bc450a62_mv2.jpg"><br>
+*Estimated with linear regression formula<br>
+From Standard Body Weight NHANES 2 Tables<br>
+
+Frisancho AR. New standards of weight and body composition by frame size and height for assessment of nutritional status of adults and the elderly. <a href="http://www.ncbi.nlm.nih.gov/pubmed/6486088?ordinalpos=3&itool=EntrezSystem2.PEntrez.Pubmed.Pubmed_ResultsPanel.Pubmed_RVDocSum">Am J Clin Nutr. 1984 Oct;40(4):808-19.</a>
+
+<ol>
+  <li><a href="../abw/">Adjust body
+    weight by frame, height, and gender</a></li>
+  <li><a href="../abw-fn/">Look up body frame from NHANES2 tables</a></li>
+    <li><a href="../frame/">Calculate frame from height and wrist circumference</a></li>
+  </ol>
+
+  </FORM>
+ 
+ 
+<p>
+  Copyright &copy  2024 by Stephen Z. Fadem, M.D., FASN. All rights reserved</p>
+  <p>
+ DISCLAIMER:</p>
+<p>
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same.
+
+Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</p>
+
+  </div>
+  </body>
+</html>

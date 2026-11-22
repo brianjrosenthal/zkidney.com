@@ -1,0 +1,202 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trans Tubular K Gradient | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/ttkg">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+<style type="text/css">
+              
+ *{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;}
+                a{font-family:arial,helvetica,sans-serif,verdana;font-size:16px;color:black;font-weight:normal;text-decoration:none;}
+                a:hover{text-decoration:underline;}
+                p {text-align:left;font-family:helvetica, arial, sans-serif, vardana; color:black;text-decoration:none;}
+                ul,li,ol {text-align:left;color:black;}
+                h1 {font-size:22px;}
+                h2 {font-size:18px;}
+                h3 {font-size:16px;}
+                h4 (font-size:15px;}
+                h5 (font-size:14px;}
+                h6 {font-size:12px:}
+  
+
+
+.calc_css {
+            text-align: left;
+            
+            width: 90%;
+            background-color:white;
+            
+            margin: 10px;
+            border:5px; border-color:red;
+            padding:10px;
+            
+              
+           }
+
+  </style>          
+<script language=javascript>
+
+
+
+  
+var form
+form=document.getElementById('ttkg_form');
+function calculate_ttkg(sosm,uosm,sk,uk,sna) {
+
+
+var uosm =document.getElementById('uosm').value;
+var sosm =document.getElementById('sosm').value;
+var uk =document.getElementById('uk').value;
+var sk =document.getElementById('sk').value;
+var una =document.getElementById('una').value;
+
+
+
+
+var ttkg1=sosm*uk;
+var ttkg2=sk*uosm;
+var ttkg=ttkg1/ttkg2
+
+var uposm=uosm/sosm;
+var upk=uk/sk;
+var ttkg3=upk/uposm;
+ttkg3=Math.round(ttkg3);
+
+
+if ((uposm <1)||(una <25)){
+var explanation2="<br>The values are not valid if  the U<sub>osm</sub>/P<sub>osm</sub> is less than 1  or the urine sodium less than 25.<br>";
+ttkg="not valid";
+}
+else{
+var explanation2="";
+ttkg=Math.round(ttkg);
+}
+
+
+
+
+
+
+if ((isNaN(ttkg)==true)||(ttkg>=40)||(ttkg<0)){
+ttkg="___"
+}
+else
+{
+ttkg=Math.round(ttkg);
+}
+
+var explanation="__"
+if ((ttkg >= 6)&&(sk>=5)){
+explanation="This is expected in hyperkalemia. Here the serum K is "+sk+"meq/L."
+}
+else if( (sk <5)&&(sk>3.5)){
+explanation="The serum K is in normal limits. It is  "+sk+"meq/L.<br>The ttkg is generally in the 8 to 9 range on a normal K diet."
+}
+else if( (sk <=3.5)&&(ttkg>3.0)){
+explanation="The ttkg reflects renal loss of potassium explaining/contributing to the hypokalemia of  "+sk+"meq/L."
+}
+else if( (sk <=3.5)&&(ttkg<=3)){
+explanation="The ttkg reflects non-renal loss of potassium explaining/contributing to the hypokalemia of  "+sk+"meq/L."
+}
+else if ((ttkg <=6)&&(sk>=5)){
+explanation="This is seen in hyperkalemia when there is low aldosterone bioavailability. Here the serum K is "+sk+"mEg/L.<br>"
+}
+document.getElementById('ttkg_report').innerHTML=''+ttkg+'<br>';
+document.getElementById('ttkg_explanation').innerHTML=' '+explanation+'<br>'+explanation2+'' ;   
+
+
+};
+
+</script>
+</head>
+<BODY BGCOLOR="#FFFFFF" onload="window.setInterval('calculate_ttkg()',250);">
+<div class="calc_css">
+
+<h2 style=text-align:center;font-weight:bold;>Trans Tubular Potassium Gradient (TTKG)</h2>
+<h3 style=text-align:center;>Stephen Z. Fadem, M.D and Brian Rosenthal</h3>
+
+
+
+
+Transtubular Potassium Gradient (TTKG)=(U<sub>potassium</sub>/P<sub>potassium</sub>)/(U<sub>osm</sub>)/(P<sub>osm</sub>)<br>
+
+
+<form id=ttkg_form>
+Urine Na<input type="text" size=4 id="una"  value=140 > in mEq/L<br>
+Serum K<input type="text" size=4 id="sk"  value=4 > in mEq/L<br>
+Urine K<input type="text" size=4 id="uk"  value=35 > in mEq/L<br>
+Serum Osm<input type="text" size=4 id="sosm"  value=280 > in mOsm/kg<br>
+Urine Osm<input type="text" size=4 id="uosm"  value=301 > in mOsm/kg<br>
+
+
+
+TTKG: <span id="ttkg_report">___</span><br>
+<span id="ttkg_explanation">__</span><br>
+<HR>
+REFERENCES (from PubMed):
+<ol>
+<li>Lin CM, Tsai JD, Lo YF, Yan MT, Yang SS, Lin SH. Chronic renal failure in a
+boy with classic Bartter's syndrome due to a novel mutation in CLCNKB coding for 
+the chloride channel. <a href="http://www.ncbi.nlm.nih.gov/pubmed/19050915">Eur J Pediatr. 2009 Sep;168(9):1129-33. Epub 2008 Dec 3.</a></li>
+
+
+
+<li>Mc Greevy C, Horan J, Jones D, Biswas K, O'Meara YM, Mulkerrin EC. A study of 
+tubular potassium secretory capacity in older patients with hyperkalaemia. <a href="http://www.ncbi.nlm.nih.gov/pubmed/18264644">J Nutr
+Health Aging. 2008 Feb;12(2):152-5. </a></li>
+
+<li> Choi MJ, Ziyadeh FN. The utility of the transtubular potassium gradient in the
+evaluation of hyperkalemia.<a href="http://www.ncbi.nlm.nih.gov/pubmed/18216310"> J Am Soc Nephrol. 2008 Mar;19(3):424-6. Epub 2008 Jan
+23. </a></li>
+
+
+<li> Musso C, Liakopoulos V, Stefanidis I, De Miguel R, Imperiali N, Algranati L.
+Correlation between creatinine clearance and transtubular potassium concentration
+gradient in old people and chronic renal disease patients. <a href="http://www.ncbi.nlm.nih.gov/pubmed/17951942">Saudi J Kidney Dis
+Transpl. 2007 Nov;18(4):551-5. </a></li>
+
+
+<li> Rangel EB, Gomes SA, Machado PG, dos Santos BF, Pestana JO, Pacheco-Silva A,
+Heilberg IP. Severe hyperkalemic type 4 renal tubular acidosis after kidney
+transplantation: a case report. <a href="http://www.ncbi.nlm.nih.gov/pubmed/17112912">Transplant Proc. 2006 Nov;38(9):3112-5. </a></li>
+
+
+<li>Musso C, Liakopoulos V, De Miguel R, Imperiali N, Algranati L. Transtubular
+potassium concentration gradient: comparison between healthy old people and
+chronic renal failure patients.<a href="http://www.ncbi.nlm.nih.gov/pubmed/16868716"> Int Urol Nephrol. 2006;38(2):387-90. </a></li>
+
+
+<li> Fujii H, Nakahama H, Yoshihara F, Nakamura S, Inenaga T, Kawano Y.
+Life-threatening hyperkalemia during a combined therapy with the angiotensin
+receptor blocker candesartan and spironolactone.<a href="http://www.ncbi.nlm.nih.gov/pubmed/16199929"> Kobe J Med Sci.
+2005;51(1-2):1-6.</a></li>
+
+
+<li> Lim YS, Han JS, Kim KA, Yoon JH, Kim CY, Lee HS. Monitoring of transtubular
+potassium gradient in the diuretic management of patients with cirrhosis and
+ascites. <a href="http://www.ncbi.nlm.nih.gov/pubmed/12390478">Liver. 2002 Oct;22(5):426-32</a></li>
+</ol>
+
+</form>
+
+
+
+<hr>
+<p style="font-size:10;text-align:justify;">&copy; 2008-24, Touchcalc, Inc. All rights reserved. No part of this application may be duplicated without written permission from the author.</p>
+<p style="font-size:10;text-align:justify;">DISCLAIMER:
+
+The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p style="font-size:10;text-align:justify;">Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.
+</div>
+</body>
+</html>

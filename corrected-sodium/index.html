@@ -1,0 +1,157 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correct Na for Glucose | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/corrected-sodium">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+<html>
+<head>
+
+
+
+
+<script language=JavaScript>
+
+var form
+function correct_na(form,glu,na) {
+
+form = document.getElementById('correct_na_form');
+var na  =form.na.value
+var glu =form.glu.value
+ 
+ 
+var c_na=eval(glu)-100
+c_na=0.016*c_na
+c_na=eval(na)+eval(c_na)
+c_na=Math.round(c_na*1)/1; 
+document.getElementById('c_na_report').innerHTML=c_na;
+
+
+if(glu < 100){c_na_message ='Test invalid for glucose less than 100' }
+else if(glu >= 100){c_na_message='Calculation corrects serum sodium for glucose greater than 100';}
+
+
+document.getElementById('c_na_message_report').innerHTML=c_na_message;
+};
+</script>
+<STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color:#eee;
+        color:black;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[type="text"] {font-size:15px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:#eee;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+</head>
+
+<body onLoad="window.setInterval('correct_na()',250)";>
+<h2 style="text-align:center;">Correct Sodium for Blood Sugar</h2>
+  <h3 style="text-align:center;">by Stephen Z. Fadem, MD, FASN</h3>
+<form id="correct_na_form">
+<p>MEASURED SODIUM + 0.016 X (SERUM GLUCOSE - 100)</p>
+<p>MEASURED GLUCOSE: <input   type=text name=glu value=240 size=5 ></p>
+  <p>MEASURED SODIUM <input  type=text name=na value=129 size=6 ></p>
+
+<p>CORRECTED SODIUM  = <span id=c_na_report></span></p>
+
+<p>INTERPRETATION = <span id=c_na_message_report></span></p>
+
+<p>REFERENCE: Katz MA. Hyperglycemia-induced hyponatremia--calculation of expected serum sodium depression. N Engl J Med. 1973 Oct 18;289(16):843-4.</p>
+
+</form>
+  <p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!doctype HTML>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Are You Drunk? | zkidney</title>
+<link rel="canonical" href="https://www.zkidney.com/rudrunk">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<style>
+/* zkidney page frame: leaves room for the site header (assets/site.js) */
+html::before{content:"";display:block;height:56px}
+:where(html){background:#ededed}
+:where(body){max-width:1000px;margin:8px max(8px,calc(50% - 500px))}
+</style>
+<script src="../assets/site.js" defer></script>
+
+<html>
+<head>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+       var feet=0;
+        var inches=0;
+        var centimeters=0;
+        var kilograms=0;
+       var cm=0;
+     
+
+function open_tc() 
+
+
+{
+window.open("http://touchcalc.com/","hoverwindow","toolbar=yes,width=800,height=500, resizable=yes,scrollbars=yes");
+}
+    
+
+
+function addCommas(nStr)//formats string values with commas;
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
+     var val;
+        function round2(num){
+                         return Math.round(num*10)/10
+
+                                };
+        function round(num){
+                         return Math.round(num*100)/100
+
+                                };
+        function round1(num){
+                         return Math.round(num*10000)/10000
+
+                                };
+
+        function radio_val(items,defaultVal) {
+        
+         
+        for( var i = 0; i < items.length; i++) {
+              
+                if (items[i].checked) return items[i].value;
+      }
+        return defaultVal;
+    }
+
+
+function isEmpty(aTextField){
+var re = /\s/g; //Match any white space including space, tab, form-feed, etc. 
+var str = aTextField.replace(re, "");
+if (str.length == 0) {
+return true;
+} else {return false;}
+}
+
+
+        function inchesCalc(inches)
+            {
+           cm=inches*2.54;
+           return cm;
+           }
+         
+         function feetCalc(feet)
+         {
+         inches=feet*12;
+         cm=inches*2.54;
+         return cm;
+         }
+
+function getTheDay(day) {
+//var DAYNAMES=newArray(7);
+day.DAYNAMES= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+return day.DAYNAMES[day.getUTCDay()];
+}
+
+function getTheMonth(mnth) {
+//var MONTH=new Array(12);
+mnth.MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+return mnth.MONTH[mnth.getUTCMonth()];
+}
+         
+
+ function kilogramsCalc(lb)
+        {
+        kilograms=lb*.45;
+        return kilograms; 
+        }
+
+
+
+
+
+   function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 45 || charCode > 57))
+            return false;
+
+         return true;
+      }
+    
+
+function radio_val(items,defaultVal)
+
+  {
+        var val;
+        for(var i = 0; i < items.length; i++) {
+                
+                if (items[i].checked) { return items[i].value;return defaultVal;}
+        }
+   }
+
+  
+  
+function blood_alc(ounces,percent,weight, feet, inches, age,hours, female_sex_p) 
+{
+var form;
+form=document.getElementById('bac_form');
+var oz = form.ounces.value;
+var per = form.percent.value;
+per=per/100
+var weight = form.weight.value;
+var feet=form.feet.value;
+var inches=form.inches.value;
+var height=feet*12;
+height=feet+inches
+height=height*2.54; //converts to cm
+height=height/100;//converts to meters
+
+var ml=oz*28.375;
+var age=form.age.value;
+
+var d=0.789; // density in grams/ml
+
+var hr = form.hours.value;
+
+var etoh=ml*per;// percent  times the volume
+etoh=d*etoh ;//corrects for density of alcohol
+var tbw 
+
+weight=weight*0.45 ;//convert from pounds to kg
+
+var female_sex_p = (radio_val(form.female_sex_p,1) > 0); // default male
+var gender="" ;  
+       if (female_sex_p>0) //female
+       
+{   
+
+      gender="female";
+tbw=0
+wt=weight*0.2466
+ht=height*10.69
+tbw=2.097+wt+ht;
+     
+}
+else if (female_sex_p==0) //male
+{
+gender="male";
+ tbw=0
+       wt=weight*.3362
+       ht=height*10.74
+       age=.09516*age
+       tbw=2.447+wt+ht-age;
+
+}
+        
+
+var bac = etoh/(tbw*10);
+var elim= bac*0.17;
+//bac1=bac - elim*hr;
+bac-=elim*hr;
+tbw=Math.round(tbw*100)/100;
+height=Math.round(height*100)/100;
+elim=Math.round(elim*10000)/10000;
+
+
+ 
+
+if (bac == "NaN") {
+document.getElementById('bac_message').innerHTML ="<b>NaN means Not a Number - wrong entry (you might be too drunk to do this!!).</b>";
+ 
+}
+else if (bac >= 0.08) {
+document.getElementById('bac_message').innerHTML = "<b>Call <a href='http://uber.com'>Uber</A>!! Do not drive!! You are legally intoxicated.</b>";
+ }
+else if ((bac < 0.08) && (bac >= .049)){
+document.getElementById('bac_message').innerHTML ="<b>You are not legally intoxicated based on this formula, but quit now.</b>";
+}
+else if ((bac < 0.049) && (bac > 0.0)){
+document.getElementById('bac_message').innerHTML ="<b>You are not legally intoxicated.</b>";
+}
+else if ((bac <= 0)|| (bac=-bac)) {
+(bac=0);
+
+document.getElementById('bac_message').innerHTML ="<b>There is a negligible amount of alcohol in your system. You should be the designated driver</b>";
+} 
+
+bac=Math.round(bac*1000)/1000;
+document.getElementById('bac_report').innerHTML = '<b>' + bac + '%  </b>';
+
+weight=Math.round(weight*1)/1;
+wt=Math.round(wt*1)/1;
+etoh=Math.round(etoh*1)/1;
+document.getElementById('info_report').innerHTML='<br>Gender:'+gender+  '<br>Weight: '+weight+ ' kg<br>Height: '+height+' meters<br>TBW (Watson): '+tbw+' liters<br>Alcohol content corrected for density: '+etoh+' grams<br>Elimination rate: '+elim+ '  mg%<br>Hours since starting: '+hr+ '.<br>';
+//  End -->
+}
+</script>
+ <STYLE type="text/css">
+* {
+	font-family: Arial, Helvetica, Sans-serif;
+        background-color#eee;
+        color:595b60;
+        }
+p ul li a div {
+
+        font-size:12px;
+        margin-left: auto;
+        margin-right: auto;
+       
+}
+input[type="text"] {font-size:15px;
+}
+
+ 
+div#nav{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+color:white;
+background-color:595b60;
+font-size:12px;
+margin:0 auto;
+overflow:hidden;
+text-align:center
+vertical-align:middle;
+}
+
+
+
+div#nav ul{
+
+
+list-style:none;
+text-align:center;
+margin: 0 auto;
+}
+div#nav ul li {
+float:left;
+width:13em;
+
+text-align:center;
+display:inline;
+margin:0 auto;
+vertical-align:middle;
+
+}
+
+
+div#nav ul li a {
+line-height:24px;
+display:block;
+color:white;
+background-color:595b60;
+text-decoration:none;
+}
+div#nav ul li a:hover{
+background-color:white;
+color:595b60;      
+
+}
+input.fieldCheckbox {
+	width: 2em;
+	height: 2em;
+}
+
+div#footr p a {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:10px;
+color:595b60;
+text-align:justify;
+margin-left:auto;
+margin-right:auto;
+}
+
+#fieldset_style{
+border: 1px solid blue;
+padding:10px;
+text-align:left;
+margin-top:10px;
+margin-left:0px;
+margin-right:auto;
+width:auto;
+font-size:12px;
+}
+    
+ table{ width:100%; text:align:center;border:1px solid #00F; font-size:12px;}
+th{background:#EEE;width:auto; text-align:center; padding:5px 0;border:0px solid #00F;}
+td{width:auto; text-align:center; padding:5px 0;border:0px solid #00F;background:#EEE;}
+tr:nth-child(even) {background: #EEE;}   
+</style>
+  </head>
+  
+
+<BODY onload="window.setInterval('blood_alc()',250);">
+<div>
+
+  <h2 style="text-align:center;">Are You Drunk?</h2>
+<h3 style="text-align:center;">by Stephen Z. Fadem, M.D. FASN</h3>
+  
+  
+<h4>Modified Widmark Calculator<br> Using Watson Total Body Water, Alcohol correction for density, and updated beta calculations</h4>
+
+
+<FORM id="bac_form">
+
+<p style="font-weight:bold;">FLUID OUNCES CONSUMED</p>
+ <p>
+Beer ~ 12 oz.  ~ 4-4.5%  <br>
+Wine Glass  ~ 4 oz.  ~ 15-20% <br>
+1 Shot ~ 1.5 oz ~ 30-50% <br>
+    </p>
+
+
+<p>Fluid Ounces Consumed<input  style="color:b0232b;"  type="text"  name="ounces" id="ounces" size=4 value="12" onkeypress="return isNumberKey(event)"><br>
+
+<INPUT TYPE="radio" id="radio_gender_male" NAME="female_sex_p" VALUE="0" CHECKED>
+      <label for="radio_gender_male">Male</label>
+      <INPUT TYPE="radio" id="radio_gender_female" NAME="female_sex_p" VALUE="1">
+      <label for="radio_gender_female">Female</label><br>
+
+Percent Alcohol<input  style="color:b0232b;"  type="text" name="percent" id="percent" size=4 value=5 onkeypress="return isNumberKey(event)"><br>
+Your Weight (Lbs)<input  style="color:b0232b;"  type="text" name="weight" id="weight" size=6 value=160 onkeypress="return isNumberKey(event)"><br>
+Your Height - feet<input  style="color:b0232b;"  type="text" name="feet" id="feet" size=6 value=5 onkeypress="return isNumberKey(event)">Inches - <input  style="color:b0232b;"  type="text" name="inches" id="inches" size=6 value=9 onkeypress="return isNumberKey(event)"><br>
+Your age (yrs) <input  style="color:b0232b;"  type="text" name="age" id="age" size=6 value=70 onkeypress="return isNumberKey(event)"><br>
+      
+
+
+
+Hours Consuming Drink<input  style="color:b0232b;"  type="text" name="hours"id="hours"  size=6 value=1 onkeypress="return isNumberKey(event)"><br>
+
+<h4>BAC Percentage: </b><span id="bac_report">____</span><br>
+        <b>BAC Analysis: </b><span id="bac_message">____</span></h4>
+<p><span id="info_report">___</span></p>
+<p>
+Blood Alcohol Level percent = (v X z X d)/(r X M) - &#946; *t <br>
+v = volume<br>
+z = percent per volume<br>
+d = density of alcohol (0.789 g/mL)<br>
+M= weight converted to kg<br>
+R = Rho - .73 for men and .66 for women (from Widmark)<br>
+&#946;=beta= elimination rate  0.17*BAC<br>
+t= time - Hours since drinking started<br>
+        </p>
+</form>
+
+
+</body>
+<!---
+<p>Maskell, PD, Korb, A-S. Revised equations allowing the estimation of the uncertainty associated with the Total Body Water version of the Widmark equation. J Forensic Sci. 2021; 00: 1– 5. https://doi.org/10.1111/1556-4029.14859</p>
+
+//
+<p>To convert a serum alcohol concentration to a whole blood equivalent: 
+Step 1.If necessary,convert the units to g/100 mL. 
+mg/dL = mg/100 mL 
+mg/100 mL = g/100 mL 
+1000 
+120 mg/dL= 0.120 g/100 mL 
+Step 2.Convert serum alcohol concentration (SAC) to an equivalent 
+whole blood concentration (your witness may use a different average 
+ratio than 1.14:1):Whole Blood AC = SAC /1.14. 
+************************
+Whole Body: About 68% of an average male�s body weight is due 
+to body water,while the percentage is 55% for average females.
+**********************
+Rate of elimination.The average rate of elimination (combining 
+metabolism,excretion and evaporation) is between 0.015 to 0.018% per 
+hour.Expressed in terms of common alcohol measurement units this is 
+0.015 - 0.018 g/100 mL or g/210 L per hour.
+**************************
+Alcohol dose in grams 
+AC = ���������������� x 100 
+Body weight in grams x r 
+**********************
+r= the whole body alcohol distribution ratio: 
+r = 0.55 for females 
+r = 0.68 for males 
+**********************
+Where the following conversion factors are used: 
+1 fl.oz. = 29.6 mL 
+1 mL alcohol = 0.789 grams alcohol 
+*****************************
+(Volume of drinks) x (AC of drinks alcohol concentrations) x 0.789 = grams of alcohol consumed. 
+*************************
+Step 1:Calculate the AC of drinks in 3 fl.oz.of 86 proof whiskey. 
+Beverage AC = 1/2 of proof 
+86 proof = 43 % by volume 
+Step 2:Convert the drinks consumed from ounces to milliliters. 
+1 fl.oz.= 29.6 mL 
+3 fl.oz.x 29.6 mL/fl.oz.= 88.8 mL 
+Step 3:Using the results from Step 1 & 2,calculate the alcohol dose 
+consumed. 
+88.8 mL  x  0.43  x  0.789 g/mL  =  30.1 g 
+*****************************
+1 pound  =  454 grams 
+180 x 454 = 81,720 grams 
+--->
+
+   
+
+<p>&copy; Stephen Z. Fadem, M.D., FASN. All rights reserved.</p>
+<hr>
+<p &copy; 2008-24, Touchcalc, Inc. All rights reserved. No part of this application may be duplicated without written permission from the author.</p>
+
+
+<p >DISCLAIMER: The licensee or user understand and agree that the technology and content of this application are provided for educational purposes only. All calculations must be checked for accuracy and confirmed before use, clinical or otherwise. All medical
+decisions must be based upon the clinical judgment of a licensed physician. Licensee or user assumes the duty to have any and all laboratory values or calculations verified by a licensed physician. Neither licensor nor its associated authors or other entities warrant the 
+ accuracy of any information provided by or resulting from the technology or the content for clinical management, and licensee or user agree that no such persons or entities shall be liable for any adverse consequences resulting from the use of any of the same. </p>
+<p>Licensee or user shall indemnify, defend and hold harmless licensor, its affiliates, and their respective officers, directors, owners, agents, information providers and employees from and against any claims, demands or causes of action whatsoever, including without limitation those arising on account of, or resulting from the exercise or practice of the license granted hereunder by licensee, its sublicensees, if any, its subsidiaries or other officers, employees, agents or representatives.</P>
+<a href="http://touchcalc.com/calc"><img src="../assets/img/1e9c3c_f117e9b4a2b14857b319451a9fa86ed5_mv2.png" width=57><p style="font-family:sans-serif;font-size:10:">TOUCHCALC</p></a></center></div>
+</body>
+</html>
